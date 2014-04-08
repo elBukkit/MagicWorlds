@@ -2,5 +2,6 @@
 
 # 0.10
 
-First release
+ - First release
+ - Config-driven block and entity replacement.
 

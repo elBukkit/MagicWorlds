@@ -1,84 +1,46 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds.populator;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.generator.BlockPopulator;
+import org.bukkit.configuration.ConfigurationSection;
 
-public class ReplacePopulator extends BlockPopulator {
+import com.elmakers.mine.bukkit.blocks.MaterialAndData;
+import com.elmakers.mine.bukkit.blocks.MaterialBrush;
 
-	public ReplacePopulator() {
+public class ReplacePopulator extends MagicBlockPopulator {
+	private Map<Material, MaterialAndData> replaceMap = new HashMap<Material, MaterialAndData>();
+	
+	@Override
+	public void onLoad(ConfigurationSection config) {
+		ConfigurationSection replaceSection = config.getConfigurationSection("replace");
+		if (replaceSection == null) return;
+		Map<String, Object> replaceNodes = replaceSection.getValues(false);
+		for (Entry<String, Object> replaceNode : replaceNodes.entrySet()) {
+			MaterialAndData fromMaterial = MaterialBrush.parseMaterialKey(replaceNode.getKey());
+			if (fromMaterial == null) {
+				controller.getLogger().warning("Invalid material key: " + replaceNode.getKey());
+				continue;
+			}
+			MaterialAndData toMaterial = MaterialBrush.parseMaterialKey(replaceNode.getValue().toString());
+			if (toMaterial == null) {
+				controller.getLogger().warning("Invalid material key: " + replaceNode.getValue());
+				continue;
+			}
+			replaceMap.put(fromMaterial.getMaterial(), toMaterial);
+		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	protected void replaceBlock(Block block) {
-		switch (block.getType()) {
-		case GRASS:
-			block.setType(Material.MYCEL);
-			break;
-		case DIRT:
-			block.setType(Material.NETHERRACK);
-			break;
-		case STONE:
-			block.setType(Material.ENDER_STONE);
-			break;
-		case LEAVES:
-			block.setType(Material.GLOWSTONE);
-			break;
-		case LOG:
-			block.setType(Material.QUARTZ_BLOCK);
-			break;
-		case WATER:
-			block.setTypeId(95);
-			block.setData((byte)9);
-			break;
-		case STATIONARY_WATER:
-			block.setTypeId(95);
-			block.setData((byte)3);
-			break;
-		case LAVA:
-			block.setTypeId(95);
-			block.setData((byte)0xE);
-			break;
-		case STATIONARY_LAVA:
-			block.setTypeId(95);
-			block.setData((byte)0xE);
-			break;
-		case SAND:
-			block.setType(Material.SOUL_SAND);
-			break;
-		case GRAVEL:
-			block.setType(Material.HUGE_MUSHROOM_2);
-		case LONG_GRASS:
-			block.setType(Material.RED_MUSHROOM);
-			break;
-		case YELLOW_FLOWER:
-			block.setType(Material.BROWN_MUSHROOM);
-			break;
-		case RED_ROSE:
-			block.setType(Material.BROWN_MUSHROOM);
-			break;
-		case WOOD:
-			block.setType(Material.BRICK);
-			break;
-		default:
-			break;
-		}
-		
-		switch (block.getTypeId()) {
-		case 161: 
-			block.setType(Material.GLOWSTONE); 
-			break;
-		case 162:
-			block.setType(Material.QUARTZ_BLOCK);
-			block.setData((byte)1);
-			break;
-		case 175:
-			block.setType(Material.HUGE_MUSHROOM_1);
-			break;
+		MaterialAndData replaceType = replaceMap.get(block.getType());
+		if (replaceType != null) {
+			replaceType.modify(block);
 		}
 	}
 	

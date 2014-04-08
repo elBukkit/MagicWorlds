@@ -3,4 +3,69 @@
 # populated by Endermen.
 #
 
-# TODO :)
+# worlds:
+  world_other:
+     entity_spawn:
+        replace:
+          class: ReplaceSpawnHandler
+          replace: 
+            pig: enderman
+            cow: enderman
+            sheep: enderman
+            creeper: enderman
+            zombie: enderman
+            skeleton: enderman
+            spider: enderman
+     chunk_generate:
+        replace:
+          class: ReplacePopulator
+          replace:
+            grass: mycel
+            dirt: netherrack
+            stone: ender_stone
+            leaves: glowstone
+            leaves_2: stained_glass|5
+            log: quartz_block|2
+            log_2: glowstone
+            water: stained_glass|9
+            stationary_water: stained_glass|3
+            lava: stained_glass|13
+            stationary_lava: stained_glass|1
+            sand: soil
+            gravel: soul_sand
+            long_grass: huge_mushroom_1
+            yellow_flower: red_mushroom
+            red_rose: brown_mushroom
+            wood: brick
+            double_plant: nether_fence
+            fence: nether_fence
+            cobblestone: nether_brick
+            glass: stained_glass|10
+            thin_glass: stained_glass_pane|9
+            cactus: pumpkin_stem
+            ice: stained_glass|11
+            packed_ice: stained_glass|11
+            clay: stained_clay|10
+            snow_block: quartz_block
+            coal_ore: quartz_ore
+            diamond_ore: quartz_ore
+            emerald_ore: quartz_ore
+            iron_ore: quartz_ore
+            gold_ore: quartz_ore
+            wool: gold_block|2
+        wands: 
+          class: WandChestPopulator
+          base_probability:
+            0: 100
+            1: 70
+            2: 20
+            3: 5
+          wand_probability:
+            guest: 50
+            villager: 60
+            random(1): 200
+            random(2): 150
+            random(5): 80
+            random(10): 10
+            random(20): 5
+            random(30): 1

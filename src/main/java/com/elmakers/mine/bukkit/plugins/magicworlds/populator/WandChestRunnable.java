@@ -7,6 +7,7 @@ import org.bukkit.World;
 
 import com.elmakers.mine.bukkit.plugins.magic.MagicController;
 import com.elmakers.mine.bukkit.plugins.magic.populator.WandChestPopulator;
+import com.elmakers.mine.bukkit.utilities.MagicRunnable;
 import com.elmakers.mine.bukkit.utilities.NMSUtils;
 
 public class WandChestRunnable extends MagicRunnable {

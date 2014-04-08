@@ -1,6 +1,3 @@
 # TODO
 
-- Config-driven populators
-- Remove chest populator from Magic
-
-	
+ - Get wand populator working, turn off Magic wand populator.

@@ -1,9 +1,8 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds.populator;
 
-import java.util.List;
-import java.util.Random;
 import java.util.LinkedList;
-import java.util.logging.Logger;
+import java.util.Random;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Chunk;
@@ -11,30 +10,23 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.generator.BlockPopulator;
+import org.bukkit.configuration.ConfigurationSection;
 
-import com.elmakers.mine.bukkit.plugins.magic.MagicController;
 import com.elmakers.mine.bukkit.plugins.magic.wand.Wand;
 import com.elmakers.mine.bukkit.utilities.RandomUtils;
 import com.elmakers.mine.bukkit.utilities.WeightedPair;
-import com.elmakers.mine.bukkit.utilities.borrowed.ConfigurationNode;
 
-public class WandChestPopulator extends BlockPopulator {
-	private final Logger log;
-	private final MagicController controller; 
+public class WandChestPopulator extends MagicBlockPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
 	private final LinkedList<WeightedPair<String>> wandProbability = new LinkedList<WeightedPair<String>>();
 	private int maxy = 255;
 	
-	public WandChestPopulator(MagicController controller, ConfigurationNode config) {
-		this.controller = controller;
-		this.log = controller.getLogger();
-		
+	public void onLoad(ConfigurationSection config) {
 		// Fetch base probabilities
 		Float currentThreshold = 0.0f;
-		ConfigurationNode base = config.getNode("base_probability");
+		ConfigurationSection base = config.getConfigurationSection("base_probability");
 		if (base != null) {
-			List<String> keys = base.getKeys();
+			Set<String> keys = base.getKeys(false);
 			for (String key : keys) {
 				Integer wandCount = Integer.parseInt(key);
 				Float threshold = (float)base.getDouble(key, 0);
@@ -45,9 +37,9 @@ public class WandChestPopulator extends BlockPopulator {
 		
 		// Fetch wand probabilities
 		currentThreshold = 0.0f;
-		ConfigurationNode wands = config.getNode("wand_probability");
+		ConfigurationSection wands = config.getConfigurationSection("wand_probability");
 		if (wands != null) {
-			List<String> keys = wands.getKeys();
+			Set<String> keys = wands.getKeys(false);
 			for (String key : keys) {
 				String wandName = key;
 				Float threshold = (float)wands.getDouble(key, 0);
@@ -63,7 +55,7 @@ public class WandChestPopulator extends BlockPopulator {
 		String[] wandNames = new String[wandCount];
 		for (int i = 0; i < wandCount; i++) {
 			String wandName = RandomUtils.weightedRandom(wandProbability);
-			Wand wand = Wand.createWand(controller, wandName);
+			Wand wand = Wand.createWand(controller.getMagicController(), wandName);
 			if (wand != null) {
 				chest.getInventory().addItem(wand.getItem());
 			} else {
@@ -88,8 +80,8 @@ public class WandChestPopulator extends BlockPopulator {
 					if (block.getType() == Material.CHEST) {
 						Chest chest = (Chest)block.getState();
 						String[] wandNames = populateChest(chest);
-						if (wandNames.length > 0 && log != null) {
-							log.info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at " + world.getName() + ": " + (x + source.getX() * 16) + "," + y + "," + (z + source.getZ() * 16));
+						if (wandNames.length > 0 && controller != null) {
+							controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at " + world.getName() + ": " + (x + source.getX() * 16) + "," + y + "," + (z + source.getZ() * 16));
 						}
 					}	
 				}

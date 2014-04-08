@@ -1,13 +1,13 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.bukkit.World;
-import org.bukkit.entity.EntityType;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,7 +18,7 @@ import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.ReplacePopulator;
+import com.elmakers.mine.bukkit.plugins.magic.MagicController;
 
 public class MagicWorldsController implements Listener 
 {
@@ -34,12 +34,23 @@ public class MagicWorldsController implements Listener
 
 	public void initialize()
 	{
+		plugin.saveDefaultConfig();	
 		load();
 	}
 	
 	public void load()
 	{
 		try {
+			Configuration config = plugin.getConfig();
+			ConfigurationSection worlds = config.getConfigurationSection("worlds");
+			if (worlds != null) {
+				Set<String> worldKeys = worlds.getKeys(false);
+				for (String worldName : worldKeys) {
+					logger.info("Customizing world " + worldName);
+					MagicWorld world = new MagicWorld(this, worlds.getConfigurationSection(worldName));
+					magicWorlds.put(worldName, world);
+				}
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -55,38 +66,12 @@ public class MagicWorldsController implements Listener
 	
 	@EventHandler
 	public void onWorldInit(WorldInitEvent event) {
-		// Install our block populator if configured to do so.
-		/*
-		 * 
-		 * return new WandChestPopulator(this, blockPopulatorConfig);
-		 * 
-		if (blockPopulatorEnabled && blockPopulatorConfig == null) {
-			logger.warning("Block populator is enabled, but missing config");
-		}
-		if (blockPopulatorEnabled && blockPopulatorConfig != null) {
-			World world = event.getWorld();
-			world.getPopulators().add(getWandChestPopulator());
-			logger.info("Installing chest populator in " + world.getName());
-		}
-		*/
-		
 		World world = event.getWorld();
-		world.getPopulators().add(new ReplacePopulator());
+		MagicWorld magicWorld = magicWorlds.get(world.getName());
+		if (magicWorld == null) return;
 		
-		logger.info("Installing replace populator in " + world.getName());
-		
-
-		List<SpawnRule> rules = new ArrayList<SpawnRule>();
-		rules.add(new SpawnRule(EntityType.SHEEP, EntityType.ENDERMAN));
-		rules.add(new SpawnRule(EntityType.COW, EntityType.ENDERMAN));
-		rules.add(new SpawnRule(EntityType.PIG, EntityType.ENDERMAN));
-		rules.add(new SpawnRule(EntityType.CREEPER, EntityType.ENDERMAN));
-		rules.add(new SpawnRule(EntityType.SPIDER, EntityType.ENDERMAN));
-		rules.add(new SpawnRule(EntityType.SKELETON, EntityType.ENDERMAN));
-
-		logger.info("Overriding mob spawning in " + world.getName());
-		
-		worldSpawnRules.put(world.getName(), rules);
+		logger.info("Initializing world " + world.getName());
+		magicWorld.installPopulators(world);
 	}
 
     @EventHandler(priority = EventPriority.LOW)
@@ -94,21 +79,15 @@ public class MagicWorldsController implements Listener
         if (event.isCancelled()) {
             return;
         }
-        if (!(event.getEntity() instanceof LivingEntity)) return;
+        MagicWorld magicWorld = magicWorlds.get(event.getLocation().getWorld().getName());
+        if (magicWorld == null) return;
         
-        List<SpawnRule> rules = worldSpawnRules.get(event.getLocation().getWorld().getName());
-        if (rules == null) return;
-        
-        LivingEntity entity = (LivingEntity)event.getEntity();
-        for (SpawnRule rule : rules)
-        {
-        	LivingEntity replace = rule.replace(plugin, entity);
-        	if (replace != null) {
-                entity.setHealth(0);
-                event.setCancelled(true);
-                break;
-        	}
-        }
+        LivingEntity entity = event.getEntity();
+        LivingEntity replace =  magicWorld.processEntitySpawn(plugin, entity);
+        if (replace != null) {
+        	entity.setHealth(0);
+            event.setCancelled(true);
+    	}
     }
     
     @EventHandler(priority = EventPriority.NORMAL)
@@ -122,11 +101,22 @@ public class MagicWorldsController implements Listener
         }
     }
 
+    public Logger getLogger() {
+    	return logger;
+    }
+    
+    public MagicController getMagicController() {
+    	return magicController;
+    }
+    
 	/*
 	 * Private data
 	 */
 
+    // TODO: Magic integration
+    private MagicController magicController = null;
+    
+    private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final Plugin	plugin;
 	private final Logger 	logger;
-	private final Map<String, List<SpawnRule>> worldSpawnRules = new HashMap<String, List<SpawnRule>>();
 }
