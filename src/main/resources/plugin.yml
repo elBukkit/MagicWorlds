@@ -6,3 +6,25 @@ author: NathanWolf
 description : A plugin for Magic to customize worlds
 depend: [Magic]
 load: startup
+commands:
+  magicw:
+    description: Administer Magic Worlds
+    usage: /magicw [load|cancel|populate|search]
+    permission: Magic.commands.magicw
+permissions:
+  Magic.commands.magicw.load:
+    description: Player may reload the configuration
+    type: boolean
+    default: op
+  Magic.commands.magicw.populate:
+    description: Player may populate the world's chests with wands
+    type: boolean
+    default: op
+  Magic.commands.magicw.search:
+    description: Player may search the world for wands
+    type: boolean
+    default: op
+  Magic.commands.magicw.cancel:
+    description: Player may cancel any pending search or populate jobs
+    type: boolean
+    default: op

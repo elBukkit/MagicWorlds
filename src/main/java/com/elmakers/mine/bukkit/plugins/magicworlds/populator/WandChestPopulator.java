@@ -22,6 +22,12 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	private int maxy = 255;
 	
 	public void onLoad(ConfigurationSection config) {
+		
+		maxy = config.getInt("max_y");
+		if (maxy == 0) {
+			maxy = 60;
+		}
+		
 		// Fetch base probabilities
 		Float currentThreshold = 0.0f;
 		ConfigurationSection base = config.getConfigurationSection("base_probability");

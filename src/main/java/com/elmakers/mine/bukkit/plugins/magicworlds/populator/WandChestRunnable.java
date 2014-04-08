@@ -5,8 +5,7 @@ import java.util.Random;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 
-import com.elmakers.mine.bukkit.plugins.magic.MagicController;
-import com.elmakers.mine.bukkit.plugins.magic.populator.WandChestPopulator;
+import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
 import com.elmakers.mine.bukkit.utilities.MagicRunnable;
 import com.elmakers.mine.bukkit.utilities.NMSUtils;
 
@@ -26,12 +25,16 @@ public class WandChestRunnable extends MagicRunnable {
 	WandChestPopulator populator;
 	Random random;
 	
-	public WandChestRunnable(MagicController controller, World world, int maxy) {
+	public WandChestRunnable(MagicWorldsController controller, World world, int maxy) {
 		super(controller.getLogger());
 		this.world = world;
 		this.random = new Random();
 		if (maxy > 0) {
-			populator = controller.getWandChestPopulator();
+			populator = controller.getWandChestPopulator(world.getName());
+			if (populator == null) {
+				controller.getLogger().warning("No chest populator configured for world " + world.getName());
+				return;
+			}
 			populator.setMaxY(maxy);
 		}
 	}

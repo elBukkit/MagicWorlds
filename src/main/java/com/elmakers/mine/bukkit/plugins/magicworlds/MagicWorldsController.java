@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -18,7 +19,9 @@ import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.Plugin;
 
+import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.plugins.magic.MagicController;
+import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestPopulator;
 
 public class MagicWorldsController implements Listener 
 {
@@ -26,6 +29,14 @@ public class MagicWorldsController implements Listener
 	{
 		this.logger = plugin.getLogger();
 		this.plugin = plugin;
+		
+		Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
+		if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
+			logger.warning("Magic API not found! MagicWorlds will probably not work.");
+			return;
+		}
+		
+		this.magicController = ((MagicAPI)magicPlugin).getController();
 	}
 	
 	/*
@@ -109,11 +120,17 @@ public class MagicWorldsController implements Listener
     	return magicController;
     }
     
+    public WandChestPopulator getWandChestPopulator(String worldName) {
+    	MagicWorld magicWorld = magicWorlds.get(worldName);
+    	if (magicWorld == null) return null;
+    	
+    	return magicWorld.getWandChestPopulator();
+    }
+    
 	/*
 	 * Private data
 	 */
 
-    // TODO: Magic integration
     private MagicController magicController = null;
     
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();

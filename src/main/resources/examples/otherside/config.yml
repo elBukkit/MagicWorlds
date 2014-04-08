@@ -56,16 +56,18 @@
         wands: 
           class: WandChestPopulator
           base_probability:
-            0: 100
+            0: 20
             1: 70
             2: 20
             3: 5
           wand_probability:
-            guest: 50
-            villager: 60
-            random(1): 200
-            random(2): 150
-            random(5): 80
-            random(10): 10
-            random(20): 5
-            random(30): 1
+            nether: 50
+            ender: 60
+            elder: 1
+            recalltoken: 100
+            mana1: 100
+            mana2: 50
+            mana3: 10
+            random(10): 200
+            random(20): 150
+            random(50): 80
