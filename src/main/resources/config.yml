@@ -1,0 +1,19 @@
+
+#
+# The following is used to randomly choose Magic wands to add to chests.
+#
+populate_chests:
+  base_probability:
+    0: 100
+    1: 70
+    2: 20
+    3: 5
+  wand_probability:
+    guest: 50
+    villager: 60
+    random(1): 200
+    random(2): 150
+    random(5): 80
+    random(10): 10
+    random(20): 5
+    random(30): 1
