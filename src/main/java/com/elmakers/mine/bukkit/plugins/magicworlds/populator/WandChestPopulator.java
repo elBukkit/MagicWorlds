@@ -5,9 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.Chunk;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
@@ -20,15 +18,20 @@ import com.elmakers.mine.bukkit.utilities.WeightedPair;
 public class WandChestPopulator extends MagicBlockPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
 	private final LinkedList<WeightedPair<String>> wandProbability = new LinkedList<WeightedPair<String>>();
-	private int maxy = 255;
+	private int maxY = 60;
+	private int minY = 10;
 	
 	public void onLoad(ConfigurationSection config) {
 		baseProbability.clear();
 		wandProbability.clear();
 		
-		maxy = config.getInt("max_y");
-		if (maxy == 0) {
-			maxy = 60;
+		maxY = config.getInt("max_y");
+		if (maxY == 0) {
+			maxY = 60;
+		}
+		minY = config.getInt("min_y");
+		if (minY == 0) {
+			minY = 10;
 		}
 		
 		// Fetch base probabilities
@@ -82,23 +85,17 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	}
 	
 	public void setMaxY(int maxy) {
-		this.maxy = maxy;
+		this.maxY = maxy;
 	}
 	
 	@Override
-	public void populate(World world, Random random, Chunk source) {
-		for (int x = 0; x <= 15; x++) {
-			for (int z = 0; z <= 15; z++) {
-				for (int y = 0; y <= maxy; y++) {
-					Block block = source.getBlock(x, y, z);
-					if (block.getType() == Material.CHEST) {
-						Chest chest = (Chest)block.getState();
-						String[] wandNames = populateChest(chest);
-						if (wandNames.length > 0 && controller != null) {
-							controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at " + world.getName() + ": " + (x + source.getX() * 16) + "," + y + "," + (z + source.getZ() * 16));
-						}
-					}	
-				}
+	public void populate(Block block, Random random) {
+		if (block.getY() < minY || block.getY() > maxY) return;
+		if (block.getType() == Material.CHEST) {
+			Chest chest = (Chest)block.getState();
+			String[] wandNames = populateChest(chest);
+			if (wandNames.length > 0 && controller != null) {
+				controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at " + block.getLocation());
 			}
 		}
 	}

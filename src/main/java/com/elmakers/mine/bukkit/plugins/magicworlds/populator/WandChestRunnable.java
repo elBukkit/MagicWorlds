@@ -84,7 +84,7 @@ public class WandChestRunnable extends MagicRunnable {
 			chunksProcessed++;
 			
 			if (populator != null) {
-				populator.populate(world, random, chunk);
+				populator.populate(chunk, random, 10, 60, 50);
 			}
 			x += dx;
 			z += dz;

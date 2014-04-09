@@ -5,10 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -17,10 +14,21 @@ import com.elmakers.mine.bukkit.blocks.MaterialBrush;
 
 public class ReplacePopulator extends MagicBlockPopulator {
 	private Map<Material, MaterialAndData> replaceMap = new HashMap<Material, MaterialAndData>();
+	private int maxY = 128;
+	private int minY = 3;
 	
 	@Override
 	public void onLoad(ConfigurationSection config) {
 		replaceMap.clear();
+		
+		maxY = config.getInt("max_y");
+		if (maxY == 0) {
+			maxY = 128;
+		}
+		minY = config.getInt("min_y");
+		if (minY == 0) {
+			minY = 3;
+		}
 		
 		ConfigurationSection replaceSection = config.getConfigurationSection("replace");
 		if (replaceSection == null) return;
@@ -52,13 +60,8 @@ public class ReplacePopulator extends MagicBlockPopulator {
 	}
 	
 	@Override
-	public void populate(World world, Random random, Chunk chunk) {
-		for (int x = 0; x <= 15; x++) {
-			for (int z = 0; z <= 15; z++) {
-				for (int y = 0; y <= 255; y++) {
-					replaceBlock(chunk.getBlock(x, y, z));
-				}
-			}
-		}
+	public void populate(Block block, Random random) {
+		if (block.getY() < minY || block.getY() > maxY) return;
+		replaceBlock(block);
 	}
 }

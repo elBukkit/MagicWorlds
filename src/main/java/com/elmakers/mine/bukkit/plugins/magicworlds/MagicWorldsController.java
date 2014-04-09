@@ -60,7 +60,7 @@ public class MagicWorldsController implements Listener
 					logger.info("Customizing world " + worldName);
 					MagicWorld world = magicWorlds.get(worldName);
 					if (world == null) world = new MagicWorld();
-					world.load(this, worlds.getConfigurationSection(worldName));
+					world.load(this, worldName, worlds.getConfigurationSection(worldName));
 					magicWorlds.put(worldName, world);
 				}
 			}
