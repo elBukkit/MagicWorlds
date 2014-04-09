@@ -21,7 +21,9 @@ public abstract class MagicSpawnHandler {
 	public LivingEntity process(Plugin plugin, LivingEntity entity) {
         for (SpawnRule rule : spawnRules) {
         	LivingEntity result = rule.process(plugin, entity);
-        	if (entity != null) return result;
+        	if (result != null) {
+        		return result;
+        	}
         }
 		return null;
     }

@@ -35,7 +35,7 @@ public class SpawnReplaceRule extends SpawnRule {
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
     	if (entity.getType() != entityType) return null;
         Entity result = entity.getWorld().spawnEntity(entity.getLocation(), replaceWith);
-        entity.setMetadata("docile", new FixedMetadataValue(plugin, true));
+        result.setMetadata("docile", new FixedMetadataValue(plugin, true));
         return result instanceof LivingEntity ? (LivingEntity)result : null;
     }
 }

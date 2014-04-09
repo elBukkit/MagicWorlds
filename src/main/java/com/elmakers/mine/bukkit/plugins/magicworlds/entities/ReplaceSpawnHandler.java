@@ -15,7 +15,7 @@ public class ReplaceSpawnHandler extends MagicSpawnHandler {
 				EntityType fromType = EntityType.fromName(replaceEntry.getKey());
 				EntityType toType = EntityType.fromName(replaceEntry.getValue().toString());
 				addRule(new SpawnReplaceRule(fromType, toType));
-				controller.getLogger().info(" Replacing: " + replaceEntry.getKey() + " with " + replaceEntry.getValue());
+				controller.getLogger().info(" Replacing: " + fromType.name() + " with " + toType.name());
 			} catch (Exception ex) {
 				controller.getLogger().warning(" Invalid entity type: " + replaceEntry.getKey() + " => " + replaceEntry.getValue());
 			}
