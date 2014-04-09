@@ -92,6 +92,8 @@ worlds:
             iron_ore: quartz_ore
             gold_ore: quartz_ore
             wool: gold_block|2
+            pumpkin: jack_o_lantern
+            melon_block: torch
         wands: 
           class: WandChestPopulator
           base_probability:

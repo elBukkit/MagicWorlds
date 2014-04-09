@@ -9,8 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 
-import com.elmakers.mine.bukkit.blocks.MaterialAndData;
-import com.elmakers.mine.bukkit.blocks.MaterialBrush;
+import com.elmakers.mine.bukkit.block.MaterialAndData;
+import com.elmakers.mine.bukkit.block.MaterialBrush;
 
 public class ReplacePopulator extends MagicBlockPopulator {
 	private Map<Material, MaterialAndData> replaceMap = new HashMap<Material, MaterialAndData>();
