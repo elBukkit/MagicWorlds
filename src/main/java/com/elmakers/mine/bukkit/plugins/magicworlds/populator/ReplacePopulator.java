@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -19,6 +20,8 @@ public class ReplacePopulator extends MagicBlockPopulator {
 	
 	@Override
 	public void onLoad(ConfigurationSection config) {
+		replaceMap.clear();
+		
 		ConfigurationSection replaceSection = config.getConfigurationSection("replace");
 		if (replaceSection == null) return;
 		Map<String, Object> replaceNodes = replaceSection.getValues(false);
@@ -40,7 +43,11 @@ public class ReplacePopulator extends MagicBlockPopulator {
 	protected void replaceBlock(Block block) {
 		MaterialAndData replaceType = replaceMap.get(block.getType());
 		if (replaceType != null) {
-			replaceType.modify(block);
+			try {
+				replaceType.modify(block);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 	

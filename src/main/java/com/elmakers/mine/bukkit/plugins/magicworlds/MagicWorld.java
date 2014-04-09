@@ -14,19 +14,24 @@ import com.elmakers.mine.bukkit.plugins.magicworlds.populator.MagicBlockPopulato
 import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestPopulator;
 
 public class MagicWorld {
-	private final MagicWorldsController controller;
+	private MagicWorldsController controller;
 	private final Map<String, MagicBlockPopulator> blockPopulators = new HashMap<String, MagicBlockPopulator>();
 	private final Map<String, MagicSpawnHandler> spawnHandlers = new HashMap<String, MagicSpawnHandler>();
 	
-	public MagicWorld(MagicWorldsController controller, ConfigurationSection config) {
+	public void load(MagicWorldsController controller, ConfigurationSection config) {
 		this.controller = controller;
 		
 		ConfigurationSection chunkConfig = config.getConfigurationSection("chunk_generate");
 		if (chunkConfig != null) {
 			for (String key : chunkConfig.getKeys(false)) {
 				ConfigurationSection handlerConfig = chunkConfig.getConfigurationSection(key);
-				MagicBlockPopulator populator = loadBlockPopulator(handlerConfig);
+				String className = handlerConfig.getString("class");
+				MagicBlockPopulator populator = blockPopulators.get(key);
+				if (populator == null) {
+					populator = createBlockPopulator(className);
+				}
 				if (populator != null) {
+					populator.load(controller, handlerConfig);
 					blockPopulators.put(key, populator);
 				}
 			}
@@ -36,8 +41,13 @@ public class MagicWorld {
 		if (entityConfig != null) {
 			for (String key : entityConfig.getKeys(false)) {
 				ConfigurationSection handlerConfig = entityConfig.getConfigurationSection(key);
-				MagicSpawnHandler handler = loadSpawnHandler(handlerConfig);
+				String className = handlerConfig.getString("class");
+				MagicSpawnHandler handler = spawnHandlers.get(key);
+				if (handler == null) {
+					handler = createSpawnHandler(className);
+				}
 				if (handler != null) {
+					handler.load(controller, handlerConfig);
 					spawnHandlers.put(key, handler);
 				}
 			}
@@ -71,11 +81,10 @@ public class MagicWorld {
 		return baseClass.substring(0, baseClass.lastIndexOf('.'));
 	}
 
-	protected MagicBlockPopulator loadBlockPopulator(ConfigurationSection configuration)
+	protected MagicBlockPopulator createBlockPopulator(String className)
 	{
 		String builtinClassPath = getPopulatorBuiltinClasspath();
 
-		String className = configuration.getString("class");
 		if (className == null) return null;
 
 		if (className.indexOf('.') <= 0)
@@ -113,17 +122,13 @@ public class MagicWorld {
 			return null;
 		}
 
-		MagicBlockPopulator newPopulator = (MagicBlockPopulator)newObject;
-		newPopulator.load(controller, configuration);
-
-		return newPopulator;
+		return (MagicBlockPopulator)newObject;
 	}
 
-	protected MagicSpawnHandler loadSpawnHandler(ConfigurationSection configuration)
+	protected MagicSpawnHandler createSpawnHandler(String className)
 	{
 		String builtinClassPath = getSpawnHandlerBuiltinClasspath();
 
-		String className = configuration.getString("class");
 		if (className == null) return null;
 
 		if (className.indexOf('.') <= 0)
@@ -160,10 +165,7 @@ public class MagicWorld {
 			return null;
 		}
 
-		MagicSpawnHandler newHandler = (MagicSpawnHandler)newObject;
-		newHandler.load(controller, configuration);
-
-		return newHandler;
+		return (MagicSpawnHandler)newObject;
 	}
 	
 	public WandChestPopulator getWandChestPopulator() {

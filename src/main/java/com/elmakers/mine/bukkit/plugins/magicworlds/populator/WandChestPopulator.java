@@ -12,6 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 
+import com.elmakers.mine.bukkit.plugins.magic.MagicController;
 import com.elmakers.mine.bukkit.plugins.magic.wand.Wand;
 import com.elmakers.mine.bukkit.utilities.RandomUtils;
 import com.elmakers.mine.bukkit.utilities.WeightedPair;
@@ -22,6 +23,8 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	private int maxy = 255;
 	
 	public void onLoad(ConfigurationSection config) {
+		baseProbability.clear();
+		wandProbability.clear();
 		
 		maxy = config.getInt("max_y");
 		if (maxy == 0) {
@@ -57,11 +60,16 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	
 	protected String[] populateChest(Chest chest) {
 		// First determine how many wands to add
+		MagicController magicController = controller.getMagicController();
+		if (magicController == null) {
+			controller.getLogger().info("Tried to populate chest, but don't have a reference to Magic");
+			return new String[0];
+		}
 		Integer wandCount = RandomUtils.weightedRandom(baseProbability);
 		String[] wandNames = new String[wandCount];
 		for (int i = 0; i < wandCount; i++) {
 			String wandName = RandomUtils.weightedRandom(wandProbability);
-			Wand wand = Wand.createWand(controller.getMagicController(), wandName);
+			Wand wand = Wand.createWand(magicController, wandName);
 			if (wand != null) {
 				chest.getInventory().addItem(wand.getItem());
 			} else {

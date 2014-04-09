@@ -3,7 +3,45 @@
 # populated by Endermen.
 #
 
-# worlds:
+worlds:
+  world:
+     chunk_generate:
+        wands: 
+          class: WandChestPopulator
+          max_y: 60
+          base_probability:
+            0: 100
+            1: 80
+          wand_probability:
+            guest: 80
+            villager: 60
+            knight: 20
+            wizard: 1
+            random(1): 200
+            random(2): 150
+            random(5): 80
+            random(10): 10
+            random(20): 5
+            random(30): 1
+  world_nether:
+     chunk_generate:
+        wands: 
+          class: WandChestPopulator
+          max_y: 100
+          base_probability:
+            0: 100
+            1: 80
+            2: 2
+          wand_probability:
+            fire_1: 200
+            fire_2: 100
+            fire: 10
+            random(1): 100
+            random(2): 75
+            random(5): 50
+            random(10): 15
+            random(20): 10
+            random(30): 5
   world_other:
      entity_spawn:
         replace:
@@ -31,18 +69,19 @@
             stationary_water: stained_glass|3
             lava: stained_glass|13
             stationary_lava: stained_glass|1
-            sand: soil
+            sandstone: monster_eggs:5
             gravel: soul_sand
-            long_grass: huge_mushroom_1
+            sand: sand:1
+            cactus: nether_fence
+            long_grass: brown_mushroom
             yellow_flower: red_mushroom
-            red_rose: brown_mushroom
+            red_rose: torch
             wood: brick
             double_plant: nether_fence
             fence: nether_fence
             cobblestone: nether_brick
             glass: stained_glass|10
             thin_glass: stained_glass_pane|9
-            cactus: pumpkin_stem
             ice: stained_glass|11
             packed_ice: stained_glass|11
             clay: stained_clay|10

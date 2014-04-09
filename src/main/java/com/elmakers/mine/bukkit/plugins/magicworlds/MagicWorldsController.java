@@ -36,7 +36,7 @@ public class MagicWorldsController implements Listener
 			return;
 		}
 		
-		this.magicController = ((MagicAPI)magicPlugin).getController();
+		this.magicAPI = (MagicAPI)magicPlugin;
 	}
 	
 	/*
@@ -58,7 +58,9 @@ public class MagicWorldsController implements Listener
 				Set<String> worldKeys = worlds.getKeys(false);
 				for (String worldName : worldKeys) {
 					logger.info("Customizing world " + worldName);
-					MagicWorld world = new MagicWorld(this, worlds.getConfigurationSection(worldName));
+					MagicWorld world = magicWorlds.get(worldName);
+					if (world == null) world = new MagicWorld();
+					world.load(this, worlds.getConfigurationSection(worldName));
 					magicWorlds.put(worldName, world);
 				}
 			}
@@ -117,7 +119,8 @@ public class MagicWorldsController implements Listener
     }
     
     public MagicController getMagicController() {
-    	return magicController;
+    	if (magicAPI == null) return null;
+    	return magicAPI.getController();
     }
     
     public WandChestPopulator getWandChestPopulator(String worldName) {
@@ -131,7 +134,7 @@ public class MagicWorldsController implements Listener
 	 * Private data
 	 */
 
-    private MagicController magicController = null;
+    private MagicAPI magicAPI = null;
     
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final Plugin	plugin;
