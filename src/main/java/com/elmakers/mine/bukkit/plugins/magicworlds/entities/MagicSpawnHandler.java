@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
@@ -30,6 +31,15 @@ public abstract class MagicSpawnHandler {
 	
 	protected void addRule(SpawnRule rule) {
 		spawnRules.add(rule);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static EntityType parseEntityType(String typeString) {
+		if (typeString.equalsIgnoreCase("horse")) {
+			return EntityType.HORSE;
+		}
+		
+		return EntityType.fromName(typeString);
 	}
 	
 	public abstract void onLoad(ConfigurationSection configuration);
