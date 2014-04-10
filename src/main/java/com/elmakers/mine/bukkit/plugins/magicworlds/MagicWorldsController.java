@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
@@ -92,6 +93,8 @@ public class MagicWorldsController implements Listener
         if (event.isCancelled()) {
             return;
         }
+        if (event.getSpawnReason() == SpawnReason.CUSTOM || event.getSpawnReason() == SpawnReason.DEFAULT) return;
+        
         MagicWorld magicWorld = magicWorlds.get(event.getLocation().getWorld().getName());
         if (magicWorld == null) return;
         
