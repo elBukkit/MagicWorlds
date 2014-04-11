@@ -67,13 +67,30 @@ public class ReplaceSpawnHandler extends MagicSpawnHandler {
 					controller.getLogger().warning(" Invalid entity type: " + fromEntityName);
 					return;
 				}
-				EntityType toType = parseEntityType(entityName);
-				if (toType == null) {
-					controller.getLogger().warning(" Invalid entity type: " + entityName);
-					return;
+				
+				if (entityName.equals("spell")) {
+					String spellName = entitySubType;
+					String[] parameters = new String[0];
+					if (spellName.contains(" ")) {
+						pieces = spellName.split(" ");
+						spellName = pieces[0];
+						parameters = new String[pieces.length - 1];
+						for (int i = 1; i < pieces.length; i++) {
+							parameters[i - 1] = pieces[i];
+						}
+					}
+					
+					addRule(new CastRule(priority, percentChance, fromType, controller, spellName, parameters));
+					controller.getLogger().info(" Casting: " + entitySubType + " on " + fromType.name());
+				} else {
+					EntityType toType = parseEntityType(entityName);
+					if (toType == null) {
+						controller.getLogger().warning(" Invalid entity type: " + entityName);
+						return;
+					}
+					addRule(new SpawnReplaceRule(priority, percentChance, fromType, toType, entitySubType));
+					controller.getLogger().info(" Replacing: " + fromType.name() + " with " + toType.name() + ":" + entitySubType);
 				}
-				addRule(new SpawnReplaceRule(priority, percentChance, fromType, toType, entitySubType));
-				controller.getLogger().info(" Replacing: " + fromType.name() + " with " + toType.name() + ":" + entitySubType);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}

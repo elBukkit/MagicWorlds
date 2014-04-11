@@ -1,7 +1,5 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds.entities;
 
-import java.util.Random;
-
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
@@ -19,12 +17,10 @@ public class SpawnReplaceRule extends SpawnRule {
     protected EntityType 	replaceWith;
     protected String		entitySubType;
     protected boolean		docile;
-    
-    protected static final Random rand = new Random();
 
-    public SpawnReplaceRule(int rank, float percentChange, EntityType mobType, EntityType replaceWith, String entitySubType)
+    public SpawnReplaceRule(int rank, float percentChance, EntityType mobType, EntityType replaceWith, String entitySubType)
     {
-    	super(rank, percentChange);
+    	super(rank, percentChance);
         this.entityType = mobType;
         this.replaceWith = replaceWith;
         this.entitySubType = entitySubType;
@@ -50,23 +46,24 @@ public class SpawnReplaceRule extends SpawnRule {
    			try {
 	           	switch (entityType) {
 	        	case HORSE:
-	        		if (entity instanceof Horse) {
-	        			Horse horse = (Horse)entity;
+	        		if (result instanceof Horse) {
+	        			Horse horse = (Horse)result;
 	        			try {
 	        				horse.setVariant(Variant.valueOf(entitySubType.toUpperCase()));
 	        			} catch (Throwable ex) {
+	        				ex.printStackTrace();
 	        			}
 	        		}
 	        		break;
 		        case SKELETON:
-		    		if (entity instanceof Skeleton) {
-		    			Skeleton skeleton = (Skeleton)entity;
+		    		if (result instanceof Skeleton) {
+		    			Skeleton skeleton = (Skeleton)result;
 		    			skeleton.setSkeletonType(SkeletonType.valueOf(entitySubType.toUpperCase()));
 		    		}
 		    		break;
 		        case OCELOT:
-		    		if (entity instanceof Ocelot) {
-		    			Ocelot ocelot = (Ocelot)entity;
+		    		if (result instanceof Ocelot) {
+		    			Ocelot ocelot = (Ocelot)result;
 		    			ocelot.setCatType(Type.valueOf(entitySubType.toUpperCase()));
 		    		}
 		    		break;

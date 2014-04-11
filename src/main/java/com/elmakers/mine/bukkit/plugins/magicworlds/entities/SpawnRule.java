@@ -2,8 +2,6 @@ package com.elmakers.mine.bukkit.plugins.magicworlds.entities;
 
 import java.util.Random;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
@@ -36,7 +34,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         this.percentChance = percentChance;
     }
     
-    public float getPercentChange()
+    public float getPercentChance()
     {
     	return percentChance;
     }
@@ -47,8 +45,6 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     }
     
     public LivingEntity process(Plugin plugin, LivingEntity entity) {
-    	if (entity.getType() == EntityType.HORSE) Bukkit.getLogger().info(" Processing spawn rule at " + percentChance);
-    	
         if (percentChance < rand.nextFloat()) return null;
            	
     	return onProcess(plugin, entity);
