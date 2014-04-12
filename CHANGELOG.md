@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.3.0
+
+ - Add configurable minimum y height for casting and replacement.
+
 # 0.2.0
 
  - Allow replacing with variants of horses, skeletons and ocelots

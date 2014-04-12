@@ -62,6 +62,19 @@ public class ReplaceSpawnHandler extends MagicSpawnHandler {
 					entityName = pieces[1];
 				}
 				
+				int minY = 0;
+				if (fromEntityName.contains(">")) {
+					pieces = StringUtils.split(fromEntityName, ">");
+					if (pieces != null && pieces.length > 1) {
+						fromEntityName = pieces[0];
+						try {
+							minY = Integer.parseInt(pieces[1]);
+						} catch (Exception ex) {
+							
+						}
+					}
+				}
+				
 				EntityType fromType = parseEntityType(fromEntityName);
 				if (fromType == null) {
 					controller.getLogger().warning(" Invalid entity type: " + fromEntityName);
@@ -81,15 +94,17 @@ public class ReplaceSpawnHandler extends MagicSpawnHandler {
 					}
 					
 					addRule(new CastRule(priority, percentChance, fromType, controller, spellName, parameters));
-					controller.getLogger().info(" Casting: " + entitySubType + " on " + fromType.name());
+					controller.getLogger().info(" Casting: " + entitySubType + " on " + fromType.name() + " at y > " + minY  
+						+ " with a " + (percentChance * 100) + "% chance");
 				} else {
 					EntityType toType = parseEntityType(entityName);
 					if (toType == null) {
 						controller.getLogger().warning(" Invalid entity type: " + entityName);
 						return;
 					}
-					addRule(new SpawnReplaceRule(priority, percentChance, fromType, toType, entitySubType));
-					controller.getLogger().info(" Replacing: " + fromType.name() + " with " + toType.name() + ":" + entitySubType);
+					addRule(new SpawnReplaceRule(priority, percentChance, fromType, toType, entitySubType, minY));
+					controller.getLogger().info(" Replacing: " + fromType.name() + " at y > " + minY
+							+ " with " + toType.name() + ":" + entitySubType + " with a " + (percentChance * 100) + "% chance");
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
