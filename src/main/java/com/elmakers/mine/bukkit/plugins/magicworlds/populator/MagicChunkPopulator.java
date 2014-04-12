@@ -18,7 +18,7 @@ public class MagicChunkPopulator extends BlockPopulator {
 	private final Map<String, MagicBlockPopulator> blockPopulators = new HashMap<String, MagicBlockPopulator>();
 	private int maxY = 128;
 	private int minY = 3;
-	private int maxAirY = 70;
+	private int maxAirY = 100;
 	
 	public void load(MagicWorldsController controller, String worldName, ConfigurationSection config) {
 		this.controller = controller;
@@ -32,7 +32,7 @@ public class MagicChunkPopulator extends BlockPopulator {
 		}
 		maxAirY = config.getInt("max_air_y");
 		if (maxAirY == 0) {
-			maxAirY = 70;
+			maxAirY = 100;
 		}
 		
 		for (String key : config.getKeys(false)) {

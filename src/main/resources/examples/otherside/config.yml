@@ -47,24 +47,30 @@ worlds:
         replace:
           class: ReplaceSpawnHandler
           replace: 
-            pig: enderman
-            sheep: enderman
-            creeper: enderman
-            zombie: enderman
-            skeleton: enderman
-            spider: enderman
+            hunterchicken: chicken>63,spell|hunter material mossy_cobblestone seed_radius 2@0.05,30
+            viruschicken: enderman>63,spell|virus material stone seed_radius 1@0.02,24
+            hunterpig: pig>63,spell|hunter material diamond_ore seed_radius 2@0.05,31
+            pig: enderman@1,100
+            huntersheep: sheep>63,spell|hunter material packed_ice seed_radius 2@0.05,32
+            sheep: enderman@1,101
+            creeper: enderman@1,102
+            zombie: enderman@1,103
+            hunterzombie: zombie>63,spell|hunter material pumpkin seed_radius 2@0.05,33
+            skeleton: enderman@1,104
+            spider: enderman@1,105
+            hunterspider: spider>63,spell|hunter material pumpkin seed_radius 2@0.05,34
             horse1: horse,horse|skeleton_horse@0.8,1
             horse2: horse,horse|undead_horse@1.0,2
             cow1: cow,giant@0.01,3
             cow2: cow,enderman@1.0,4
             slime: lavaslime
             bat: blaze
-            hunter1: enderman>55,spell|hunter material lapis_block seed_radius 2@0.05,20
-            hunter2: enderman>55,spell|hunter material gold_block seed_radius 2@0.05,21
-            hunter3: enderman>55,spell|hunter material diamond_block seed_radius 2@0.05,22
-            hunter4: enderman>55,spell|hunter material iron_block seed_radius 2@0.05,23
-            hunter5: enderman>55,spell|hunter material obsidian seed_radius 2@0.01,24
-            virus1: enderman>55,spell|virus material obsidian seed_radius 1@0.01,24
+            hunter1: enderman>63,spell|hunter material lapis_block seed_radius 2@0.05,20
+            hunter2: enderman>63,spell|hunter material gold_block seed_radius 2@0.05,21
+            hunter3: enderman>63,spell|hunter material diamond_block seed_radius 2@0.05,22
+            hunter4: enderman>63,spell|hunter material iron_block seed_radius 2@0.05,23
+            hunter5: enderman>63,spell|hunter material obsidian seed_radius 2@0.03,24
+            virus1: enderman>63,spell|virus material obsidian seed_radius 1@0.02,24
      chunk_generate:
         replace:
           class: ReplacePopulator

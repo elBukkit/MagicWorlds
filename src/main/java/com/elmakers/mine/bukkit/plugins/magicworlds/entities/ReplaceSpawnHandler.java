@@ -93,7 +93,7 @@ public class ReplaceSpawnHandler extends MagicSpawnHandler {
 						}
 					}
 					
-					addRule(new CastRule(priority, percentChance, fromType, controller, spellName, parameters));
+					addRule(new CastRule(priority, percentChance, fromType, controller, spellName, parameters, minY));
 					controller.getLogger().info(" Casting: " + entitySubType + " on " + fromType.name() + " at y > " + minY  
 						+ " with a " + (percentChance * 100) + "% chance");
 				} else {

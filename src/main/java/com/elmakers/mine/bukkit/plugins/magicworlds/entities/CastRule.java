@@ -13,9 +13,9 @@ public class CastRule extends SpawnRule {
 	protected final String			spellName;
     protected final String[] 		parameters;
 
-    public CastRule(int rank, float percentChance, EntityType mobType, MagicWorldsController controller, String spellName, String[] parameters)
+    public CastRule(int rank, float percentChance, EntityType mobType, MagicWorldsController controller, String spellName, String[] parameters, int minY)
     {
-    	super(rank, percentChance);
+    	super(rank, percentChance, minY);
     	this.entityType = mobType;
     	this.spellName = spellName;
     	this.controller = controller;

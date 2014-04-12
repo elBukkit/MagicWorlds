@@ -17,15 +17,13 @@ public class SpawnReplaceRule extends SpawnRule {
     protected EntityType 	replaceWith;
     protected String		entitySubType;
     protected boolean		docile;
-    protected int           minY;
 
     public SpawnReplaceRule(int rank, float percentChance, EntityType mobType, EntityType replaceWith, String entitySubType, int minY)
     {
-    	super(rank, percentChance);
+    	super(rank, percentChance, minY);
         this.entityType = mobType;
         this.replaceWith = replaceWith;
         this.entitySubType = entitySubType;
-        this.minY = minY;
     }
 
     public EntityType getType()
@@ -41,7 +39,6 @@ public class SpawnReplaceRule extends SpawnRule {
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
     	if (entity.getType() != entityType) return null;
-    	if (entity.getLocation().getY() < minY) return null;
         Entity result = entity.getWorld().spawnEntity(entity.getLocation(), replaceWith);
         result.setMetadata("docile", new FixedMetadataValue(plugin, true));
         
