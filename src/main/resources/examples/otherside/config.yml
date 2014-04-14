@@ -5,7 +5,12 @@
 
 worlds:
   world:
-     chunk_generate:
+    entity_spawn:
+        replace:
+          class: ReplaceSpawnHandler
+          replace: 
+            enderman: villager
+    chunk_generate:
         wands: 
           class: WandChestPopulator
           max_y: 60
@@ -55,10 +60,10 @@ worlds:
             sheep: enderman@1,101
             creeper: enderman@1,102
             zombie: enderman@1,103
-            hunterzombie: zombie>63,spell|hunter material pumpkin seed_radius 2@0.05,33
+            hunterzombie: zombie>63,spell|hunter material huge_mushroom_1 seed_radius 2@0.05,33
             skeleton: enderman@1,104
             spider: enderman@1,105
-            hunterspider: spider>63,spell|hunter material pumpkin seed_radius 2@0.05,34
+            hunterspider: spider>63,spell|hunter material melon_block seed_radius 2@0.05,34
             horse1: horse,horse|skeleton_horse@0.8,1
             horse2: horse,horse|undead_horse@1.0,2
             cow1: cow,giant@0.01,3

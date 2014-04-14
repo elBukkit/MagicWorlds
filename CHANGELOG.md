@@ -3,6 +3,7 @@
 # 0.3.0
 
  - Add configurable minimum y height for casting and replacement.
+ - Autonoma drop XP on death.
 
 # 0.2.0
 
