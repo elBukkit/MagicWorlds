@@ -6,10 +6,10 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 
 import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.utilities.MagicRunnable;
-import com.elmakers.mine.bukkit.utilities.NMSUtils;
+import com.elmakers.mine.bukkit.utility.RunnableJob;
+import com.elmakers.mine.bukkit.utility.NMSUtils;
 
-public class WandChestRunnable extends MagicRunnable {
+public class WandChestRunnable extends RunnableJob {
 	private World world;
 	private int dx = 1;
 	private int dz = 0;

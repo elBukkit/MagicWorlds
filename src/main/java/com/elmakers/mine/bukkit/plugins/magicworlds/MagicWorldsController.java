@@ -21,7 +21,6 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.Plugin;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.plugins.magic.MagicController;
 import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestPopulator;
 
 public class MagicWorldsController implements Listener 
@@ -121,9 +120,9 @@ public class MagicWorldsController implements Listener
     	return logger;
     }
     
-    public MagicController getMagicController() {
+    public MagicAPI getMagic() {
     	if (magicAPI == null) return null;
-    	return magicAPI.getController();
+    	return magicAPI;
     }
     
     public WandChestPopulator getWandChestPopulator(String worldName) {

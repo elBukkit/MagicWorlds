@@ -4,7 +4,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magic.MagicController;
+import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
 
 public class CastRule extends SpawnRule {
@@ -44,9 +44,9 @@ public class CastRule extends SpawnRule {
     		fullParameters[index  + standardParameters.length] = parameters[index];
     	}
     	
-    	MagicController magicController = controller.getMagicController();
-    	if (magicController != null) {
-    		magicController.cast(null, spellName, fullParameters, null, null);
+    	MagicAPI magic = controller.getMagic();
+    	if (magic != null) {
+    		magic.cast(spellName, fullParameters);
     	}
     	
     	// This will always end rule processing, so make sure to put them last.

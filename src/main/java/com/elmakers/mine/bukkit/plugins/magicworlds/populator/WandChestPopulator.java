@@ -10,10 +10,10 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 
-import com.elmakers.mine.bukkit.plugins.magic.MagicController;
-import com.elmakers.mine.bukkit.plugins.magic.wand.Wand;
-import com.elmakers.mine.bukkit.utilities.RandomUtils;
-import com.elmakers.mine.bukkit.utilities.WeightedPair;
+import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+import com.elmakers.mine.bukkit.api.wand.Wand;
+import com.elmakers.mine.bukkit.utility.RandomUtils;
+import com.elmakers.mine.bukkit.utility.WeightedPair;
 
 public class WandChestPopulator extends MagicBlockPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
@@ -63,8 +63,8 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	
 	protected String[] populateChest(Chest chest) {
 		// First determine how many wands to add
-		MagicController magicController = controller.getMagicController();
-		if (magicController == null) {
+		MagicAPI magic = controller.getMagic();
+		if (magic == null) {
 			controller.getLogger().info("Tried to populate chest, but don't have a reference to Magic");
 			return new String[0];
 		}
@@ -72,7 +72,7 @@ public class WandChestPopulator extends MagicBlockPopulator {
 		String[] wandNames = new String[wandCount];
 		for (int i = 0; i < wandCount; i++) {
 			String wandName = RandomUtils.weightedRandom(wandProbability);
-			Wand wand = Wand.createWand(magicController, wandName);
+			Wand wand = magic.createWand(wandName);
 			if (wand != null) {
 				chest.getInventory().addItem(wand.getItem());
 			} else {

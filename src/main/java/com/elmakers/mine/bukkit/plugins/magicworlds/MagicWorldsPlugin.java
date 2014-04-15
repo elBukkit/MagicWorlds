@@ -13,7 +13,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestRunnable;
-import com.elmakers.mine.bukkit.utilities.MagicRunnable;
+import com.elmakers.mine.bukkit.utility.RunnableJob;
 
 public class MagicWorldsPlugin extends JavaPlugin
 {	
@@ -189,5 +189,5 @@ public class MagicWorldsPlugin extends JavaPlugin
 	 * Private data
 	 */	
 	private MagicWorldsController controller = null;
-	private MagicRunnable runningTask = null;
+	private RunnableJob runningTask = null;
 }

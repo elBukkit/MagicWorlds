@@ -10,7 +10,6 @@ import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 
 import com.elmakers.mine.bukkit.block.MaterialAndData;
-import com.elmakers.mine.bukkit.block.MaterialBrush;
 
 public class ReplacePopulator extends MagicBlockPopulator {
 	private Map<Material, MaterialAndData> replaceMap = new HashMap<Material, MaterialAndData>();
@@ -34,13 +33,13 @@ public class ReplacePopulator extends MagicBlockPopulator {
 		if (replaceSection == null) return;
 		Map<String, Object> replaceNodes = replaceSection.getValues(false);
 		for (Entry<String, Object> replaceNode : replaceNodes.entrySet()) {
-			MaterialAndData fromMaterial = MaterialBrush.parseMaterialKey(replaceNode.getKey());
-			if (fromMaterial == null) {
+			MaterialAndData fromMaterial = new MaterialAndData(replaceNode.getKey());
+			if (!fromMaterial.isValid()) {
 				controller.getLogger().warning("Invalid material key: " + replaceNode.getKey());
 				continue;
 			}
-			MaterialAndData toMaterial = MaterialBrush.parseMaterialKey(replaceNode.getValue().toString());
-			if (toMaterial == null) {
+			MaterialAndData toMaterial = new MaterialAndData(replaceNode.getValue().toString());
+			if (!toMaterial.isValid()) {
 				controller.getLogger().warning("Invalid material key: " + replaceNode.getValue());
 				continue;
 			}
