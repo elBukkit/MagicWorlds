@@ -1,8 +1,9 @@
 # TODO
 
-- Fix /magicw load command, doesn't seem to update.
-- Allow material variants in block replacer- custom bryce!
-- Populated chests
-- Randomly-spawned automata
+ - Refactor configuration for entity replacement
+ - Execute arbitrary commands?
+ - Only soft-depend on Magic.. ?
 
-... ? Profit?
+ - Fix /magicw load command, doesn't seem to update.
+ - Allow material variants in block replacer- custom bryce!
+ - Spawn extra populated chests

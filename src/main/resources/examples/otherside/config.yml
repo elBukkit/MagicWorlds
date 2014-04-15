@@ -53,17 +53,23 @@ worlds:
           class: ReplaceSpawnHandler
           replace: 
             hunterchicken: chicken>63,spell|hunter material mossy_cobblestone seed_radius 2@0.05,30
-            viruschicken: enderman>63,spell|virus material stone seed_radius 1@0.02,24
+            viruschicken: chicken>63,spell|virus material obsidian seed_radius 1@0.02,24
             hunterpig: pig>63,spell|hunter material diamond_ore seed_radius 2@0.05,31
             pig: enderman@1,100
             huntersheep: sheep>63,spell|hunter material packed_ice seed_radius 2@0.05,32
             sheep: enderman@1,101
             creeper: enderman@1,102
             zombie: enderman@1,103
-            hunterzombie: zombie>63,spell|hunter material huge_mushroom_1 seed_radius 2@0.05,33
+            hunterzombie1: zombie>63,spell|hunter material huge_mushroom_1 seed_radius 2@0.03,1000
+            hunterzombie2: zombie>63,spell|hunter material huge_mushroom_2 seed_radius 2@0.03,1001
+            hunterzombie3: zombie>63,spell|hunter material leaves seed_radius 2@0.03,1002
+            hunterzombie4: zombie>63,spell|hunter material leaves_2 seed_radius 2@0.03,1003
             skeleton: enderman@1,104
             spider: enderman@1,105
-            hunterspider: spider>63,spell|hunter material melon_block seed_radius 2@0.05,34
+            hunterspider1: spider>63,spell|hunter material melon_block seed_radius 2@0.05,1010
+            hunterspider2: spider>63,spell|hunter material pumpkin seed_radius 2@0.05,1011
+            hunterspider3: spider>63,spell|hunter material soul_sand seed_radius 2@0.05,1012
+            hunterspider4: spider>63,spell|hunter material clay seed_radius 2@0.05,1013
             horse1: horse,horse|skeleton_horse@0.8,1
             horse2: horse,horse|undead_horse@1.0,2
             cow1: cow,giant@0.01,3
@@ -91,7 +97,7 @@ worlds:
             stationary_water: stained_glass|3
             lava: stained_glass|13
             stationary_lava: stained_glass|1
-            sandstone: monster_eggs:5
+            sandstone: stained_clay:10
             gravel: soul_sand
             sand: sand:1
             cactus: nether_fence
@@ -99,8 +105,9 @@ worlds:
             yellow_flower: red_mushroom
             red_rose: torch
             wood: brick
-            double_plant: nether_fence
-            fence: nether_fence
+            double_plant: cobble_fence
+            fence: iron_fence
+            iron_fence: cobble_fence
             cobblestone: nether_brick
             glass: stained_glass|10
             thin_glass: stained_glass_pane|9
