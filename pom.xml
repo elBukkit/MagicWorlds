@@ -12,7 +12,8 @@
 	</dependencyManagement>
 	<properties>
 		<build.version>0.3.0</build.version>
-		<magic.build.version>2.9.9</magic.build.version>
+		<magic.build.version>3.0.0</magic.build.version>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
 	</properties>
 	<dependencies>
 		<dependency>
