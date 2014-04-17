@@ -1,0 +1,25 @@
+#
+# Use this configuration (and the corresponding messages.yml) to add
+# Purge as a new spell to Magic.
+#
+
+purge:
+    icon: raw_porkchop
+    category: dark
+    class: com.elmakers.mine.bukkit.plugins.magicworlds.spell.PurgeSpell
+    effects:
+        cast:
+        -  class: EffectSingle
+           sound: creeper_hiss
+        -  class: EffectTrail
+           particle: smoke
+        -  class: EffectRing
+           particle: smoke
+           location: target
+    parameters:
+        target_type: LivingEntity
+        target: other
+        allow_max_range: false
+        range: 32
+    costs:
+        xp: 1000

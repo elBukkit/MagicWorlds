@@ -1,0 +1,15 @@
+#
+# Use this in conjunction with spells.yml to add Purge
+#
+
+spells:
+    purge:
+        name: Purge
+        description: Kill all the things
+        cast_player_message: "&d&o$player &3&oPurged &r&5"
+        cast_self: You Purge yourself
+        cast: You cast purge
+        cast_player: You Purge $target
+        cast_livingentity: You Purge all $target
+        cast_entity: You Purge all $target
+  
