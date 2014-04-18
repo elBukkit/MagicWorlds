@@ -15,6 +15,66 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestRunnable;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 
+/*! \mainpage MagicWorlds Plugin
+*
+* \section intro_sec Introduction
+*
+* This is the MagicWorlds plugin for Bukkit.
+* 
+* This is working example of how to integrate another Plugin with the Magic API:
+* 
+* http://github.com/elBukkit/MagicAPI
+* 
+* And also how to extend Magic by building against MagicPlugin
+* 
+* http://github.com/elBukkit/MagicPlugin
+* 
+* In order to add a new Spell class, in this case the PurgeSpell.
+* 
+* \section start_sec Getting Started
+* 
+* If you haven't done so already, get started with Bukkit by getting a basic
+* shell of a plugin working. You should at least have a working Plugin that
+* loads in Bukkit (add a debug print to onEnable to be sure!) before you
+* start trying to integrate with other Plugins. See here for general help:
+* 
+* http://wiki.bukkit.org/Plugin_Tutorial
+* 
+* \section maven_sec Building with Maven
+* 
+* Once you have a project set up, it is easy to build against the Magic API
+* with Maven. Simply add the elmakers repository to your repository list,
+* and then add a dependency for MagicAPI. A typical setup would look like:
+* 
+* <pre>
+* &lt;dependencies&gt;
+* &lt;dependency&gt;
+* 	&lt;groupId&gt;org.bukkit&lt;/groupId&gt;
+* 	&lt;artifactId&gt;bukkit&lt;/artifactId&gt;
+* 	&lt;version&gt;1.6.4-R2.0&lt;/version&gt;
+* 	&lt;scope&gt;provided&lt;/scope&gt;
+* &lt;/dependency&gt;
+* &lt;dependency&gt;
+* 	&lt;groupId&gt;com.elmakers.mine.bukkit&lt;/groupId&gt;
+* 	&lt;artifactId&gt;MagicAPI&lt;/artifactId&gt;
+* 	&lt;version&gt;1.0&lt;/version&gt;
+* 	&lt;scope&gt;provided&lt;/scope&gt;
+* &lt;/dependency&gt;
+* &lt;/dependencies&gt;
+* &lt;repositories&gt;
+* &lt;repository&gt;
+*     &lt;id&gt;bukkit-repo&lt;/id&gt;
+*     &lt;url&gt;http://repo.bukkit.org/content/groups/public/&lt;/url&gt;
+* &lt;/repository&gt;
+* &lt;repository&gt;
+*     &lt;id&gt;elMakers&lt;/id&gt;
+*     &lt;url&gt;http://maven.elmakers.com/repository/&lt;/url&gt;
+* &lt;/repository&gt;
+* &lt;/repositories&gt;
+* </pre>
+* 
+*/
+
 public class MagicWorldsPlugin extends JavaPlugin
 {	
 	/*
