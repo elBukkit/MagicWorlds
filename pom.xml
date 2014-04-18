@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 	<artifactId>MagicWorlds</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 	<name>elMakers - Bukkit Plugins : Magic Worlds</name>
 	<url>http://mine.elmakers.com</url>
 	<dependencyManagement>
@@ -57,8 +57,8 @@
   	</distributionManagement>
 	
 	<properties>
-		<build.version>0.3.0</build.version>
-		<magic.build.version>3.0.0</magic.build.version>
+		<build.version>0.5.0</build.version>
+		<magic.build.version>3.0</magic.build.version>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
 	</properties>
 	
@@ -72,25 +72,25 @@
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit</groupId>
 			<artifactId>MagicAPI</artifactId>
-			<version>0.9.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 			<artifactId>Magic</artifactId>
-			<version>3.0.0-SNAPSHOT</version>
+			<version>3.0-RC1</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<repositories>
-	   <repository>
-            <id>elMakers</id>
-            <url>http://maven.elmakers.com/repository/</url>
-       </repository>
        <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
       </repository>
+	   <repository>
+            <id>elMakers</id>
+            <url>http://maven.elmakers.com/repository/</url>
+       </repository>
     </repositories>
 	<build>
 		<plugins>
