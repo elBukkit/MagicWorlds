@@ -21,7 +21,7 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.Plugin;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestPopulator;
+import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
 
 public class MagicWorldsController implements Listener 
 {
@@ -34,6 +34,8 @@ public class MagicWorldsController implements Listener
 		if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
 			logger.warning("Magic API not found! MagicWorlds will probably not work.");
 			return;
+		} else {
+			logger.info("Integrating with Magic");
 		}
 		
 		this.magicAPI = (MagicAPI)magicPlugin;
@@ -60,7 +62,7 @@ public class MagicWorldsController implements Listener
 					logger.info("Customizing world " + worldName);
 					MagicWorld world = magicWorlds.get(worldName);
 					if (world == null) world = new MagicWorld();
-					world.load(this, worldName, worlds.getConfigurationSection(worldName));
+					world.load(worldName, worlds.getConfigurationSection(worldName), this);
 					magicWorlds.put(worldName, world);
 				}
 			}

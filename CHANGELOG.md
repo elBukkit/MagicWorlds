@@ -1,5 +1,11 @@
 # CHANGELOG
 
+# 0.5
+
+ - Add "Purge" example Magic spell.
+ - Requires Magic 3.0 (RC1 or later)
+ - Re-worked the configuration for the spawn handlers to be more intuitive.
+
 # 0.3.0
 
  - Add configurable minimum y height for casting and replacement.

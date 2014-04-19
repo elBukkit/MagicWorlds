@@ -1,5 +1,7 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.entities;
+package com.elmakers.mine.bukkit.plugins.magicworlds.spawn.builtin;
 
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
@@ -12,23 +14,43 @@ import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 
-public class SpawnReplaceRule extends SpawnRule {
-	protected final EntityType 	entityType;
+import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.plugins.magicworlds.spawn.SpawnRule;
+
+public class ReplaceRule extends SpawnRule {
     protected EntityType 	replaceWith;
     protected String		entitySubType;
     protected boolean		docile;
 
-    public SpawnReplaceRule(int rank, float percentChance, EntityType mobType, EntityType replaceWith, String entitySubType, int minY)
+    @Override
+    public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
-    	super(rank, percentChance, minY);
-        this.entityType = mobType;
-        this.replaceWith = replaceWith;
-        this.entitySubType = entitySubType;
-    }
-
-    public EntityType getType()
-    {
-        return entityType;
+    	if (!super.load(key, parameters, controller)) return false;
+    	String entityName = parameters.getString("replace_type");
+    	
+    	if (entityName.contains(":")) {
+			String[] pieces = StringUtils.split(entityName, ":");
+			entityName = pieces[0];
+			if (pieces.length > 1) {
+				entitySubType = pieces[1];
+			}
+		} else if (entityName.contains("|")) {
+			String[] pieces = StringUtils.split(entityName, "|");
+			entityName = pieces[0];
+			if (pieces.length > 1) {
+				entitySubType = pieces[1];
+			}
+		}
+    	
+    	replaceWith = parseEntityType(entityName);
+		if (replaceWith == null) {
+			this.controller.getLogger().warning(" Invalid entity type: " + entityName);
+			return false;
+		}
+    	
+    	controller.getLogger().info(" Replacing: " + targetEntityType.name() + " at y > " + minY
+				+ " with " + replaceWith.name() + ":" + entitySubType + " with a " + (percentChance * 100) + "% chance");
+    	return true;
     }
     
     public EntityType getReplaceWith()
@@ -38,13 +60,12 @@ public class SpawnReplaceRule extends SpawnRule {
     
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
-    	if (entity.getType() != entityType) return null;
         Entity result = entity.getWorld().spawnEntity(entity.getLocation(), replaceWith);
         result.setMetadata("docile", new FixedMetadataValue(plugin, true));
         
-        if (entitySubType.length() > 0) {
+        if (entitySubType != null && entitySubType.length() > 0) {
    			try {
-	           	switch (entityType) {
+	           	switch (replaceWith) {
 	        	case HORSE:
 	        		if (result instanceof Horse) {
 	        			Horse horse = (Horse)result;

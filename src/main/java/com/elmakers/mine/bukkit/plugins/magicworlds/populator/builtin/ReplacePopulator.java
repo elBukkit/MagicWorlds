@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.populator;
+package com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 
 import com.elmakers.mine.bukkit.block.MaterialAndData;
+import com.elmakers.mine.bukkit.plugins.magicworlds.populator.MagicBlockPopulator;
 
 public class ReplacePopulator extends MagicBlockPopulator {
 	private Map<Material, MaterialAndData> replaceMap = new HashMap<Material, MaterialAndData>();

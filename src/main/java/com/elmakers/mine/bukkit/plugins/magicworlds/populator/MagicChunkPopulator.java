@@ -12,15 +12,18 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.generator.BlockPopulator;
 
 import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
 
 public class MagicChunkPopulator extends BlockPopulator {
+	public static final String BUILTIN_CLASSPATH = "com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin";
+	
 	private MagicWorldsController controller;
 	private final Map<String, MagicBlockPopulator> blockPopulators = new HashMap<String, MagicBlockPopulator>();
 	private int maxY = 128;
 	private int minY = 3;
 	private int maxAirY = 100;
 	
-	public void load(MagicWorldsController controller, String worldName, ConfigurationSection config) {
+	public void load(String worldName, ConfigurationSection config, MagicWorldsController controller) {
 		this.controller = controller;
 		maxY = config.getInt("max_y");
 		if (maxY == 0) {
@@ -78,22 +81,13 @@ public class MagicChunkPopulator extends BlockPopulator {
 		blockPopulators.put(name, populator);
 	}
 
-	
-	protected static String getPopulatorBuiltinClasspath()
-	{
-		String baseClass = MagicBlockPopulator.class.getName();
-		return baseClass.substring(0, baseClass.lastIndexOf('.'));
-	}
-
 	protected MagicBlockPopulator createBlockPopulator(String className)
 	{
-		String builtinClassPath = getPopulatorBuiltinClasspath();
-
 		if (className == null) return null;
 
 		if (className.indexOf('.') <= 0)
 		{
-			className = builtinClassPath + "." + className;
+			className = BUILTIN_CLASSPATH + "." + className;
 		}
 
 		Class<?> handlerClass = null;

@@ -6,10 +6,10 @@
 worlds:
   world:
     entity_spawn:
-        replace:
-          class: ReplaceSpawnHandler
-          replace: 
-            enderman: villager
+        enderman_1_villager:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: villager
     chunk_generate:
         wands: 
           class: WandChestPopulator
@@ -49,41 +49,258 @@ worlds:
             random(30): 5
   world_other:
      entity_spawn:
-        replace:
-          class: ReplaceSpawnHandler
-          replace: 
-            hunterchicken: chicken>63,spell|hunter material mossy_cobblestone seed_radius 2@0.05,30
-            viruschicken: chicken>63,spell|virus material obsidian seed_radius 1@0.02,24
-            hunterpig: pig>63,spell|hunter material diamond_ore seed_radius 2@0.05,31
-            pig: enderman@1,100
-            huntersheep: sheep>63,spell|hunter material packed_ice seed_radius 2@0.05,32
-            sheep: enderman@1,101
-            creeper: enderman@1,102
-            zombie: enderman@1,103
-            hunterzombie1: zombie>63,spell|hunter material huge_mushroom_1 seed_radius 2@0.03,1000
-            hunterzombie2: zombie>63,spell|hunter material huge_mushroom_2 seed_radius 2@0.03,1001
-            hunterzombie3: zombie>63,spell|hunter material leaves seed_radius 2@0.03,1002
-            hunterzombie4: zombie>63,spell|hunter material leaves_2 seed_radius 2@0.03,1003
-            viruszombie1: zombie>63,spell|virus material huge_mushroom_1 seed_radius 3@0.01,1004
-            skeleton: enderman@1,104
-            spider: enderman@1,105
-            hunterspider1: spider>63,spell|hunter material melon_block seed_radius 2@0.05,1010
-            hunterspider2: spider>63,spell|hunter material pumpkin seed_radius 2@0.05,1011
-            hunterspider3: spider>63,spell|hunter material soul_sand seed_radius 2@0.05,1012
-            hunterspider4: spider>63,spell|hunter material clay seed_radius 2@0.05,1013
-            virusspider1: spider>63,spell|virus material melon_block seed_radius 3@0.01,1014
-            horse1: horse,horse|skeleton_horse@0.8,1
-            horse2: horse,horse|undead_horse@1.0,2
-            cow1: cow,giant@0.01,3
-            cow2: cow,enderman@1.0,4
-            slime: lavaslime
-            bat: blaze
-            hunter1: enderman>63,spell|hunter material lapis_block seed_radius 2@0.02,20
-            hunter2: enderman>63,spell|hunter material gold_block seed_radius 2@0.02,21
-            hunter3: enderman>63,spell|hunter material diamond_block seed_radius 2@0.02,22
-            hunter4: enderman>63,spell|hunter material iron_block seed_radius 2@0.02,23
-            hunter5: enderman>63,spell|hunter material obsidian seed_radius 2@0.03,24
-            virus1: enderman>63,spell|virus material obsidian seed_radius 1@0.01,24
+          chicken_1_hunter:
+            target_type: chicken
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material mossy_cobblestone seed_radius 2
+          chicken_2_virus:
+            target_type: chicken
+            probability: 0.02
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - virus material obsidian seed_radius 3
+            
+          pig_1_hunter:
+            target_type: pig
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material diamond_ore seed_radius 2
+          pig_2_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          sheep_1_hunter:
+            target_type: sheep
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material packed_ice seed_radius 2
+          sheep_2_enderman:
+            target_type: sheep
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          creeper_1_enderman:
+            target_type: creeper
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          zombie_1_hunter:
+            target_type: zombie
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material huge_mushroom_1 seed_radius 2
+          zombie_2_hunter:
+            target_type: zombie
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material huge_mushroom_2 seed_radius 2
+          zombie_3_hunter:
+            target_type: zombie
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material leaves seed_radius 2
+          zombie_4_hunter:
+            target_type: zombie
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material leaves_2 seed_radius 2
+          zombie_5_virus:
+            target_type: zombie
+            probability: 0.02
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - virus material huge_mushroom_1 seed_radius 3
+          zombie_6_enderman:
+            target_type: zombie
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          skeleton_1_enderman:
+            target_type: skeleton
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          spider_1_hunter:
+            target_type: spider
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material melon_block seed_radius 2
+          spider_2_hunter:
+            target_type: spider
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material pumpkin seed_radius 2
+          spider_3_hunter:
+            target_type: spider
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material soul_sand seed_radius 2
+          spider_4_hunter:
+            target_type: spider
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material clay seed_radius 2
+          spider_5_virus:
+            target_type: spider
+            probability: 0.02
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - virus material melon_block seed_radius 3
+          spider_6_enderman:
+            target_type: spider
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          pig_2_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          horse_1_skeleton_horse:
+            target_type: horse
+            probability: 0.8
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: skeleton_horse
+          horse_2_undead_horse:
+            target_type: horse
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: undead_horse
+          
+          cow_1_giant:
+            target_type: cow
+            probability: 0.01
+            min_y: 63
+            class: ReplaceRule
+            replace_type: giant
+          cow_2_enderman:
+            target_type: cow
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+          slime_1_lavaslime:
+            target_type: slime
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: lavaslime
+            
+          bat_1_blaze:
+            target_type: bat
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: blaze
+                        
+          enderman_1_hunter:
+            target_type: enderman
+            probability: 0.05
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material lapis_block seed_radius 2
+          enderman_2_hunter:
+            target_type: enderman
+            probability: 0.04
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material gold_block seed_radius 2
+          enderman_3_hunter:
+            target_type: enderman
+            probability: 0.01
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material diamond_block seed_radius 2
+          enderman_4_hunter:
+            target_type: enderman
+            probability: 0.02
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material iron_block seed_radius 2
+          enderman_5_hunter:
+            target_type: enderman
+            probability: 0.04
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - hunter material obsidian seed_radius 2
+          enderman_6_hunter:
+            target_type: enderman
+            probability: 0.01
+            min_y: 63
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - virus material obsidian seed_radius 3  
      chunk_generate:
         replace:
           class: ReplacePopulator

@@ -6,6 +6,7 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 
 import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 import com.elmakers.mine.bukkit.utility.NMSUtils;
 
