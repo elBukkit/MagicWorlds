@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 	<artifactId>MagicWorlds</artifactId>
-	<version>0.5</version>
+	<version>0.6-SNAPSHOT</version>
 	<name>elMakers - Bukkit Plugins : Magic Worlds</name>
 	<url>http://mine.elmakers.com</url>
 	<dependencyManagement>
@@ -57,7 +57,7 @@
   	</distributionManagement>
 	
 	<properties>
-		<build.version>0.5</build.version>
+		<build.version>0.6</build.version>
 		<magic.build.version>3.0</magic.build.version>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<magic.api.version>1.0</magic.api.version>
@@ -82,6 +82,12 @@
 			<version>3.0-RC1</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+	        <groupId>org.mcstats.bukkit</groupId>
+	        <artifactId>metrics</artifactId>
+	        <version>R6</version>
+	        <scope>compile</scope>
+	    </dependency>
 	</dependencies>
 	<repositories>
        <repository>
@@ -91,6 +97,10 @@
 	   <repository>
             <id>elMakers</id>
             <url>http://maven.elmakers.com/repository/</url>
+       </repository>
+       <repository>
+            <id>Plugin Metrics</id>
+            <url>http://repo.mcstats.org/content/repositories/public</url>
        </repository>
     </repositories>
 	<build>

@@ -1,5 +1,6 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -19,6 +20,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.Plugin;
+import org.mcstats.Metrics;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
@@ -55,6 +57,7 @@ public class MagicWorldsController implements Listener
 	{
 		try {
 			Configuration config = plugin.getConfig();
+			metricsLevel = config.getInt("metrics_level", metricsLevel);
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
 				Set<String> worldKeys = worlds.getKeys(false);
@@ -68,6 +71,17 @@ public class MagicWorldsController implements Listener
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+
+		metrics = null;
+		if (metricsLevel > 0) {
+			try {
+			    metrics = new Metrics(plugin);
+			    metrics.start();
+			    plugin.getLogger().info("Activated MCStats");
+			} catch (IOException e) {
+			    plugin.getLogger().warning("Failed to load MCStats: " + e.getMessage());
+			}
 		}
 	}
 
@@ -143,4 +157,7 @@ public class MagicWorldsController implements Listener
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final Plugin	plugin;
 	private final Logger 	logger;
+	 
+	private int								 metricsLevel					= 5;
+	private Metrics							 metrics						= null;
 }

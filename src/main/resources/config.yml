@@ -2,6 +2,11 @@
 #
 # The default config will add wands to chests in world and world_nether
 #
+
+# Set this to 0 to disable MCStats metrics collection
+metrics_level: 5
+
+# Define per-world chunk and entity rules here
 worlds:
   world:
      chunk_generate:

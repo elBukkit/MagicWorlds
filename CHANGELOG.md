@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.6
+
+ - Integrate MCStats for plugin metrics. This can be turned off in config.yml
+
 # 0.5
 
  - Add "Purge" example Magic spell.
