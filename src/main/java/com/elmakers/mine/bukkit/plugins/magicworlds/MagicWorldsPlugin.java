@@ -23,13 +23,19 @@ import com.elmakers.mine.bukkit.utility.RunnableJob;
 * 
 * This is working example of how to integrate another Plugin with the Magic API:
 * 
-* http://github.com/elBukkit/MagicAPI
+* http://jenkins.elmakers.com/job/MagicAPI/doxygen/
 * 
 * And also how to extend Magic by building against MagicPlugin
 * 
-* http://github.com/elBukkit/MagicPlugin
+* http://jenkins.elmakers.com/job/MagicPlugin/doxygen/
 * 
 * In order to add a new Spell class, in this case the PurgeSpell.
+* 
+* \section issues_sec Issues
+* 
+* For issues, bugs, feature requests, ideas, use our issue tracker:
+* 
+* http://jira.elmakers.com/browse/WORLDS/
 * 
 * \section start_sec Getting Started
 * 

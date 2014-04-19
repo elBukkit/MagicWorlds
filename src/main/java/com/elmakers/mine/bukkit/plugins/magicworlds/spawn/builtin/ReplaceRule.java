@@ -48,8 +48,9 @@ public class ReplaceRule extends SpawnRule {
 			return false;
 		}
     	
+		String subTypeDescription = entitySubType == null || entitySubType.length() == 0 ? "" : ":" + entitySubType;
     	controller.getLogger().info(" Replacing: " + targetEntityType.name() + " at y > " + minY
-				+ " with " + replaceWith.name() + ":" + entitySubType + " with a " + (percentChance * 100) + "% chance");
+				+ " with " + replaceWith.name() + subTypeDescription + " with a " + (percentChance * 100) + "% chance");
     	return true;
     }
     
