@@ -49,59 +49,54 @@ worlds:
             random(30): 5
   world_other:
      entity_spawn:
-          chicken_1_hunter:
-            target_type: chicken
+     
+          skeleton_1_hunter:
+            target_type: skeleton
             probability: 0.05
             min_y: 63
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material mossy_cobblestone seed_radius 2
-          chicken_2_virus:
-            target_type: chicken
-            probability: 0.02
+          skeleton_2_skeleton_horse:
+            target_type: skeleton
+            probability: 0.6
             min_y: 63
-            class: CastRule
-            spells: 
-              - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - virus material obsidian seed_radius 3
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: skeleton_horse
+          skeleton_3_undead_horse:
+            target_type: skeleton
+            probability: 0.7
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: undead_horse
             
-          pig_1_hunter:
-            target_type: pig
+          creeper_1_hunter:
+            target_type: creeper
             probability: 0.05
             min_y: 63
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material diamond_ore seed_radius 2
-          pig_2_enderman:
-            target_type: pig
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
-          sheep_1_hunter:
-            target_type: sheep
+          creeper_2_hunter:
+            target_type: creeper
             probability: 0.05
             min_y: 63
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material packed_ice seed_radius 2
-          sheep_2_enderman:
-            target_type: sheep
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
-          creeper_1_enderman:
+          creeper_3_virus:
             target_type: creeper
-            probability: 1.0
+            probability: 0.02
             min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
+            class: CastRule
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - virus material obsidian seed_radius 3
             
           zombie_1_hunter:
             target_type: zombie
@@ -143,23 +138,10 @@ worlds:
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - virus material huge_mushroom_1 seed_radius 3
-          zombie_6_enderman:
-            target_type: zombie
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
-          skeleton_1_enderman:
-            target_type: skeleton
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
+                        
           spider_1_hunter:
             target_type: spider
-            probability: 0.05
+            probability: 0.01
             min_y: 63
             class: CastRule
             spells: 
@@ -167,7 +149,7 @@ worlds:
               - hunter material melon_block seed_radius 2
           spider_2_hunter:
             target_type: spider
-            probability: 0.05
+            probability: 0.02
             min_y: 63
             class: CastRule
             spells: 
@@ -175,7 +157,7 @@ worlds:
               - hunter material pumpkin seed_radius 2
           spider_3_hunter:
             target_type: spider
-            probability: 0.05
+            probability: 0.02
             min_y: 63
             class: CastRule
             spells: 
@@ -183,7 +165,7 @@ worlds:
               - hunter material soul_sand seed_radius 2
           spider_4_hunter:
             target_type: spider
-            probability: 0.05
+            probability: 0.03
             min_y: 63
             class: CastRule
             spells: 
@@ -191,68 +173,13 @@ worlds:
               - hunter material clay seed_radius 2
           spider_5_virus:
             target_type: spider
-            probability: 0.02
+            probability: 0.01
             min_y: 63
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - virus material melon_block seed_radius 3
-          spider_6_enderman:
-            target_type: spider
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-
-          pig_2_enderman:
-            target_type: pig
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
-          horse_1_skeleton_horse:
-            target_type: horse
-            probability: 0.8
-            min_y: 63
-            class: ReplaceRule
-            replace_type: horse
-            replace_sub_type: skeleton_horse
-          horse_2_undead_horse:
-            target_type: horse
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: horse
-            replace_sub_type: undead_horse
-          
-          cow_1_giant:
-            target_type: cow
-            probability: 0.01
-            min_y: 63
-            class: ReplaceRule
-            replace_type: giant
-          cow_2_enderman:
-            target_type: cow
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            
-          slime_1_lavaslime:
-            target_type: slime
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: lavaslime
-            
-          bat_1_blaze:
-            target_type: bat
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: blaze
-                        
+              
           enderman_1_hunter:
             target_type: enderman
             probability: 0.05
@@ -293,14 +220,134 @@ worlds:
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material obsidian seed_radius 2
-          enderman_6_hunter:
+          enderman_6_virus:
             target_type: enderman
             probability: 0.01
             min_y: 63
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - virus material obsidian seed_radius 3  
+              - virus material obsidian seed_radius 3
+          enderman_7_giant:
+            target_type: enderman
+            probability: 0.1
+            min_y: 63
+            class: ReplaceRule
+            replace_type: giant
+               
+     
+     # None of these are likely to spawn here since there is no grass!
+     
+          chicken_999_enderman:
+            target_type: chicken
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          sheep_999_enderman:
+            target_type: sheep
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          horse_999_enderman:
+            target_type: horse
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          cow_999_enderman:
+            target_type: cow
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+       # Default fallbacks
+       
+          creeper_998_mushroomcow:
+            target_type: creeper
+            probability: 0.3
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+          creeper_999_enderman:
+            target_type: creeper
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          zombie_998_mushroomcow:
+            target_type: zombie
+            probability: 0.3
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+          zombie_999_enderman:
+            target_type: zombie
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          skeleton_998_mushroomcow:
+            target_type: skeleton
+            probability: 0.3
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+          skeleton_999_enderman:
+            target_type: skeleton
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          spider_998_mushroomcow:
+            target_type: spider
+            probability: 0.3
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+          spider_999_enderman:
+            target_type: spider
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+       # Other Mob Replacement
+         
+          villager_1_pigman:
+            class: ReplaceRule
+            probability: 1.0
+            target_type: villager
+            replace_type: pig_zombie
+            
+          slime_1_lavaslime:
+            target_type: slime
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: lavaslime
+            
+          bat_1_blaze:
+            target_type: bat
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: blaze
+            
      chunk_generate:
         replace:
           class: ReplacePopulator
@@ -309,14 +356,16 @@ worlds:
             dirt: netherrack
             stone: ender_stone
             leaves: glowstone
-            leaves_2: stained_glass|5
-            log: quartz_block|2
+            leaves_2: stained_glass|*
+            log: stained_glass_pane|*
             log_2: glowstone
+            hard_clay: stained_glass|12
             water: stained_glass|9
             stationary_water: stained_glass|3
             lava: stained_glass|13
             stationary_lava: stained_glass|1
             sandstone: stained_clay:10
+            stained_clay: stained_glass:*
             gravel: soul_sand
             sand: sand:1
             cactus: nether_fence
@@ -328,6 +377,8 @@ worlds:
             fence: iron_fence
             iron_fence: cobble_fence
             cobblestone: nether_brick
+            mossy_cobblestone: gold_block
+            mob_spawner: diamond_block
             glass: stained_glass|10
             thin_glass: stained_glass_pane|9
             ice: stained_glass|11
@@ -342,6 +393,8 @@ worlds:
             wool: gold_block|2
             pumpkin: jack_o_lantern
             melon_block: torch
+            huge_mushroom_1: stained_glass:*
+            huge_mushroom_2: stained_glass_pane:*
         wands: 
           class: WandChestPopulator
           base_probability:
