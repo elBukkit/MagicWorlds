@@ -2,6 +2,8 @@ package com.elmakers.mine.bukkit.plugins.magicworlds.spawn;
 
 import java.util.Random;
 
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -15,6 +17,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 	protected float        				percentChance;
 	protected int						minY;
 	protected int						maxY;
+	protected boolean					allowIndoors;
     protected MagicWorldsController	controller;
     
     protected static final Random rand = new Random();
@@ -35,6 +38,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 			this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
 			return false;
 		}
+		this.allowIndoors = parameters.getBoolean("allow_indoors", true);
 		this.minY = parameters.getInt("min_y", 0);
 		this.maxY = parameters.getInt("max_y", 255);
 		this.percentChance = (float)parameters.getDouble("probability", 1.0);
@@ -77,8 +81,16 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     {
     	if (targetEntityType != entity.getType()) return null;
         if (percentChance < rand.nextFloat()) return null;
-        int y = entity.getLocation().getBlockY();
+        Location entityLocation = entity.getLocation();
+        int y = entityLocation.getBlockY();
         if (y < minY || y > maxY) return null;
+        if (!this.allowIndoors) {
+        	// Bump it up two to miss things like tall grass
+        	Block entityBlock = entityLocation.getBlock().getRelative(0, 2, 0);
+        	if (entityBlock.getWorld().getHighestBlockAt(entityBlock.getLocation()).getY() > entityBlock.getY()) {
+        		return null;
+        	} 
+        }
            	
     	return onProcess(plugin, entity);
     }
