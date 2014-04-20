@@ -50,24 +50,26 @@ worlds:
   world_other:
      entity_spawn:
      
-          skeleton_1_hunter:
+          skeleton_1_defender:
             target_type: skeleton
-            probability: 0.05
+            probability: 0.01
             min_y: 63
+            y_offset: 6
+            allow_indoors: false
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material mossy_cobblestone seed_radius 2
+              - defender material mossy_cobblestone seed_radius 2
           skeleton_2_skeleton_horse:
             target_type: skeleton
-            probability: 0.6
+            probability: 0.1
             min_y: 63
             class: ReplaceRule
             replace_type: horse
             replace_sub_type: skeleton_horse
           skeleton_3_undead_horse:
             target_type: skeleton
-            probability: 0.7
+            probability: 0.2
             min_y: 63
             class: ReplaceRule
             replace_type: horse
@@ -75,24 +77,30 @@ worlds:
             
           creeper_1_hunter:
             target_type: creeper
-            probability: 0.05
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material diamond_ore seed_radius 2
           creeper_2_hunter:
             target_type: creeper
-            probability: 0.05
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material packed_ice seed_radius 2
           creeper_3_virus:
             target_type: creeper
-            probability: 0.02
+            probability: 0.005
+            y_offset: 64
             min_y: 63
+            allow_indoors: false
             class: CastRule
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
@@ -100,74 +108,102 @@ worlds:
             
           zombie_1_hunter:
             target_type: zombie
-            probability: 0.05
+            probability: 0.01
+            y_offset: 6
             min_y: 63
             class: CastRule
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material huge_mushroom_1 seed_radius 2
           zombie_2_hunter:
             target_type: zombie
-            probability: 0.05
+            probability: 0.01
+            y_offset: 6
             min_y: 63
             class: CastRule
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material huge_mushroom_2 seed_radius 2
           zombie_3_hunter:
             target_type: zombie
-            probability: 0.05
+            probability: 0.01
+            y_offset: 6
             min_y: 63
             class: CastRule
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material leaves seed_radius 2
+              - hunter material monster_egg seed_radius 2
           zombie_4_hunter:
             target_type: zombie
-            probability: 0.05
+            probability: 0.01
+            y_offset: 6
             min_y: 63
             class: CastRule
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material leaves_2 seed_radius 2
+              - hunter material iron_block seed_radius 2
           zombie_5_virus:
             target_type: zombie
-            probability: 0.02
+            probability: 0.005
+            y_offset: 64
             min_y: 63
             class: CastRule
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - virus material huge_mushroom_1 seed_radius 3
+          zombie_6_defender:
+            target_type: zombie
+            probability: 0.01
+            min_y: 63
+            class: CastRule
+            y_offset: 12
+            allow_indoors: false
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - defender material hay_block seed_radius 3
                         
           spider_1_hunter:
             target_type: spider
             probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material melon_block seed_radius 2
           spider_2_hunter:
             target_type: spider
-            probability: 0.02
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material pumpkin seed_radius 2
           spider_3_hunter:
             target_type: spider
-            probability: 0.02
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material soul_sand seed_radius 2
           spider_4_hunter:
             target_type: spider
-            probability: 0.03
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material clay seed_radius 2
@@ -176,23 +212,39 @@ worlds:
             probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 64
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - virus material melon_block seed_radius 3
+          spider_6_worm:
+            target_type: spider
+            probability: 0.01
+            min_y: 63
+            class: CastRule
+            y_offset: 32
+            allow_indoors: false
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - worm material clay seed_radius 3
               
           enderman_1_hunter:
             target_type: enderman
-            probability: 0.05
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material lapis_block seed_radius 2
           enderman_2_hunter:
             target_type: enderman
-            probability: 0.04
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material gold_block seed_radius 2
@@ -201,34 +253,52 @@ worlds:
             probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material diamond_block seed_radius 2
           enderman_4_hunter:
             target_type: enderman
-            probability: 0.02
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material iron_block seed_radius 2
           enderman_5_hunter:
             target_type: enderman
-            probability: 0.04
+            probability: 0.01
             min_y: 63
             class: CastRule
+            y_offset: 6
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material obsidian seed_radius 2
           enderman_6_virus:
             target_type: enderman
-            probability: 0.01
+            probability: 0.001
             min_y: 63
             class: CastRule
+            y_offset: 64
+            allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - virus material obsidian seed_radius 3
-          enderman_7_giant:
+          enderman_7_worm:
+            target_type: enderman
+            probability: 0.01
+            min_y: 63
+            class: CastRule
+            y_offset: 32
+            allow_indoors: false
+            spells: 
+              - flare pdy 1 pdx 0 pdz 0 ty ~10
+              - worm material obsidian seed_radius 3
+          enderman_8_giant:
             target_type: enderman
             probability: 0.1
             min_y: 63
@@ -332,7 +402,7 @@ worlds:
             class: ReplaceRule
             probability: 1.0
             target_type: villager
-            replace_type: pig_zombie
+            replace_type: pigzombie
             
           slime_1_lavaslime:
             target_type: slime
