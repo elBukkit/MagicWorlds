@@ -1,6 +1,5 @@
 package com.elmakers.mine.bukkit.plugins.magicworlds.spawn.builtin;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -27,20 +26,7 @@ public class ReplaceRule extends SpawnRule {
     {
     	if (!super.load(key, parameters, controller)) return false;
     	String entityName = parameters.getString("replace_type");
-    	
-    	if (entityName.contains(":")) {
-			String[] pieces = StringUtils.split(entityName, ":");
-			entityName = pieces[0];
-			if (pieces.length > 1) {
-				entitySubType = pieces[1];
-			}
-		} else if (entityName.contains("|")) {
-			String[] pieces = StringUtils.split(entityName, "|");
-			entityName = pieces[0];
-			if (pieces.length > 1) {
-				entitySubType = pieces[1];
-			}
-		}
+    	entitySubType = parameters.getString("replace_sub_type");
     	
     	replaceWith = parseEntityType(entityName);
 		if (replaceWith == null) {
