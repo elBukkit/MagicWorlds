@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.bukkit.World.Environment;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
@@ -14,6 +15,8 @@ import com.elmakers.mine.bukkit.plugins.magicworlds.spawn.SpawnRule;
 
 public class CastRule extends SpawnRule {
 	protected List<CastSpell>		spells;
+	protected int 					yOffset;
+	
     private class CastSpell
     {
     	protected final String			name;
@@ -29,6 +32,8 @@ public class CastRule extends SpawnRule {
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
     	if (!super.load(key, parameters, controller)) return false;
+    	
+    	yOffset = parameters.getInt("y_offset", 0);
 		Collection<String> spells = parameters.getStringList("spells");
 		if (spells == null || spells.size() == 0) return false;
 		this.spells = new ArrayList<CastSpell>();
@@ -58,10 +63,16 @@ public class CastRule extends SpawnRule {
     		return null;
     	}
     	
+    	int y = entity.getLocation().getBlockY() + yOffset;
+    	if (y > 250) y = 250;
+    	if (entity.getWorld().getEnvironment() == Environment.NETHER && y > 118) {
+    		y = 118;
+    	}
+    	
     	String[] standardParameters = {
         	"pworld", entity.getLocation().getWorld().getName(), 
     		"px", Integer.toString(entity.getLocation().getBlockX()), 
-    		"py", Integer.toString(entity.getLocation().getBlockY()), 
+    		"py", Integer.toString(y), 
     		"pz", Integer.toString(entity.getLocation().getBlockZ()), 
     		"target", "self"
     	};
