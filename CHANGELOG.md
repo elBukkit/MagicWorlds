@@ -1,8 +1,14 @@
 # CHANGELOG
 
+# 0.7
+
+ - Fix shading of mcstats to avoid conflicting with other plugins that use it.
+
 # 0.6
 
  - Integrate MCStats for plugin metrics. This can be turned off in config.yml
+ - Support variant data type replacement (e.g. stained clay -> stained glass of the same color)
+ - Lots of "Other Side" related tweaks
 
 # 0.5
 
