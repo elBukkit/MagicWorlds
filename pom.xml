@@ -77,17 +77,23 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
-			<artifactId>Magic</artifactId>
-			<version>3.0-RC2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 	        <groupId>org.mcstats.bukkit</groupId>
 	        <artifactId>metrics</artifactId>
 	        <version>R6</version>
 	        <scope>compile</scope>
 	    </dependency>
+		<dependency>
+			<groupId>com.elmakers.mine.bukkit</groupId>
+			<artifactId>MagicLib</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
+			<artifactId>Magic</artifactId>
+			<version>3.0-RC2</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<repositories>
        <repository>
