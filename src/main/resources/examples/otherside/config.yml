@@ -443,9 +443,9 @@ worlds:
             yellow_flower: red_mushroom
             red_rose: torch
             wood: brick
-            double_plant: cobble_fence
+            double_plant: cobble_wall
             fence: iron_fence
-            iron_fence: cobble_fence
+            iron_fence: cobble_wall
             cobblestone: nether_brick
             mossy_cobblestone: gold_block
             mob_spawner: diamond_block
