@@ -18,7 +18,7 @@ public class ReplacePopulator extends MagicBlockPopulator {
 	private int minY = 3;
 	
 	@Override
-	public void onLoad(ConfigurationSection config) {
+	public boolean onLoad(ConfigurationSection config) {
 		replaceMap.clear();
 		
 		maxY = config.getInt("max_y");
@@ -31,7 +31,7 @@ public class ReplacePopulator extends MagicBlockPopulator {
 		}
 		
 		ConfigurationSection replaceSection = config.getConfigurationSection("replace");
-		if (replaceSection == null) return;
+		if (replaceSection == null) return false;
 		Map<String, Object> replaceNodes = replaceSection.getValues(false);
 		for (Entry<String, Object> replaceNode : replaceNodes.entrySet()) {
 			MaterialAndData fromMaterial = new MaterialAndData(replaceNode.getKey());
@@ -46,6 +46,8 @@ public class ReplacePopulator extends MagicBlockPopulator {
 			}
 			replaceMap.put(fromMaterial.getMaterial(), toMaterial);
 		}
+		
+		return replaceMap.size() > 0;
 	}
 	
 	protected void replaceBlock(Block block) {

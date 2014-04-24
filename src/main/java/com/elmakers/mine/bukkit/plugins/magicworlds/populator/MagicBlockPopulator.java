@@ -12,9 +12,9 @@ import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
 public abstract class MagicBlockPopulator {
 	protected MagicWorldsController controller;
 	
-	public void load(MagicWorldsController controller, ConfigurationSection configuration) {
+	public boolean load(MagicWorldsController controller, ConfigurationSection configuration) {
 		this.controller = controller;
-		onLoad(configuration);
+		return onLoad(configuration);
 	}
 	
 	public void populate(Chunk chunk, Random random, int minY, int maxY, int maxAirY) {
@@ -32,6 +32,6 @@ public abstract class MagicBlockPopulator {
 		}
 	}
 	
-	public abstract void onLoad(ConfigurationSection configuration);
+	public abstract boolean onLoad(ConfigurationSection configuration);
 	public abstract void populate(Block block, Random random);
 }

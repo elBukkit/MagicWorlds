@@ -11,8 +11,8 @@ import com.elmakers.mine.bukkit.plugins.magicworlds.populator.MagicBlockPopulato
 public class VoidBlockPopulator extends MagicBlockPopulator {
 
 	@Override
-	public void onLoad(ConfigurationSection configuration) {
-		
+	public boolean onLoad(ConfigurationSection configuration) {
+		return true;
 	}
 
 	@Override

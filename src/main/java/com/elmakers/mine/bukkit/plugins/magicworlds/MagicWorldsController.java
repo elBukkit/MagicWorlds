@@ -34,13 +34,13 @@ public class MagicWorldsController implements Listener
 		
 		Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
 		if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
-			logger.warning("Magic API not found! MagicWorlds will probably not work.");
-			return;
+			logger.warning("Magic plugin not found, spell casting and wand creation disabled");
+			logger.warning("Make sure you have the MagicLib plugin instead, or MagicWorlds will probably break");
+			this.magicAPI = null;
 		} else {
 			logger.info("Integrating with Magic");
-		}
-		
-		this.magicAPI = (MagicAPI)magicPlugin;
+			this.magicAPI = (MagicAPI)magicPlugin;
+		}		
 	}
 	
 	/*
@@ -146,6 +146,11 @@ public class MagicWorldsController implements Listener
     	if (magicWorld == null) return null;
     	
     	return magicWorld.getWandChestPopulator();
+    }
+    
+    public boolean isMagicEnabled()
+    {
+    	return magicAPI != null;
     }
     
 	/*

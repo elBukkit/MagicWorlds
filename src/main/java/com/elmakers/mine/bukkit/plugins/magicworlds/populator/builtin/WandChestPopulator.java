@@ -22,7 +22,9 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	private int maxY = 60;
 	private int minY = 10;
 	
-	public void onLoad(ConfigurationSection config) {
+	public boolean onLoad(ConfigurationSection config) {
+		if (!controller.isMagicEnabled()) return false;
+		
 		baseProbability.clear();
 		wandProbability.clear();
 		
@@ -60,6 +62,8 @@ public class WandChestPopulator extends MagicBlockPopulator {
 				wandProbability.add(new WeightedPair<String>(currentThreshold, wandName));
 			}
 		}
+		
+		return baseProbability.size() > 0 && wandProbability.size() > 0;
 	}
 	
 	protected String[] populateChest(Chest chest) {
@@ -100,5 +104,4 @@ public class WandChestPopulator extends MagicBlockPopulator {
 			}
 		}
 	}
-
 }

@@ -31,6 +31,7 @@ public class CastRule extends SpawnRule {
     @Override
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
+    	if (!controller.isMagicEnabled()) return false;
     	if (!super.load(key, parameters, controller)) return false;
     	
     	yOffset = parameters.getInt("y_offset", 0);

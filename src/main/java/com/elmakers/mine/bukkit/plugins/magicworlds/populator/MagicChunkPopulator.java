@@ -48,9 +48,12 @@ public class MagicChunkPopulator extends BlockPopulator {
 				populator = createBlockPopulator(className);
 			}
 			if (populator != null) {
-				populator.load(controller, handlerConfig);
-				blockPopulators.put(key, populator);
-				controller.getLogger().info("Adding " + key + " populator to " + worldName);
+				if (populator.load(controller, handlerConfig)) {
+					blockPopulators.put(key, populator);
+					controller.getLogger().info("Adding " + key + " populator to " + worldName);
+				} else {
+					controller.getLogger().info("Skipping invalid " + key + " populator for " + worldName);
+				}
 			}
 		}
 	}

@@ -4,7 +4,7 @@ version: 0.6
 website: http://mine.elmakers.com
 author: NathanWolf
 description : A plugin for Magic to customize worlds
-depend: [Magic]
+softdepend: [Magic, MagicLib]
 load: startup
 commands:
   magicw:
