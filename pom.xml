@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 	<artifactId>MagicWorlds</artifactId>
-	<version>0.7-SNAPSHOT</version>
+	<version>0.7</version>
 	<name>elMakers - Bukkit Plugins : Magic Worlds</name>
 	<url>http://mine.elmakers.com</url>
 	<dependencyManagement>
@@ -60,7 +60,6 @@
 		<build.version>0.6</build.version>
 		<magic.build.version>3.0</magic.build.version>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<magic.api.version>1.0</magic.api.version>
 	</properties>
 	
 	<dependencies>
@@ -73,7 +72,7 @@
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit</groupId>
 			<artifactId>MagicAPI</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -85,13 +84,13 @@
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit</groupId>
 			<artifactId>MagicLib</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 			<artifactId>Magic</artifactId>
-			<version>3.0-RC3-SNAPSHOT</version>
+			<version>3.0</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
