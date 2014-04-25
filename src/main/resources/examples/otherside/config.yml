@@ -52,7 +52,7 @@ worlds:
      
           skeleton_1_defender:
             target_type: skeleton
-            probability: 0.01
+            probability: 0.001
             min_y: 63
             y_offset: 6
             allow_indoors: false

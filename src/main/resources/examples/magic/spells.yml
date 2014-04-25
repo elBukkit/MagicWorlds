@@ -4,7 +4,7 @@
 #
 
 purge:
-    icon: raw_porkchop
+    icon: grilled_pork
     category: dark
     class: com.elmakers.mine.bukkit.plugins.magicworlds.spell.PurgeSpell
     effects:

@@ -3,6 +3,7 @@
 # 0.7
 
  - Fix shading of mcstats to avoid conflicting with other plugins that use it.
+ - Can now be used without Magic, using MagicLib: http://dev.bukkit.org/plugins/magiclib/
 
 # 0.6
 
