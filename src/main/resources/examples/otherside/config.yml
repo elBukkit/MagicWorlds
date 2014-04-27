@@ -9,7 +9,7 @@ worlds:
         enderman_1_villager:
           class: ReplaceRule
           target_type: enderman
-          replace_type: villager
+          replace_type: witch
     chunk_generate:
         wands: 
           class: WandChestPopulator
