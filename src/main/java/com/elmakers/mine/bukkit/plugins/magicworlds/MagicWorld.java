@@ -30,6 +30,7 @@ public class MagicWorld {
 			chunkPopulator.load(worldName, chunkConfig, controller);
 		}
 		
+		spawnHandler.clear();
 		ConfigurationSection entityConfig = config.getConfigurationSection("entity_spawn");
 		if (entityConfig != null) {
 			spawnHandler.load(worldName, entityConfig, controller);

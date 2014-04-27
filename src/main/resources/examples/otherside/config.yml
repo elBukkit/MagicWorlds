@@ -60,20 +60,6 @@ worlds:
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - defender material mossy_cobblestone seed_radius 2
-          skeleton_2_skeleton_horse:
-            target_type: skeleton
-            probability: 0.1
-            min_y: 63
-            class: ReplaceRule
-            replace_type: horse
-            replace_sub_type: skeleton_horse
-          skeleton_3_undead_horse:
-            target_type: skeleton
-            probability: 0.2
-            min_y: 63
-            class: ReplaceRule
-            replace_type: horse
-            replace_sub_type: undead_horse
             
           creeper_1_hunter:
             target_type: creeper
@@ -97,7 +83,7 @@ worlds:
               - hunter material packed_ice seed_radius 2
           creeper_3_virus:
             target_type: creeper
-            probability: 0.005
+            probability: 0.001
             y_offset: 64
             min_y: 63
             allow_indoors: false
@@ -278,7 +264,7 @@ worlds:
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
               - hunter material obsidian seed_radius 2
-          enderman_6_virus:
+          enderman_6_worm:
             target_type: enderman
             probability: 0.001
             min_y: 63
@@ -287,7 +273,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - virus material obsidian seed_radius 3
+              - worm material gold_block seed_radius 3
           enderman_7_worm:
             target_type: enderman
             probability: 0.01
@@ -304,9 +290,30 @@ worlds:
             min_y: 63
             class: ReplaceRule
             replace_type: giant
-               
      
      # None of these are likely to spawn here since there is no grass!
+              
+          horse_1_skeleton_horse:
+            target_type: horse
+            probability: 0.5
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: skeleton_horse
+          horse_2_undead_horse:
+            target_type: horse
+            probability: 1
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: undead_horse
+            
+          mushroom_cow_1_enderman:
+            target_type: mushroom_cow
+            probability: 0.5
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
      
           chicken_999_enderman:
             target_type: chicken

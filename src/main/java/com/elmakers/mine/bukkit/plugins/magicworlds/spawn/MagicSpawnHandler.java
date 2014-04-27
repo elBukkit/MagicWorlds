@@ -21,6 +21,11 @@ public class MagicSpawnHandler {
 	protected MagicWorldsController controller;
 	protected String worldName;
 	
+	public void clear() {
+		entityTypeMap.clear();
+		spawnRules.clear();
+	}
+	
 	public LivingEntity process(Plugin plugin, LivingEntity entity) {
 		Set<SpawnRule> entityRules = entityTypeMap.get(entity.getType());
 		if (entityRules == null) return null;
