@@ -1,10 +1,13 @@
 # CHANGELOG
 
+# 0.8
+
+ - Fix the "magicw load" command
+
 # 0.7
 
  - Fix shading of mcstats to avoid conflicting with other plugins that use it.
  - Can now be used without Magic, using MagicLib: http://dev.bukkit.org/plugins/magiclib/
- - Fix the "magicw load" command
 
 # 0.6
 

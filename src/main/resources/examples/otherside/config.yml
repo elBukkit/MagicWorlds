@@ -307,13 +307,6 @@ worlds:
             class: ReplaceRule
             replace_type: horse
             replace_sub_type: undead_horse
-            
-          mushroom_cow_1_enderman:
-            target_type: mushroom_cow
-            probability: 0.5
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
      
           chicken_999_enderman:
             target_type: chicken
@@ -354,48 +347,24 @@ worlds:
             
        # Default fallbacks
        
-          creeper_998_mushroomcow:
-            target_type: creeper
-            probability: 0.3
-            min_y: 63
-            class: ReplaceRule
-            replace_type: mushroomcow
           creeper_999_enderman:
             target_type: creeper
             probability: 1.0
             min_y: 63
             class: ReplaceRule
             replace_type: enderman
-          zombie_998_mushroomcow:
-            target_type: zombie
-            probability: 0.3
-            min_y: 63
-            class: ReplaceRule
-            replace_type: mushroomcow
           zombie_999_enderman:
             target_type: zombie
             probability: 1.0
             min_y: 63
             class: ReplaceRule
             replace_type: enderman
-          skeleton_998_mushroomcow:
-            target_type: skeleton
-            probability: 0.3
-            min_y: 63
-            class: ReplaceRule
-            replace_type: mushroomcow
           skeleton_999_enderman:
             target_type: skeleton
             probability: 1.0
             min_y: 63
             class: ReplaceRule
             replace_type: enderman
-          spider_998_mushroomcow:
-            target_type: spider
-            probability: 0.3
-            min_y: 63
-            class: ReplaceRule
-            replace_type: mushroomcow
           spider_999_enderman:
             target_type: spider
             probability: 1.0
