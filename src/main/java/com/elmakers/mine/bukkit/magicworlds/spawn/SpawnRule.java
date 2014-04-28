@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.spawn;
+package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 
 public abstract class SpawnRule implements Comparable<SpawnRule> {
 	protected String					key;

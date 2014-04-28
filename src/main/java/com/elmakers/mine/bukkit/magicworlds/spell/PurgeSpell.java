@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.spell;
+package com.elmakers.mine.bukkit.magicworlds.spell;
 
 import java.util.Collection;
 

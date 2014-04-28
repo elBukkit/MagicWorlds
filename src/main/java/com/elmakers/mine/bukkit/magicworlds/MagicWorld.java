@@ -1,13 +1,13 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds;
+package com.elmakers.mine.bukkit.magicworlds;
 
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.MagicChunkPopulator;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
-import com.elmakers.mine.bukkit.plugins.magicworlds.spawn.MagicSpawnHandler;
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.spawn.MagicSpawnHandler;
 
 public class MagicWorld {
 	private MagicWorldsController controller;

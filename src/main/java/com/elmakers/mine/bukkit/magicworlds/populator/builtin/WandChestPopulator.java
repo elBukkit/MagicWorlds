@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin;
+package com.elmakers.mine.bukkit.magicworlds.populator.builtin;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -12,7 +12,7 @@ import org.bukkit.configuration.ConfigurationSection;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.MagicBlockPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicBlockPopulator;
 import com.elmakers.mine.bukkit.utility.RandomUtils;
 import com.elmakers.mine.bukkit.utility.WeightedPair;
 

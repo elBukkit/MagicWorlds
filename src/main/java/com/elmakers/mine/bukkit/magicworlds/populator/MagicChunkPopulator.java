@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.populator;
+package com.elmakers.mine.bukkit.magicworlds.populator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,11 @@ import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.generator.BlockPopulator;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 
 public class MagicChunkPopulator extends BlockPopulator {
-	public static final String BUILTIN_CLASSPATH = "com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin";
+	public static final String BUILTIN_CLASSPATH = "com.elmakers.mine.bukkit.magicworlds.populator.builtin";
 	
 	private MagicWorldsController controller;
 	private final Map<String, MagicBlockPopulator> blockPopulators = new HashMap<String, MagicBlockPopulator>();

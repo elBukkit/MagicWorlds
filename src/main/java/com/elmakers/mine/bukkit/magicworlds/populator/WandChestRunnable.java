@@ -1,12 +1,12 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.populator;
+package com.elmakers.mine.bukkit.magicworlds.populator;
 
 import java.util.Random;
 
 import org.bukkit.Chunk;
 import org.bukkit.World;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 import com.elmakers.mine.bukkit.utility.NMSUtils;
 

@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds;
+package com.elmakers.mine.bukkit.magicworlds;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import org.bukkit.plugin.Plugin;
 import org.mcstats.Metrics;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 
 public class MagicWorldsController implements Listener 
 {

@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.spawn.builtin;
+package com.elmakers.mine.bukkit.magicworlds.spawn.builtin;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,8 +10,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.plugins.magicworlds.spawn.SpawnRule;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.spawn.SpawnRule;
 
 public class CastRule extends SpawnRule {
 	protected List<CastSpell>		spells;

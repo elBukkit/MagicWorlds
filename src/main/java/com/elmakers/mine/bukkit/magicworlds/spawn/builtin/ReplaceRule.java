@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.spawn.builtin;
+package com.elmakers.mine.bukkit.magicworlds.spawn.builtin;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
@@ -13,8 +13,8 @@ import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.plugins.magicworlds.spawn.SpawnRule;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.spawn.SpawnRule;
 
 public class ReplaceRule extends SpawnRule {
     protected EntityType 	replaceWith;

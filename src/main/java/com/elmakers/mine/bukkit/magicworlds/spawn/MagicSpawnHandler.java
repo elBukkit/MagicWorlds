@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds.spawn;
+package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,10 +11,10 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.MagicWorldsController;
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 
 public class MagicSpawnHandler {
-	public final static String BUILTIN_CLASSPATH = "com.elmakers.mine.bukkit.plugins.magicworlds.spawn.builtin";
+	public final static String BUILTIN_CLASSPATH = "com.elmakers.mine.bukkit.magicworlds.spawn.builtin";
 	
 	private final Map<EntityType, Set<SpawnRule>> entityTypeMap = new HashMap<EntityType, Set<SpawnRule>>();
 	private final Map<String, SpawnRule> spawnRules = new TreeMap<String, SpawnRule>();

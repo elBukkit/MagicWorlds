@@ -1,4 +1,4 @@
-package com.elmakers.mine.bukkit.plugins.magicworlds;
+package com.elmakers.mine.bukkit.magicworlds;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.elmakers.mine.bukkit.plugins.magicworlds.populator.WandChestRunnable;
+import com.elmakers.mine.bukkit.magicworlds.populator.WandChestRunnable;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 
 /*! \mainpage MagicWorlds Plugin
@@ -25,9 +25,9 @@ import com.elmakers.mine.bukkit.utility.RunnableJob;
 * 
 * http://jenkins.elmakers.com/job/MagicAPI/doxygen/
 * 
-* And also how to extend Magic by building against MagicPlugin
+* And also how to extend Magic by building against MagicLib
 * 
-* http://jenkins.elmakers.com/job/MagicPlugin/doxygen/
+* http://jenkins.elmakers.com/job/MagicLib/doxygen/
 * 
 * In order to add a new Spell class, in this case the PurgeSpell.
 * 
