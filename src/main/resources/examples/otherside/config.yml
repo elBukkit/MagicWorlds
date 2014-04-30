@@ -29,7 +29,7 @@ worlds:
             random(20): 5
             random(30): 1
   world_nether:
-     chunk_generate:
+    chunk_generate:
         wands: 
           class: WandChestPopulator
           max_y: 100
@@ -48,7 +48,7 @@ worlds:
             random(20): 10
             random(30): 5
   world_other:
-     entity_spawn:
+      entity_spawn:
      
           skeleton_1_defender:
             target_type: skeleton
@@ -400,7 +400,7 @@ worlds:
             class: ReplaceRule
             replace_type: blaze
             
-     chunk_generate:
+      chunk_generate:
         replace:
           class: ReplacePopulator
           replace:
@@ -465,3 +465,163 @@ worlds:
             random(10): 200
             random(20): 150
             random(50): 80
+            
+  world_other_backup:
+      entity_spawn:
+     
+     # None of these are likely to spawn here since there is no grass!
+              
+          horse_1_skeleton_horse:
+            target_type: horse
+            probability: 0.5
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: skeleton_horse
+          horse_2_undead_horse:
+            target_type: horse
+            probability: 1
+            min_y: 63
+            class: ReplaceRule
+            replace_type: horse
+            replace_sub_type: undead_horse
+     
+          chicken_999_enderman:
+            target_type: chicken
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          sheep_999_enderman:
+            target_type: sheep
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          horse_999_enderman:
+            target_type: horse
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          cow_998_mushroomcow:
+            target_type: cow
+            probability: 0.8
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+          cow_999_enderman:
+            target_type: cow
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            
+       # Default fallbacks
+       
+          creeper_999_enderman:
+            target_type: creeper
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          zombie_999_enderman:
+            target_type: zombie
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          skeleton_999_enderman:
+            target_type: skeleton
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          spider_999_enderman:
+            target_type: spider
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+       # Other Mob Replacement
+         
+          villager_1_pigman:
+            class: ReplaceRule
+            probability: 1.0
+            target_type: villager
+            replace_type: pigzombie
+            
+          slime_1_lavaslime:
+            target_type: slime
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: lavaslime
+            
+          bat_1_blaze:
+            target_type: bat
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: blaze
+            
+      chunk_generate:
+        replace:
+          class: ReplacePopulator
+          replace:
+            grass: mycel
+            dirt: netherrack
+            stone: ender_stone
+            leaves: glowstone
+            leaves_2: stained_glass|*
+            log: stained_glass_pane|*
+            log_2: glowstone
+            hard_clay: stained_glass|12
+            water: stained_glass|9
+            stationary_water: stained_glass|3
+            lava: stained_glass|13
+            stationary_lava: stained_glass|1
+            sandstone: stained_clay:10
+            stained_clay: stained_glass:*
+            gravel: soul_sand
+            sand: sand:1
+            cactus: nether_fence
+            long_grass: brown_mushroom
+            yellow_flower: red_mushroom
+            red_rose: torch
+            wood: brick
+            double_plant: cobble_wall
+            fence: iron_fence
+            iron_fence: cobble_wall
+            cobblestone: nether_brick
+            mossy_cobblestone: gold_block
+            mob_spawner: diamond_block
+            glass: stained_glass|10
+            thin_glass: stained_glass_pane|9
+            ice: stained_glass|11
+            packed_ice: stained_glass|11
+            clay: stained_clay|10
+            snow_block: quartz_block
+            coal_ore: quartz_ore
+            diamond_ore: quartz_ore
+            emerald_ore: quartz_ore
+            iron_ore: quartz_ore
+            gold_ore: quartz_ore
+            wool: gold_block|2
+            pumpkin: jack_o_lantern
+            melon_block: torch
+            huge_mushroom_1: stained_glass:*
+            huge_mushroom_2: stained_glass_pane:*
