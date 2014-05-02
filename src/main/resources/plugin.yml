@@ -1,6 +1,6 @@
 name: MagicWorlds
 main: com.elmakers.mine.bukkit.magicworlds.MagicWorldsPlugin
-version: 0.8
+version: ${project.version}
 website: http://mine.elmakers.com
 author: NathanWolf
 description : A plugin for Magic to customize worlds
