@@ -131,7 +131,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material iron_block seed_radius 2
+              - hunter material wool seed_radius 2
           zombie_5_virus:
             target_type: zombie
             probability: 0.005
@@ -233,7 +233,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material gold_block seed_radius 2
+              - hunter material log seed_radius 2
           enderman_3_hunter:
             target_type: enderman
             probability: 0.01
@@ -243,7 +243,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material diamond_block seed_radius 2
+              - hunter material log_2 seed_radius 2
           enderman_4_hunter:
             target_type: enderman
             probability: 0.01
@@ -253,7 +253,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material iron_block seed_radius 2
+              - hunter material wool seed_radius 2
           enderman_5_hunter:
             target_type: enderman
             probability: 0.01
@@ -273,7 +273,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - worm material gold_block seed_radius 3
+              - worm material log seed_radius 3
           enderman_7_worm:
             target_type: enderman
             probability: 0.01
@@ -429,7 +429,7 @@ worlds:
             fence: iron_fence
             iron_fence: cobble_wall
             cobblestone: nether_brick
-            mossy_cobblestone: gold_block
+            mossy_cobblestone: iron_block
             mob_spawner: diamond_block
             glass: stained_glass|10
             thin_glass: stained_glass_pane|9
@@ -442,7 +442,7 @@ worlds:
             emerald_ore: quartz_ore
             iron_ore: quartz_ore
             gold_ore: quartz_ore
-            wool: gold_block|2
+            wool: log|2
             pumpkin: jack_o_lantern
             melon_block: torch
             huge_mushroom_1: stained_glass:*
@@ -607,7 +607,7 @@ worlds:
             fence: iron_fence
             iron_fence: cobble_wall
             cobblestone: nether_brick
-            mossy_cobblestone: gold_block
+            mossy_cobblestone: iron_block
             mob_spawner: diamond_block
             glass: stained_glass|10
             thin_glass: stained_glass_pane|9
@@ -620,7 +620,7 @@ worlds:
             emerald_ore: quartz_ore
             iron_ore: quartz_ore
             gold_ore: quartz_ore
-            wool: gold_block|2
+            wool: log|2
             pumpkin: jack_o_lantern
             melon_block: torch
             huge_mushroom_1: stained_glass:*
