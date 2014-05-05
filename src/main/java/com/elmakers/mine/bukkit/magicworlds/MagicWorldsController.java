@@ -56,6 +56,7 @@ public class MagicWorldsController implements Listener
 	public void load()
 	{
 		try {
+			plugin.reloadConfig();
 			Configuration config = plugin.getConfig();
 			metricsLevel = config.getInt("metrics_level", metricsLevel);
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");

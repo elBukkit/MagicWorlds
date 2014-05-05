@@ -2,6 +2,7 @@
 
 # 0.8
 
+ - Fix magicw load command
  - The Purge spell is undoable
 
 # 0.7
