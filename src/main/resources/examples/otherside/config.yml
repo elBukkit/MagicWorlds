@@ -84,7 +84,7 @@ worlds:
           creeper_3_virus:
             target_type: creeper
             probability: 0.001
-            y_offset: 64
+            y_offset: 24
             min_y: 63
             allow_indoors: false
             class: CastRule
@@ -135,7 +135,7 @@ worlds:
           zombie_5_virus:
             target_type: zombie
             probability: 0.005
-            y_offset: 64
+            y_offset: 24
             min_y: 63
             class: CastRule
             allow_indoors: false
@@ -198,7 +198,7 @@ worlds:
             probability: 0.01
             min_y: 63
             class: CastRule
-            y_offset: 64
+            y_offset: 24
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
@@ -269,7 +269,7 @@ worlds:
             probability: 0.001
             min_y: 63
             class: CastRule
-            y_offset: 64
+            y_offset: 24
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
