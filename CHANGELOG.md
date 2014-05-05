@@ -2,7 +2,7 @@
 
 # 0.8
 
- - Fix the "magicw load" command
+ - The Purge spell is undoable
 
 # 0.7
 

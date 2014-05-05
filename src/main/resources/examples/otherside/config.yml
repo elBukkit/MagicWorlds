@@ -70,7 +70,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material diamond_ore seed_radius 2
+              - hunter material redstone_ore seed_radius 2
           creeper_2_hunter:
             target_type: creeper
             probability: 0.01

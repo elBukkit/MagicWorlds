@@ -7,10 +7,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.elmakers.mine.bukkit.api.spell.SpellResult;
-import com.elmakers.mine.bukkit.spell.TargetingSpell;
+import com.elmakers.mine.bukkit.spell.UndoableSpell;
 import com.elmakers.mine.bukkit.utility.Target;
 
-public class PurgeSpell extends TargetingSpell {
+public class PurgeSpell extends UndoableSpell {
 
 	@Override
 	public SpellResult onCast(ConfigurationSection parameters) {
@@ -25,9 +25,11 @@ public class PurgeSpell extends TargetingSpell {
 		} else {
 			Collection<? extends Entity> entities = targetEntity.getWorld().getEntitiesByClass(targetEntity.getClass());
 			for (Entity entity : entities) {
+				registerForUndo(entity);
 				entity.remove();
 			}
 		}
+		registerForUndo();
 		return SpellResult.CAST;
 	}
 }
