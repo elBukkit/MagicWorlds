@@ -1,5 +1,6 @@
 *.class
-
+.idea
+MagicWorlds.iml
 target
 .project
 .settings
