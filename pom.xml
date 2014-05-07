@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 	<artifactId>MagicWorlds</artifactId>
-	<version>0.8</version>
+	<version>0.9-SNAPSHOT</version>
 	<name>elMakers - Bukkit Plugins : Magic Worlds</name>
 	<url>http://mine.elmakers.com</url>
 	<dependencyManagement>

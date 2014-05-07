@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.9
+
+ - The Purge spell won't kill NPCs
+
 # 0.8
 
  - Fix magicw load command

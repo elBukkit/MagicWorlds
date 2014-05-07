@@ -19,12 +19,14 @@ public class PurgeSpell extends UndoableSpell {
 			return SpellResult.NO_TARGET;
 		}
 		Entity targetEntity = target.getEntity();
+
 		if (targetEntity instanceof Player) {
 			Player targetPlayer = (Player)targetEntity;
 			targetPlayer.kickPlayer(getMessage("cast_player_message"));
 		} else {
 			Collection<? extends Entity> entities = targetEntity.getWorld().getEntitiesByClass(targetEntity.getClass());
 			for (Entity entity : entities) {
+                if (entity.hasMetadata("NPC")) continue;
 				registerForUndo(entity);
 				entity.remove();
 			}
