@@ -26,7 +26,7 @@ public class PurgeSpell extends UndoableSpell {
 		} else {
 			Collection<? extends Entity> entities = targetEntity.getWorld().getEntitiesByClass(targetEntity.getClass());
 			for (Entity entity : entities) {
-                if (entity.hasMetadata("NPC")) continue;
+                if (controller.isNPC(entity)) continue;
 				registerForUndo(entity);
 				entity.remove();
 			}
