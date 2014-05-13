@@ -101,6 +101,9 @@ public class MagicWorldsController implements Listener
 		if (magicWorld == null) return;
 		
 		logger.info("Initializing world " + world.getName());
+        for (MagicWorld notifyWorld : magicWorlds.values()) {
+            notifyWorld.onWorldInit(plugin, world);
+        }
 		magicWorld.installPopulators(world);
 	}
 

@@ -48,6 +48,7 @@ worlds:
             random(20): 10
             random(30): 5
   world_other:
+      copy: world
       entity_spawn:
      
           skeleton_1_defender:
