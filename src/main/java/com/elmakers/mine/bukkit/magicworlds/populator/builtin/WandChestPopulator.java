@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -100,7 +101,9 @@ public class WandChestPopulator extends MagicBlockPopulator {
 			Chest chest = (Chest)block.getState();
 			String[] wandNames = populateChest(chest);
 			if (wandNames.length > 0 && controller != null) {
-				controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at " + block.getLocation());
+                Location location = block.getLocation();
+				controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at "
+                        + location.getWorld().getName() + "," + location.toVector());
 			}
 		}
 	}
