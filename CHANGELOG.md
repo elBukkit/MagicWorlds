@@ -3,6 +3,7 @@
 # 0.9
 
  - The Purge spell won't kill NPCs
+ - Will auto-create/copy worlds if configured to do so
 
 # 0.8
 
