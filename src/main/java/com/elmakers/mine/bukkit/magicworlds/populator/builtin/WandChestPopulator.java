@@ -5,9 +5,11 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -20,23 +22,17 @@ import com.elmakers.mine.bukkit.utility.WeightedPair;
 public class WandChestPopulator extends MagicBlockPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
 	private final LinkedList<WeightedPair<String>> wandProbability = new LinkedList<WeightedPair<String>>();
-	private int maxY = 60;
-	private int minY = 10;
+	private int maxYOverride = 255;
+	private int minYOverride = 0;
 	
 	public boolean onLoad(ConfigurationSection config) {
 		if (!controller.isMagicEnabled()) return false;
 		
 		baseProbability.clear();
 		wandProbability.clear();
-		
-		maxY = config.getInt("max_y");
-		if (maxY == 0) {
-			maxY = 60;
-		}
-		minY = config.getInt("min_y");
-		if (minY == 0) {
-			minY = 10;
-		}
+
+		maxYOverride = config.getInt("max_y", maxYOverride);
+		minYOverride = config.getInt("min_y", minYOverride);
 		
 		// Fetch base probabilities
 		Float currentThreshold = 0.0f;
@@ -57,10 +53,9 @@ public class WandChestPopulator extends MagicBlockPopulator {
 		if (wands != null) {
 			Set<String> keys = wands.getKeys(false);
 			for (String key : keys) {
-				String wandName = key;
 				Float threshold = (float)wands.getDouble(key, 0);
 				currentThreshold += threshold;
-				wandProbability.add(new WeightedPair<String>(currentThreshold, wandName));
+				wandProbability.add(new WeightedPair<String>(currentThreshold, key));
 			}
 		}
 		
@@ -89,22 +84,32 @@ public class WandChestPopulator extends MagicBlockPopulator {
 		
 		return wandNames;
 	}
-	
+
 	public void setMaxY(int maxy) {
-		this.maxY = maxy;
+		this.maxYOverride = maxy;
 	}
-	
+
+    @Override
+    public void populate(Chunk chunk, Random random, int minY, int maxY, int maxAirY) {
+        BlockState[] tiles = chunk.getTileEntities();
+        for (BlockState block : tiles) {
+            if (block.getType() != Material.CHEST || !(block instanceof Chest)) continue;
+            if (block.getY() < minY || block.getY() > maxY) continue;
+            if (block.getY() < minYOverride || block.getY() > maxYOverride) continue;
+
+            Chest chest = (Chest)block;
+            if (block.getType() == Material.CHEST) {
+                String[] wandNames = populateChest(chest);
+                if (wandNames.length > 0 && controller != null) {
+                    Location location = block.getLocation();
+                    controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at "
+                            + location.getWorld().getName() + "," + location.toVector());
+                }
+            }
+        }
+    }
+
 	@Override
 	public void populate(Block block, Random random) {
-		if (block.getY() < minY || block.getY() > maxY) return;
-		if (block.getType() == Material.CHEST) {
-			Chest chest = (Chest)block.getState();
-			String[] wandNames = populateChest(chest);
-			if (wandNames.length > 0 && controller != null) {
-                Location location = block.getLocation();
-				controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at "
-                        + location.getWorld().getName() + "," + location.toVector());
-			}
-		}
 	}
 }

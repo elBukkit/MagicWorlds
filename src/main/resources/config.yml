@@ -12,7 +12,6 @@ worlds:
      chunk_generate:
         wands: 
           class: WandChestPopulator
-          max_y: 60
           base_probability:
             0: 100
             1: 80
@@ -31,7 +30,6 @@ worlds:
      chunk_generate:
         wands: 
           class: WandChestPopulator
-          max_y: 100
           base_probability:
             0: 100
             1: 80

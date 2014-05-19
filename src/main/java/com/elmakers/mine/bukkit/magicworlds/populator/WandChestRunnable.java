@@ -85,7 +85,7 @@ public class WandChestRunnable extends RunnableJob {
 			chunksProcessed++;
 			
 			if (populator != null) {
-				populator.populate(chunk, random, 10, 60, 50);
+				populator.populate(chunk, random, 0, 255, 255);
 			}
 			x += dx;
 			z += dz;

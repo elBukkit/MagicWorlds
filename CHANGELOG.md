@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.9.1
+
+ - Some major optimizations to chest population.
+
 # 0.9
 
  - The Purge spell won't kill NPCs
