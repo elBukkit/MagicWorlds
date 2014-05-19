@@ -1,11 +1,8 @@
 # CHANGELOG
 
-# 0.9.1
-
- - Some major optimizations to chest population.
-
 # 0.9
 
+ - Some major optimizations to chest population. (Block replacement is still slow!)
  - The Purge spell won't kill NPCs
  - Will auto-create/copy worlds if configured to do so
 
