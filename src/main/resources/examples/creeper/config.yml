@@ -1,0 +1,139 @@
+#
+# This is an example configuration to make a creepery Creeper world
+#
+
+worlds:
+  world_creeper:
+      copy: world
+      entity_spawn:
+
+          chicken_999_creeper:
+            target_type: chicken
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          pig_999_creeper:
+            target_type: pig
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          sheep_999_creeper:
+            target_type: sheep
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          pig_999_creeper:
+            target_type: pig
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          horse_999_creeper:
+            target_type: horse
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          cow_999_creeper:
+            target_type: cow
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+          zombie_999_creeper:
+            target_type: zombie
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: creeper
+          skeleton_999_creeper:
+            target_type: skeleton
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: creeper
+          spider_999_creeper:
+            target_type: spider
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: creeper
+
+       # Other Mob Replacement
+         
+          villager_1_creeper:
+            class: ReplaceRule
+            probability: 1.0
+            target_type: villager
+            replace_type: creeper
+            
+          slime_1_creeper:
+            target_type: slime
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+            
+          bat_1_creeper:
+            target_type: bat
+            probability: 1.0
+            class: ReplaceRule
+            replace_type: creeper
+            
+      chunk_generate:
+        replace:
+          class: ReplacePopulator
+          replace:
+            grass: brick
+            dirt: nether_brick
+            stone: smooth_brick
+            leaves: emerald_block
+            leaves_2: diamond_block
+            log: iron_block
+            log_2: gold_block
+            hard_clay: stone
+            water: stained_glass|9
+            stationary_water: stained_glass|3
+            lava: stained_glass|13
+            stationary_lava: stained_glass|1
+            sandstone: stained_clay:10
+            stained_clay: stained_glass:*
+            gravel: soul_sand
+            sand: sand:1
+            cactus: nether_fence
+            long_grass: iron_fence
+            yellow_flower: brick_stairs
+            red_rose: nether_brick_stairs
+            wood: bedrock
+            double_plant: cobble_wall
+            fence: iron_fence
+            iron_fence: cobble_wall
+            cobblestone: mossy_cobblestone
+            mossy_cobblestone: lava
+            mob_spawner: water
+            glass: stained_glass|10
+            thin_glass: stained_glass_pane|9
+            ice: stained_glass|11
+            packed_ice: stained_glass|11
+            clay: stained_clay|10
+            snow_block: quartz_block
+            wool: log|2
+            pumpkin: jack_o_lantern
+            melon_block: torch
+            huge_mushroom_1: iron_fence
+            huge_mushroom_2: nether_fence
+        wands: 
+          class: WandChestPopulator
+          base_probability:
+            0: 20
+            1: 70
+            2: 20
+            3: 5
+          wand_probability:
+            nether: 50
+            ender: 60
+            elder: 1
+            recalltoken: 100
+            mana1: 100
+            mana2: 50
+            mana3: 10
+            random(10): 200
+            random(20): 150
+            random(50): 80
+            
