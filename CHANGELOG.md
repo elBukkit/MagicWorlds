@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 1.0
+
+ - Some fixes to the world copying function
+
 # 0.9
 
  - Some major optimizations to chest population. (Block replacement is still slow!)

@@ -97,13 +97,13 @@ public class MagicWorldsController implements Listener
 	@EventHandler
 	public void onWorldInit(WorldInitEvent event) {
 		World world = event.getWorld();
+        for (MagicWorld notifyWorld : magicWorlds.values()) {
+            notifyWorld.onWorldInit(plugin, world);
+        }
 		MagicWorld magicWorld = magicWorlds.get(world.getName());
 		if (magicWorld == null) return;
 		
 		logger.info("Initializing world " + world.getName());
-        for (MagicWorld notifyWorld : magicWorlds.values()) {
-            notifyWorld.onWorldInit(plugin, world);
-        }
 		magicWorld.installPopulators(world);
 	}
 
