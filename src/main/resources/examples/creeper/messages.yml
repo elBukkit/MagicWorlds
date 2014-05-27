@@ -1,0 +1,7 @@
+#
+# Use this to add "World of Creepers" as a world label for Phase
+#
+
+worlds:
+    world_creeper
+        name: World of Creepers

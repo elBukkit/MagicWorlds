@@ -83,10 +83,10 @@ worlds:
             grass: brick
             dirt: nether_brick
             stone: smooth_brick
-            leaves: emerald_block
-            leaves_2: diamond_block
-            log: iron_block
-            log_2: gold_block
+            leaves: wood_step
+            leaves_2: step
+            log: fence
+            log_2: web
             hard_clay: stone
             water: stained_glass|9
             stationary_water: stained_glass|3
@@ -100,7 +100,8 @@ worlds:
             long_grass: iron_fence
             yellow_flower: brick_stairs
             red_rose: nether_brick_stairs
-            wood: bedrock
+            wood: smooth_brick
+            wood_stairs: smooth_stairs
             double_plant: cobble_wall
             fence: iron_fence
             iron_fence: cobble_wall
@@ -112,7 +113,6 @@ worlds:
             ice: stained_glass|11
             packed_ice: stained_glass|11
             clay: stained_clay|10
-            snow_block: quartz_block
             wool: log|2
             pumpkin: jack_o_lantern
             melon_block: torch
