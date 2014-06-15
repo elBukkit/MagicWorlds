@@ -1,5 +1,6 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -7,13 +8,12 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 import com.elmakers.mine.bukkit.magicworlds.spawn.MagicSpawnHandler;
 
 public class MagicWorld {
 	private MagicWorldsController controller;
-	private MagicChunkPopulator chunkPopulator;
+	private MagicChunkHandler chunkHandler;
 	private MagicSpawnHandler spawnHandler;
     private String copyFrom;
     private String worldName;
@@ -23,17 +23,16 @@ public class MagicWorld {
         copyFrom = config.getString("copy", "");
         this.controller = controller;
 		
-		if (chunkPopulator == null) {
-			chunkPopulator = new MagicChunkPopulator();
+		if (chunkHandler == null) {
+            chunkHandler = new MagicChunkHandler();
 		}
 		if (spawnHandler == null) {
 			spawnHandler = new MagicSpawnHandler();
 		}
-		chunkPopulator.clear();
-		
+        chunkHandler.clear();
 		ConfigurationSection chunkConfig = config.getConfigurationSection("chunk_generate");
 		if (chunkConfig != null) {
-			chunkPopulator.load(worldName, chunkConfig, controller);
+            chunkHandler.load(worldName, chunkConfig, controller);
 		}
 		
 		spawnHandler.clear();
@@ -44,9 +43,9 @@ public class MagicWorld {
 	}
 	
 	public void installPopulators(World world) {
-		if (chunkPopulator.isEmpty()) return;
+		if (chunkHandler.isEmpty()) return;
 		controller.getLogger().info("Installing Populators in " + world.getName());
-		world.getPopulators().add(chunkPopulator);
+		world.getPopulators().add(chunkHandler);
 	}
 	
 	public LivingEntity processEntitySpawn(Plugin plugin, LivingEntity entity) {
@@ -83,6 +82,6 @@ public class MagicWorld {
     }
 
 	public WandChestPopulator getWandChestPopulator() {
-		return chunkPopulator.getWandChestPopulator();
+		return chunkHandler.getWandChestPopulator();
 	}
 }

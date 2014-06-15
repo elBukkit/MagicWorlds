@@ -4,26 +4,26 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.api.wand.Wand;
-import com.elmakers.mine.bukkit.magicworlds.populator.MagicBlockPopulator;
 import com.elmakers.mine.bukkit.utility.RandomUtils;
 import com.elmakers.mine.bukkit.utility.WeightedPair;
 
-public class WandChestPopulator extends MagicBlockPopulator {
+public class WandChestPopulator extends MagicChunkPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
 	private final LinkedList<WeightedPair<String>> wandProbability = new LinkedList<WeightedPair<String>>();
-	private int maxYOverride = 255;
-	private int minYOverride = 0;
+    private int maxY = 255;
+    private int minY = 0;
 	
 	public boolean onLoad(ConfigurationSection config) {
 		if (!controller.isMagicEnabled()) return false;
@@ -31,9 +31,9 @@ public class WandChestPopulator extends MagicBlockPopulator {
 		baseProbability.clear();
 		wandProbability.clear();
 
-		maxYOverride = config.getInt("max_y", maxYOverride);
-		minYOverride = config.getInt("min_y", minYOverride);
-		
+        maxY = config.getInt("max_y", maxY);
+        minY = config.getInt("min_y", minY);
+
 		// Fetch base probabilities
 		Float currentThreshold = 0.0f;
 		ConfigurationSection base = config.getConfigurationSection("base_probability");
@@ -86,16 +86,15 @@ public class WandChestPopulator extends MagicBlockPopulator {
 	}
 
 	public void setMaxY(int maxy) {
-		this.maxYOverride = maxy;
+		this.maxY = maxy;
 	}
 
     @Override
-    public void populate(Chunk chunk, Random random, int minY, int maxY, int maxAirY) {
+    public void populate(World world, Random random, Chunk chunk) {
         BlockState[] tiles = chunk.getTileEntities();
         for (BlockState block : tiles) {
             if (block.getType() != Material.CHEST || !(block instanceof Chest)) continue;
             if (block.getY() < minY || block.getY() > maxY) continue;
-            if (block.getY() < minYOverride || block.getY() > maxYOverride) continue;
 
             Chest chest = (Chest)block;
             if (block.getType() == Material.CHEST) {
@@ -108,8 +107,4 @@ public class WandChestPopulator extends MagicBlockPopulator {
             }
         }
     }
-
-	@Override
-	public void populate(Block block, Random random) {
-	}
 }

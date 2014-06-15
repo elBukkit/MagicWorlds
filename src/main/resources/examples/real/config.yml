@@ -1,0 +1,11 @@
+
+#
+# The default config will add wands to chests in world and world_nether
+#
+
+# Set this to 0 to disable MCStats metrics collection
+metrics_level: 5
+
+terrain:
+   origin_latitude: 0
+   origin_longitude: 52

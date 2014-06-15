@@ -9,6 +9,7 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -86,10 +87,12 @@ public class MagicWorldsPlugin extends JavaPlugin
 	/*
 	 * Public API
 	 */
-	public MagicWorldsController getController()
-	{
-		return controller;
-	}
+    public MagicWorldsController getController() {
+        if (controller == null) {
+            controller = new MagicWorldsController(this);
+        }
+        return controller;
+    }
 
 	/*
 	 * Plugin interface
@@ -250,6 +253,10 @@ public class MagicWorldsPlugin extends JavaPlugin
 
 		return false;
 	}
+
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+        return getController().getWorldGenerator(worldName, id);
+    }
 
 	/*
 	 * Private data

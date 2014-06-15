@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.RealTerrainGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.Configuration;
@@ -19,6 +21,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.mcstats.Metrics;
 
@@ -31,6 +34,7 @@ public class MagicWorldsController implements Listener
 	{
 		this.logger = plugin.getLogger();
 		this.plugin = plugin;
+        worldGenerator = new MagicChunkGenerator();
 		
 		Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
 		if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
@@ -49,7 +53,7 @@ public class MagicWorldsController implements Listener
 
 	public void initialize()
 	{
-		plugin.saveDefaultConfig();	
+		plugin.saveDefaultConfig();
 		load();
 	}
 	
@@ -59,6 +63,9 @@ public class MagicWorldsController implements Listener
 			plugin.reloadConfig();
 			Configuration config = plugin.getConfig();
 			metricsLevel = config.getInt("metrics_level", metricsLevel);
+            if (config.contains("terrain")) {
+                worldGenerator.load(config.getConfigurationSection("terrain"), this);
+            }
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
 				Set<String> worldKeys = worlds.getKeys(false);
@@ -156,7 +163,19 @@ public class MagicWorldsController implements Listener
     {
     	return magicAPI != null;
     }
-    
+
+    public String getGoogleAPIKey() {
+        return googleAPIKey;
+    }
+
+    public Plugin getPlugin() {
+        return plugin;
+    }
+
+    public ChunkGenerator getWorldGenerator(String worldName, String id) {
+        return worldGenerator;
+    }
+
 	/*
 	 * Private data
 	 */
@@ -164,9 +183,12 @@ public class MagicWorldsController implements Listener
     private MagicAPI magicAPI = null;
     
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
+    private final MagicChunkGenerator worldGenerator;
     private final Plugin	plugin;
 	private final Logger 	logger;
-	 
+
+    private String                           googleAPIKey;
+
 	private int								 metricsLevel					= 5;
 	private Metrics							 metrics						= null;
 }
