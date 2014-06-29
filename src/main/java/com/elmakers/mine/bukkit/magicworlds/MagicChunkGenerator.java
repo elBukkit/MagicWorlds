@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -25,7 +26,8 @@ public class MagicChunkGenerator extends ChunkGenerator {
 
     @Override
     public List<BlockPopulator> getDefaultPopulators(World world) {
-        return Arrays.asList((BlockPopulator)terrainGenerator);
+        return new ArrayList<BlockPopulator>();
+        //return Arrays.asList((BlockPopulator)terrainGenerator);
     }
 
     @Override
@@ -38,9 +40,16 @@ public class MagicChunkGenerator extends ChunkGenerator {
         short[][] result = new short[WORLD_HEIGHT / 16][];
         short[] floor = new short[4096];
         result[0] = floor;
-        for (int cx = 0; cx < 16; cx++) {
-            for (int cz = 0; cz < 16; cz++) {
-                floor[cx * 16 + cz] = (short)Material.BEDROCK.getId();
+        for (int y = 0; y < 4; y++) {
+            Material mat = Material.BEDROCK;
+            if (y > 0 && y < 2) mat = Material.STONE;
+            else if (y == 2) mat = Material.DIRT;
+            else if (y == 3) mat = Material.GRASS;
+
+            for (int cx = 0; cx < 16; cx++) {
+                for (int cz = 0; cz < 16; cz++) {
+                    floor[cx * 16 + cz + y * 256] = (short)mat.getId();
+                }
             }
         }
         return result;
