@@ -40,7 +40,7 @@ public class MagicChunkGenerator extends ChunkGenerator {
         result[0] = floor;
         for (int cx = 0; cx < 16; cx++) {
             for (int cz = 0; cz < 16; cz++) {
-                floor[cz * 16 * cz] = (short)Material.BEDROCK.getId();
+                floor[cx * 16 + cz] = (short)Material.BEDROCK.getId();
             }
         }
         return result;
