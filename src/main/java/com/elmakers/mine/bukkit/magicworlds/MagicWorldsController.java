@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
+import com.elmakers.mine.bukkit.magicworlds.listener.EntityTargetListener;
 import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.RealTerrainGenerator;
 import org.bukkit.Bukkit;
@@ -23,12 +25,13 @@ import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.mcstats.Metrics;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 
-public class MagicWorldsController implements Listener 
+public class MagicWorldsController implements Listener
 {
 	public MagicWorldsController(final Plugin plugin)
 	{
@@ -66,6 +69,14 @@ public class MagicWorldsController implements Listener
             if (config.contains("terrain")) {
                 worldGenerator.load(config.getConfigurationSection("terrain"), this);
             }
+            PluginManager pm = Bukkit.getPluginManager();
+            if (config.getBoolean("entity_spawn_listener", true)) {
+                pm.registerEvents(new EntitySpawnListener(this), plugin);
+            }
+            if (config.getBoolean("entity_target_listener", true)) {
+                pm.registerEvents(new EntityTargetListener(this), plugin);
+            }
+
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
 				Set<String> worldKeys = worlds.getKeys(false);
@@ -114,35 +125,6 @@ public class MagicWorldsController implements Listener
 		magicWorld.installPopulators(world);
 	}
 
-    @EventHandler(priority = EventPriority.LOW)
-    public void onEntitySpawn(CreatureSpawnEvent event) {
-        if (event.isCancelled()) {
-            return;
-        }
-        if (event.getSpawnReason() == SpawnReason.CUSTOM || event.getSpawnReason() == SpawnReason.DEFAULT) return;
-        
-        MagicWorld magicWorld = magicWorlds.get(event.getLocation().getWorld().getName());
-        if (magicWorld == null) return;
-        
-        LivingEntity entity = event.getEntity();
-        LivingEntity replace =  magicWorld.processEntitySpawn(plugin, entity);
-        if (replace != null) {
-        	entity.setHealth(0);
-            event.setCancelled(true);
-    	}
-    }
-    
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onEntityTarget(EntityTargetEvent event) {
-        if (event.isCancelled() || !event.getEntity().hasMetadata("docile")) {
-            return;
-        }
-
-        if (event.getReason() == TargetReason.CLOSEST_PLAYER ) {
-            event.setCancelled(true);
-        }
-    }
-
     public Logger getLogger() {
     	return logger;
     }
@@ -174,6 +156,10 @@ public class MagicWorldsController implements Listener
 
     public ChunkGenerator getWorldGenerator(String worldName, String id) {
         return worldGenerator;
+    }
+
+    public MagicWorld getWorld(String name) {
+        return magicWorlds.get(name);
     }
 
 	/*

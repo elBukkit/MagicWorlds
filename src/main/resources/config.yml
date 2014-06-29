@@ -6,6 +6,10 @@
 # Set this to 0 to disable MCStats metrics collection
 metrics_level: 5
 
+# Enable or disable event handlers
+entity_spawn_listener: true
+entity_target_listener: true
+
 # Define per-world chunk and entity rules here
 worlds:
   world:
