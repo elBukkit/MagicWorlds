@@ -7,5 +7,7 @@
 metrics_level: 5
 
 terrain:
-   origin_latitude: 0
-   origin_longitude: 52
+   origin_latitude: 47.353720
+   origin_longitude: -123.088604
+   #origin_latitude: 52
+   #origin_longitude: 0

@@ -1,17 +1,26 @@
 package com.elmakers.mine.bukkit.magicworlds.populator.builtin;
 
+import java.awt.geom.Point2D;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.zip.GZIPInputStream;
 
 import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkPopulator;
 import com.elmakers.mine.bukkit.utility.Mercator;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
+import org.geotools.coverage.grid.GridCoverage2D;
+import org.geotools.coverage.grid.ViewType;
+import org.geotools.coverage.grid.io.AbstractGridFormat;
+import org.geotools.coverage.grid.io.GridCoverage2DReader;
+import org.geotools.coverage.grid.io.GridFormatFinder;
+import org.geotools.geometry.DirectPosition2D;
 
 public class RealTerrainGenerator extends MagicChunkPopulator {
     private static final String SRTM_FTP_SERVER = "ftp.glcf.umd.edu";
@@ -19,6 +28,8 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
     private static final String SRTM_FTP_PATH = "/glcf/SRTM/Degree_Tiles";
     private static final String SRTM_FTP_USER = "anonymous";
     private static final String SRTM_FTP_PWD = "";
+
+    private static final double METERS_PER_DEGREE = 111319.9;
 
     private int maxY = 255;
     private int seaLevel = 64;
@@ -35,7 +46,7 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
     DecimalFormat fileFormatter = new DecimalFormat("000");
 
     // TODO: Cache control!
-    private final Map<String, double[][]> imageCache = new HashMap<String, double[][]>();
+    private final Map<String, GridCoverage2D> cache = new HashMap<String, GridCoverage2D>();
 
     @Override
     public boolean onLoad(ConfigurationSection config) {
@@ -48,18 +59,13 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
         originLatitude = config.getDouble("origin_latitude", originLatitude);
         originLongitude = config.getDouble("origin_longitude", originLongitude);
 
-        // Need to make sure offset and scale are not set for this to work!
-        xOffset = 0;
-        zOffset = 0;
-        xScale = 1;
-        zScale = 1;
-        xOffset = fromLongtiude(originLongitude);
-        zOffset = fromLatitude(originLatitude);
+        xOffset = Mercator.lon2x(Math.abs(originLongitude)) * METERS_PER_DEGREE * Math.signum(originLongitude);
+        zOffset = Mercator.lat2y(Math.abs(originLatitude)) * METERS_PER_DEGREE * Math.signum(originLatitude);
 
         xScale = config.getDouble("scale_x", xScale);
         zScale = config.getDouble("scale_z", zScale);
 
-        controller.getLogger().info("Origin at: " + originLongitude + ", " + originLatitude);
+        controller.getLogger().info("Origin at: " + originLongitude + ", " + originLatitude + " => " + "(" + xOffset + "," + zOffset + ")");
 
         return true;
     }
@@ -68,22 +74,24 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
         double latitude = toLatitude(x);
         double longitude = toLongitude(z);
 
+        char latHemo = latitude <= -1 ? 's' : 'n';
+        char lonHemo = longitude <= -1 ? 'w' : 'e';
+        latitude = Math.abs(latitude);
+        longitude = Math.abs(longitude);
         String latIndex = fileFormatter.format((int)latitude);
         String lonIndex = fileFormatter.format((int)longitude);
 
-        // TODO: Other hemispheres
-        String chunkKey = "SRTM_f03_n" + latIndex + "w" + lonIndex;
-        if (!imageCache.containsKey(chunkKey)) {
-            controller.getLogger().info("Fetching data for " + longitude + "," + latitude + " => (" + x + "," + z + ")");
-
-            String filePath = "n" + latIndex + "/" + chunkKey;
-            String fileName = chunkKey + ".tif.gz";
+        GridCoverage2D reader = null;
+        String chunkKey = "SRTM_f03_"  + latHemo + latIndex + lonHemo + lonIndex;
+        if (!cache.containsKey(chunkKey)) {
+            String filePath = latHemo + latIndex + "/" + chunkKey;
+            String fileName = chunkKey + ".tif";
             double[][] data = null;
 
             File dataFolder = new File(controller.getPlugin().getDataFolder() + "/data/" + filePath);
             dataFolder.mkdirs();
             File cacheFile = new File(dataFolder, fileName);
-            controller.getLogger().info("Checking for file: " + cacheFile.getAbsolutePath());
+            controller.getLogger().info("Checking file cache: " + cacheFile.getAbsolutePath());
             if (!cacheFile.exists()) {
                 FTPClient ftpClient = new FTPClient();
                 try {
@@ -93,22 +101,26 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
                     ftpClient.enterLocalPassiveMode();
                     ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
-                    String remoteFile = SRTM_FTP_PATH + "/" + filePath + "/" + fileName;
+                    String remoteFile = SRTM_FTP_PATH + "/" + filePath + "/" + fileName + ".gz";
                     controller.getLogger().info("Downloading: " + remoteFile);
                     OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(cacheFile));
-                    InputStream inputStream = ftpClient.retrieveFileStream(remoteFile);
-                    byte[] bytesArray = new byte[4096];
-                    int bytesRead = -1;
-                    while ((bytesRead = inputStream.read(bytesArray)) != -1) {
-                        outputStream2.write(bytesArray, 0, bytesRead);
-                    }
+                    InputStream inputStream = new GZIPInputStream(ftpClient.retrieveFileStream(remoteFile));
+                    if (inputStream == null) {
+                        controller.getLogger().warning("Failed to download " + remoteFile);
+                    } else {
+                        byte[] bytesArray = new byte[4096];
+                        int bytesRead = -1;
+                        while ((bytesRead = inputStream.read(bytesArray)) != -1) {
+                            outputStream2.write(bytesArray, 0, bytesRead);
+                        }
 
-                    boolean success = ftpClient.completePendingCommand();
-                    if (success) {
-                        controller.getLogger().info("... done.");
+                        if (!ftpClient.completePendingCommand()) {
+                            controller.getLogger().warning("Failed to complete download " + remoteFile);
+                        }
+                        inputStream.close();
                     }
                     outputStream2.close();
-                    inputStream.close();
+                    controller.getLogger().info("... done.");
 
                 } catch (Exception ex) {
                     controller.getLogger().warning("Error: " + ex.getMessage());
@@ -125,10 +137,49 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
                 }
             }
 
-            imageCache.put(chunkKey, data);
+            controller.getLogger().info("Loading: " + cacheFile.getAbsolutePath());
+
+            try {
+                AbstractGridFormat format = GridFormatFinder.findFormat(cacheFile);
+                GridCoverage2DReader abstractReader = format.getReader(cacheFile);
+                Object coverage = abstractReader.read(null);
+                if (coverage == null) {
+                    throw new Exception("Failed to read coverage");
+                }
+                if (!(coverage instanceof GridCoverage2D)) {
+                    throw new Exception("Reader is not an instance of GridCoverage2D: " + coverage.getClass().getName());
+                }
+                reader = (GridCoverage2D)coverage;
+            } catch (Throwable ex) {
+                ex.printStackTrace();
+                reader = null;
+            }
+
+            if (reader == null) {
+                controller.getLogger().warning("Failed to load chunk " + chunkKey);
+            }
+            cache.put(chunkKey, reader);
+        } else {
+            reader = cache.get(chunkKey);
         }
 
-        return 100;
+        if (reader == null) {
+            return seaLevel;
+        }
+
+        try {
+            GridCoverage2D geoView = reader.view(ViewType.GEOPHYSICS);
+            Object values = geoView.evaluate(new DirectPosition2D(longitude, latitude));
+            int[] data = (int[]) values;
+            return data[0];
+        } catch (Exception ex){
+            // ex.printStackTrace();
+            controller.getLogger().warning("Error: " + ex.getMessage());
+            GridCoverage2D geoView = reader.view(ViewType.GEOPHYSICS);
+            controller.getLogger().info(" Envelope: " + geoView.getEnvelope2D() + ", request: " + longitude + ", " + latitude);
+        }
+
+        return seaLevel;
     }
 
     @Override
@@ -136,65 +187,26 @@ public class RealTerrainGenerator extends MagicChunkPopulator {
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
                 int elevation = getElevation(chunk.getX() * 16 + x, chunk.getZ() * 16 + z);
-                for (int y = 2; y < elevation / maxElevation; y++) {
+                for (int y = 2; y < elevation; y++) {
                     chunk.getBlock(x, y, z).setType(Material.DIRT);
                 }
             }
-        }/*
-
-        String fileKey = "chunk-" + chunk.getX() + "-" + chunk.getZ();
-        File dataFolder = new File(controller.getPlugin().getDataFolder() + "/data");
-        dataFolder.mkdirs();
-        File cacheFile = new File(dataFolder, fileKey + ".dat");
-        controller.getLogger().info("Checking for file: " + cacheFile.getName());
-
-        if (!cacheFile.exists()) {
-            int chunkOffsetX = chunk.getX() * 16;
-            int chunkOffsetZ = chunk.getZ() * 16;
-            String queryString = "https://maps.googleapis.com/maps/api/elevation/json?key=" + controller.getGoogleAPIKey() + "&locations=";
-            List<String> points = new ArrayList<String>(16 * 16);
-            for (int x = 0; x < 4; x++) {
-                for (int z = 0; z < 4; z++) {
-                    double lon = toLongitude((double)(x + 0.5) * 4 + chunkOffsetX);
-                    double lat = toLatitude((double)(z + 0.5) * 4 + chunkOffsetZ);
-                    points.add(formatter.format(lon) + "," + formatter.format(lat));
-                }
-            }
-
-            queryString = queryString + StringUtils.join(points, '|');
-            controller.getLogger().info("Downloading terrain data for chunk " + chunk.getX() + "," + chunk.getZ());
-
-            try {
-                URL url = new URL(queryString);
-                URLConnection con = url.openConnection();
-                InputStream in = con.getInputStream();
-                String encoding = con.getContentEncoding();
-                encoding = encoding == null ? "UTF-8" : encoding;
-                String body = IOUtils.toString(in, encoding);
-
-                PrintWriter out = new PrintWriter(cacheFile);
-                out.print(body);
-                out.close();
-                controller.getLogger().info("..done, saved to: " + cacheFile.getAbsolutePath());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }*/
+        }
     }
 
-    public double fromLongtiude(double lon) {
-        return (Mercator.lon2x(lon) - xOffset) / xScale;
+    public double fromLongitude(double lon) {
+        return METERS_PER_DEGREE * (Mercator.lon2x(lon)) / xScale - xOffset;
     }
 
     public double fromLatitude(double lat) {
-        return (Mercator.lat2y(lat) - zOffset) / zScale;
+        return METERS_PER_DEGREE * (Mercator.lat2y(lat)) / zScale - zOffset;
     }
 
     public double toLongitude(double x) {
-        return Mercator.x2lon(xScale * (x + xOffset));
+        return Mercator.x2lon(xScale * (x + xOffset) / METERS_PER_DEGREE);
     }
 
     public double toLatitude(double z) {
-        return Mercator.y2lat(zScale * (z + zOffset));
+        return Mercator.y2lat(zScale * (z + zOffset) / METERS_PER_DEGREE);
     }
 }
