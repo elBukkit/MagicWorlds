@@ -1,6 +1,5 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.RealTerrainGenerator;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
@@ -13,15 +12,10 @@ import java.util.List;
 import java.util.Random;
 
 public class MagicChunkGenerator extends ChunkGenerator {
-    private RealTerrainGenerator terrainGenerator;
     private static final int WORLD_HEIGHT = 256;
 
-    public MagicChunkGenerator() {
-        terrainGenerator = new RealTerrainGenerator();
-    }
-
     public boolean load(ConfigurationSection config, MagicWorldsController controller) {
-        return terrainGenerator.load(config, controller);
+        return true;
     }
 
     @Override
