@@ -22,14 +22,14 @@ worlds:
           wand_probability:
             guest: 80
             villager: 60
-            knight: 20
+            battle: 20
             wizard: 1
-            random(1): 200
-            random(2): 150
-            random(5): 80
-            random(10): 10
-            random(20): 5
-            random(30): 1
+            student(1): 200
+            apprentice(2): 150
+            apprentice(5): 80
+            master(10): 10
+            master(20): 5
+            master(30): 1
   world_nether:
      chunk_generate:
         wands: 
@@ -39,12 +39,12 @@ worlds:
             1: 80
             2: 2
           wand_probability:
-            fire_1: 200
-            fire_2: 100
+            fire_student: 200
+            fire_apprentice: 100
             fire: 10
-            random(1): 100
-            random(2): 75
-            random(5): 50
-            random(10): 15
-            random(20): 10
-            random(30): 5
+            student(1): 100
+            apprentice(2): 75
+            apprentice(5): 50
+            master(10): 15
+            master(20): 10
+            master(30): 5
