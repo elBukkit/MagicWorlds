@@ -4,6 +4,7 @@ import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
@@ -11,17 +12,44 @@ import org.bukkit.plugin.Plugin;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
 import com.elmakers.mine.bukkit.magicworlds.spawn.MagicSpawnHandler;
 
+import java.util.Random;
+
 public class MagicWorld {
+    private enum WorldState { UNLOADED, LOADING, LOADED };
 	private MagicWorldsController controller;
 	private MagicChunkHandler chunkHandler;
 	private MagicSpawnHandler spawnHandler;
     private String copyFrom;
+    private boolean autoLoad = false;
+    private World.Environment worldEnvironment = World.Environment.NORMAL;
+    private WorldType worldType = WorldType.NORMAL;
     private String worldName;
-	
-	public void load(String world, ConfigurationSection config, MagicWorldsController controller) {
-        worldName = world;
+	private long seed;
+    private static Random random = new Random();
+    private WorldState state = WorldState.UNLOADED;
+
+	public void load(String name, ConfigurationSection config, MagicWorldsController controller) {
+        worldName = name;
         copyFrom = config.getString("copy", "");
+        if (config.contains("environment")) {
+            String typeString = config.getString("type");
+            try {
+                worldEnvironment = World.Environment.valueOf(typeString.toUpperCase());
+            } catch (Exception ex) {
+                controller.getLogger().warning("Invalid world environment: " + typeString);
+            }
+        }
+        if (config.contains("type")) {
+            String typeString = config.getString("type");
+            try {
+                worldType = WorldType.valueOf(typeString.toUpperCase());
+            } catch (Exception ex) {
+                controller.getLogger().warning("Invalid world type: " + typeString);
+            }
+        }
+        seed = config.getLong("seed", random.nextLong());
         this.controller = controller;
+        autoLoad = config.getBoolean("autoload", false);
 		
 		if (chunkHandler == null) {
             chunkHandler = new MagicChunkHandler();
@@ -40,6 +68,28 @@ public class MagicWorld {
 		if (entityConfig != null) {
 			spawnHandler.load(worldName, entityConfig, controller);
 		}
+
+        // Autoload worlds
+        if (autoLoad && copyFrom.isEmpty()) {
+            state = WorldState.LOADING;
+            World world = Bukkit.getWorld(worldName);
+            if (world == null) {
+                controller.getLogger().info("Loading " + worldName + " as " + worldEnvironment);
+                WorldCreator worldCreator = WorldCreator.name(worldName);
+                worldCreator.seed(seed);
+                worldCreator.environment(worldEnvironment);
+                worldCreator.type(worldType);
+                try {
+                    world = Bukkit.createWorld(worldCreator);
+                } catch (Exception ex) {
+                    world = null;
+                    ex.printStackTrace();
+                }
+                if (world == null) {
+                    controller.getLogger().warning("Failed to create world: " + worldName);
+                }
+            }
+        }
 	}
 	
 	public void installPopulators(World world) {
@@ -60,10 +110,22 @@ public class MagicWorld {
 
     public void onWorldInit(final Plugin plugin, final World initWorld)
     {
+        // Loaded check
+        if (state != WorldState.UNLOADED) {
+            return;
+        }
+
+        // Flag loaded worlds
+        if (initWorld.getName().equals(worldName)) {
+            state = WorldState.LOADED;
+            return;
+        }
+
         if (copyFrom.length() == 0 || !initWorld.getName().equals(copyFrom)) return;
 
-        // Wait a few ticks to do this, creating worlds inside of world
-        // initialization seems bad!
+        state = WorldState.LOADING;
+
+        // Wait a few ticks to do this, to avoid errros during initializatoin
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
            @Override
            public void run()
@@ -71,14 +133,14 @@ public class MagicWorld {
                // Create this world if it doesn't exist
                World world = Bukkit.getWorld(worldName);
                if (world == null) {
-                   Bukkit.getLogger().info("Creating " + worldName + " using settings copied from " + initWorld.getName());
+                   controller.getLogger().info("Loading " + worldName + " using settings copied from " + initWorld.getName());
                    world = Bukkit.createWorld(new WorldCreator(worldName).copy(initWorld));
                    if (world == null) {
-                       Bukkit.getLogger().warning("Failed to create world: " + worldName);
+                       controller.getLogger().warning("Failed to create world: " + worldName);
                    }
                }
            }
-        }, 8);
+        }, 1);
     }
 
 	public WandChestPopulator getWandChestPopulator() {
