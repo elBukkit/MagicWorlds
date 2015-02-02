@@ -222,7 +222,7 @@ worlds:
             allow_indoors: false
             spells: 
               - flare pdy 1 pdx 0 pdz 0 ty ~10
-              - hunter material lapis_block seed_radius 2
+              - hunter material prismarine seed_radius 2
           enderman_2_hunter:
             target_type: enderman
             probability: 0.01
