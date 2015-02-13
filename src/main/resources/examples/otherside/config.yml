@@ -11,40 +11,40 @@ worlds:
           target_type: enderman
           replace_type: witch
     chunk_generate:
-        wands: 
-          class: WandChestPopulator
+        items:
+          class: MagicChestPopulator
           base_probability:
             0: 100
-            1: 80
-          wand_probability:
-            guest: 80
-            villager: 60
-            knight: 20
-            wizard: 1
-            random(1): 200
-            random(2): 150
-            random(5): 80
-            random(10): 10
-            random(20): 5
-            random(30): 1
+            1: 10000
+          item_probability:
+            camera: 10
+            stun: 60
+            fling: 20
+            blink: 1
+            petrify: 200
+            boon: 150
+            curse: 80
+            poison: 10
+            torture: 5
+            arrow: 5
+            kill: 1
   world_nether:
     chunk_generate:
-        wands: 
-          class: WandChestPopulator
+        items:
+          class: MagicChestPopulator
           base_probability:
             0: 100
             1: 80
             2: 2
-          wand_probability:
-            fire_1: 200
-            fire_2: 100
-            fire: 10
-            random(1): 100
-            random(2): 75
-            random(5): 50
-            random(10): 15
-            random(20): 10
-            random(30): 5
+          item_probability:
+            fireball: 200
+            fire: 100
+            fire|2: 10
+            flamethrower: 100
+            lava: 75
+            lightning: 50
+            boon: 15
+            grenade: 10
   world_other:
       copy: world
       entity_spawn:
@@ -446,24 +446,21 @@ worlds:
             melon_block: torch
             huge_mushroom_1: stained_glass:*
             huge_mushroom_2: stained_glass_pane:*
-        wands: 
-          class: WandChestPopulator
+        items:
+          class: MagicChestPopulator
           base_probability:
             0: 20
             1: 70
             2: 20
             3: 5
-          wand_probability:
-            nether: 50
-            ender: 60
-            elder: 1
-            recalltoken: 100
-            mana1: 100
-            mana2: 50
-            mana3: 10
-            random(10): 200
-            random(20): 150
-            random(50): 80
+          item_probability:
+            phase: 50
+            blast|3: 60
+            grenade: 1
+            peek: 100
+            breach: 100
+            blink|3: 50
+            emp: 10
             
   world_other_backup:
       entity_spawn:

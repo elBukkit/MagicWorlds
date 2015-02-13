@@ -5,7 +5,7 @@ website: http://mine.elmakers.com
 author: NathanWolf
 description : A plugin for Magic to customize worlds
 softdepend: [Magic, MagicLib]
-# load: startup
+load: startup
 commands:
   magicw:
     description: Administer Magic Worlds
