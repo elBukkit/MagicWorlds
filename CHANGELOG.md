@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# 1.1
+
+ - Allow adding any magic item (spells, etc) to chests
+   NOTE: Configuration has changed, please see example configs
+   WandChestPopulator -> MagicChestPopulator
+   wand_probability -> item_probability
+
 # 1.0
 
  - Some fixes to the world copying function

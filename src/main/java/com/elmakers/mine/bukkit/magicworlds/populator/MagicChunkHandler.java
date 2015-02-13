@@ -1,11 +1,9 @@
 package com.elmakers.mine.bukkit.magicworlds.populator;
 
 import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
 import org.bukkit.Chunk;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.generator.BlockPopulator;
 
@@ -97,10 +95,10 @@ public class MagicChunkHandler extends BlockPopulator {
 		return (MagicChunkPopulator)newObject;
 	}
 	
-	public WandChestPopulator getWandChestPopulator() {
+	public MagicChestPopulator getMagicChestPopulator() {
 		for (MagicChunkPopulator populator : chunkPopulators.values()) {
-			if (populator instanceof WandChestPopulator) {
-				return (WandChestPopulator)populator;
+			if (populator instanceof MagicChestPopulator) {
+				return (MagicChestPopulator)populator;
 			}
 		}
 		return null;

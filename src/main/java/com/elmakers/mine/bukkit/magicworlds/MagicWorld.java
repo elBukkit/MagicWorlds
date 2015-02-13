@@ -9,7 +9,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
 import com.elmakers.mine.bukkit.magicworlds.spawn.MagicSpawnHandler;
 
 import java.util.Random;
@@ -143,7 +143,7 @@ public class MagicWorld {
         }, 1);
     }
 
-	public WandChestPopulator getWandChestPopulator() {
-		return chunkHandler.getWandChestPopulator();
+	public MagicChestPopulator getMagicChestPopulator() {
+		return chunkHandler.getMagicChestPopulator();
 	}
 }

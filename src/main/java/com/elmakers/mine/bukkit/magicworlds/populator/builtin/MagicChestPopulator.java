@@ -15,13 +15,13 @@ import org.bukkit.block.Chest;
 import org.bukkit.configuration.ConfigurationSection;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.api.wand.Wand;
 import com.elmakers.mine.bukkit.utility.RandomUtils;
 import com.elmakers.mine.bukkit.utility.WeightedPair;
+import org.bukkit.inventory.ItemStack;
 
-public class WandChestPopulator extends MagicChunkPopulator {
+public class MagicChestPopulator extends MagicChunkPopulator {
 	private final LinkedList<WeightedPair<Integer>> baseProbability = new LinkedList<WeightedPair<Integer>>();
-	private final LinkedList<WeightedPair<String>> wandProbability = new LinkedList<WeightedPair<String>>();
+	private final LinkedList<WeightedPair<String>> itemProbability = new LinkedList<WeightedPair<String>>();
     private int maxY = 255;
     private int minY = 0;
 	
@@ -29,7 +29,7 @@ public class WandChestPopulator extends MagicChunkPopulator {
 		if (!controller.isMagicEnabled()) return false;
 		
 		baseProbability.clear();
-		wandProbability.clear();
+		itemProbability.clear();
 
         maxY = config.getInt("max_y", maxY);
         minY = config.getInt("min_y", minY);
@@ -49,17 +49,17 @@ public class WandChestPopulator extends MagicChunkPopulator {
 		
 		// Fetch wand probabilities
 		currentThreshold = 0.0f;
-		ConfigurationSection wands = config.getConfigurationSection("wand_probability");
+		ConfigurationSection wands = config.getConfigurationSection("item_probability");
 		if (wands != null) {
 			Set<String> keys = wands.getKeys(false);
 			for (String key : keys) {
 				Float threshold = (float)wands.getDouble(key, 0);
 				currentThreshold += threshold;
-				wandProbability.add(new WeightedPair<String>(currentThreshold, key));
+				itemProbability.add(new WeightedPair<String>(currentThreshold, key));
 			}
 		}
 		
-		return baseProbability.size() > 0 && wandProbability.size() > 0;
+		return baseProbability.size() > 0 && itemProbability.size() > 0;
 	}
 	
 	protected String[] populateChest(Chest chest) {
@@ -72,10 +72,10 @@ public class WandChestPopulator extends MagicChunkPopulator {
 		Integer wandCount = RandomUtils.weightedRandom(baseProbability);
 		String[] wandNames = new String[wandCount];
 		for (int i = 0; i < wandCount; i++) {
-			String wandName = RandomUtils.weightedRandom(wandProbability);
-			Wand wand = magic.createWand(wandName);
-			if (wand != null) {
-				chest.getInventory().addItem(wand.getItem());
+			String wandName = RandomUtils.weightedRandom(itemProbability);
+			ItemStack item = magic.createItem(wandName);
+			if (item != null) {
+				chest.getInventory().addItem(item);
 			} else {
 				wandName = "*" + wandName;
 			}
@@ -91,6 +91,7 @@ public class WandChestPopulator extends MagicChunkPopulator {
 
     @Override
     public void populate(World world, Random random, Chunk chunk) {
+
         BlockState[] tiles = chunk.getTileEntities();
         for (BlockState block : tiles) {
             if (block.getType() != Material.CHEST || !(block instanceof Chest)) continue;
@@ -101,8 +102,9 @@ public class WandChestPopulator extends MagicChunkPopulator {
                 String[] wandNames = populateChest(chest);
                 if (wandNames.length > 0 && controller != null) {
                     Location location = block.getLocation();
-                    controller.getLogger().info("Added wands to chest: " + StringUtils.join(wandNames, ", ") + " at "
+                    controller.getLogger().info("Added items to chest: " + StringUtils.join(wandNames, ", ") + " at "
                             + location.getWorld().getName() + "," + location.toVector());
+                    chest.update();
                 }
             }
         }

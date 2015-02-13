@@ -21,7 +21,7 @@ import org.bukkit.plugin.PluginManager;
 import org.mcstats.Metrics;
 
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
 
 public class MagicWorldsController implements Listener
 {
@@ -106,7 +106,7 @@ public class MagicWorldsController implements Listener
 	
 	@EventHandler
 	public void onWorldInit(WorldInitEvent event) {
-		World world = event.getWorld();
+        World world = event.getWorld();
         for (MagicWorld notifyWorld : magicWorlds.values()) {
             notifyWorld.onWorldInit(plugin, world);
         }
@@ -126,11 +126,11 @@ public class MagicWorldsController implements Listener
     	return magicAPI;
     }
     
-    public WandChestPopulator getWandChestPopulator(String worldName) {
+    public MagicChestPopulator getMagicChestPopulator(String worldName) {
     	MagicWorld magicWorld = magicWorlds.get(worldName);
     	if (magicWorld == null) return null;
     	
-    	return magicWorld.getWandChestPopulator();
+    	return magicWorld.getMagicChestPopulator();
     }
     
     public boolean isMagicEnabled()

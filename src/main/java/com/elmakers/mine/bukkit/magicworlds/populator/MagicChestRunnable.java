@@ -6,11 +6,11 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 
 import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.WandChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 import com.elmakers.mine.bukkit.utility.NMSUtils;
 
-public class WandChestRunnable extends RunnableJob {
+public class MagicChestRunnable extends RunnableJob {
 	private World world;
 	private int dx = 1;
 	private int dz = 0;
@@ -23,15 +23,15 @@ public class WandChestRunnable extends RunnableJob {
 	
 	final static int messageInterval = 100;
 	
-	WandChestPopulator populator;
+	MagicChestPopulator populator;
 	Random random;
 	
-	public WandChestRunnable(MagicWorldsController controller, World world, int maxy) {
+	public MagicChestRunnable(MagicWorldsController controller, World world, int maxy) {
 		super(controller.getLogger());
 		this.world = world;
 		this.random = new Random();
 		if (maxy > 0) {
-			populator = controller.getWandChestPopulator(world.getName());
+			populator = controller.getMagicChestPopulator(world.getName());
 			if (populator == null) {
 				controller.getLogger().warning("No chest populator configured for world " + world.getName());
 				return;

@@ -13,7 +13,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.elmakers.mine.bukkit.magicworlds.populator.WandChestRunnable;
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChestRunnable;
 import com.elmakers.mine.bukkit.utility.RunnableJob;
 
 /*! \mainpage MagicWorlds Plugin
@@ -223,7 +223,7 @@ public class MagicWorldsPlugin extends JavaPlugin
 					sender.sendMessage("Usage: magicw " + subCommand + " <world> <ymax>");
 					return true;
 				}
-				WandChestRunnable chestRunnable = new WandChestRunnable(controller, world, ymax);
+				MagicChestRunnable chestRunnable = new MagicChestRunnable(controller, world, ymax);
 				runningTask = chestRunnable;
 				if (subCommand.equalsIgnoreCase("search")) {
 					ymax = 0;
