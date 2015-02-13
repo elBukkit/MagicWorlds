@@ -15,7 +15,7 @@ worlds:
           class: MagicChestPopulator
           base_probability:
             0: 100
-            1: 10000
+            1: 80
           item_probability:
             camera: 10
             stun: 60
