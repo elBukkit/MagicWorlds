@@ -19,11 +19,8 @@ public class EntitySpawnListener implements Listener
         this.controller = controller;
 	}
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntitySpawn(CreatureSpawnEvent event) {
-        if (event.isCancelled()) {
-            return;
-        }
         if (event.getSpawnReason() == SpawnReason.CUSTOM || event.getSpawnReason() == SpawnReason.DEFAULT) return;
         
         MagicWorld magicWorld = controller.getWorld(event.getLocation().getWorld().getName());
