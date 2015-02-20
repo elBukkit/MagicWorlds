@@ -12,9 +12,9 @@ purge:
         -  class: EffectSingle
            sound: creeper_hiss
         -  class: EffectTrail
-           particle: smoke
+           particle: smoke_normal
         -  class: EffectRing
-           particle: smoke
+           particle: smoke_normal
            location: target
     parameters:
         target_type: LivingEntity
