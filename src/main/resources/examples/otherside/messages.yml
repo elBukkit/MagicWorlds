@@ -5,3 +5,5 @@
 worlds:
     world_other:
         name: The Other Side
+    world:
+        name: The Overworld
