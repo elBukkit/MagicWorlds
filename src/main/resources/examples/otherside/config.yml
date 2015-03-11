@@ -51,7 +51,7 @@ worlds:
 
           rabbit:
             target_type: rabbit
-            probability: 0.001
+            probability: 0.02
             min_y: 63
             y_offset: 6
             allow_indoors: false
@@ -62,7 +62,7 @@ worlds:
      
           skeleton_1_defender:
             target_type: skeleton
-            probability: 0.001
+            probability: 0.02
             min_y: 63
             y_offset: 6
             allow_indoors: false
@@ -73,7 +73,7 @@ worlds:
             
           creeper_1_hunter:
             target_type: creeper
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -83,7 +83,7 @@ worlds:
               - hunter material redstone_ore seed_radius 2
           creeper_2_hunter:
             target_type: creeper
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -93,7 +93,7 @@ worlds:
               - hunter material packed_ice seed_radius 2
           creeper_3_virus:
             target_type: creeper
-            probability: 0.001
+            probability: 0.05
             y_offset: 24
             min_y: 63
             allow_indoors: false
@@ -104,7 +104,7 @@ worlds:
             
           zombie_1_hunter:
             target_type: zombie
-            probability: 0.01
+            probability: 0.05
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -114,7 +114,7 @@ worlds:
               - hunter material huge_mushroom_1 seed_radius 2
           zombie_2_hunter:
             target_type: zombie
-            probability: 0.01
+            probability: 0.05
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -124,7 +124,7 @@ worlds:
               - hunter material huge_mushroom_2 seed_radius 2
           zombie_3_hunter:
             target_type: zombie
-            probability: 0.01
+            probability: 0.05
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -134,7 +134,7 @@ worlds:
               - hunter material monster_egg seed_radius 2
           zombie_4_hunter:
             target_type: zombie
-            probability: 0.01
+            probability: 0.05
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -154,7 +154,7 @@ worlds:
               - virus material huge_mushroom_1 seed_radius 3
           zombie_6_defender:
             target_type: zombie
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 12
@@ -165,7 +165,7 @@ worlds:
                         
           spider_1_hunter:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -175,7 +175,7 @@ worlds:
               - hunter material melon_block seed_radius 2
           spider_2_hunter:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -185,7 +185,7 @@ worlds:
               - hunter material pumpkin seed_radius 2
           spider_3_hunter:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -195,7 +195,7 @@ worlds:
               - hunter material soul_sand seed_radius 2
           spider_4_hunter:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -205,7 +205,7 @@ worlds:
               - hunter material clay seed_radius 2
           spider_5_virus:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 24
@@ -215,7 +215,7 @@ worlds:
               - virus material melon_block seed_radius 3
           spider_6_worm:
             target_type: spider
-            probability: 0.01
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 32
@@ -226,7 +226,7 @@ worlds:
               
           enderman_1_hunter:
             target_type: enderman
-            probability: 0.01
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -236,7 +236,7 @@ worlds:
               - hunter material prismarine seed_radius 2
           enderman_2_hunter:
             target_type: enderman
-            probability: 0.01
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -246,7 +246,7 @@ worlds:
               - hunter material log seed_radius 2
           enderman_3_hunter:
             target_type: enderman
-            probability: 0.01
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -256,7 +256,7 @@ worlds:
               - hunter material log_2 seed_radius 2
           enderman_4_hunter:
             target_type: enderman
-            probability: 0.01
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -266,7 +266,7 @@ worlds:
               - hunter material wool seed_radius 2
           enderman_5_hunter:
             target_type: enderman
-            probability: 0.01
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -276,7 +276,7 @@ worlds:
               - hunter material obsidian seed_radius 2
           enderman_6_worm:
             target_type: enderman
-            probability: 0.001
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 24
@@ -296,7 +296,7 @@ worlds:
               - worm material obsidian seed_radius 3
           enderman_8_giant:
             target_type: enderman
-            probability: 0.1
+            probability: 0.3
             min_y: 63
             class: ReplaceRule
             replace_type: giant
