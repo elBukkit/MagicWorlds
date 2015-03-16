@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 1.2
+
+ - Minor update for Magic 4.5.5
+
 # 1.1
 
  - Allow adding any magic item (spells, etc) to chests
