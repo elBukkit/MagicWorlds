@@ -55,6 +55,7 @@ worlds:
             min_y: 63
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             class: CastRule
             spells:
               - defender material quartz_block seed_radius 2
@@ -65,6 +66,7 @@ worlds:
             min_y: 63
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             class: CastRule
             spells:
               - defender material mossy_cobblestone seed_radius 2
@@ -76,6 +78,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material stained_clay seed_radius 2
           creeper_2_hunter:
@@ -85,6 +88,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material packed_ice seed_radius 2
           creeper_3_virus:
@@ -93,6 +97,7 @@ worlds:
             y_offset: 24
             min_y: 63
             allow_indoors: false
+            cooldown: 10000
             class: CastRule
             spells:
               - virus material obsidian seed_radius 3
@@ -104,6 +109,7 @@ worlds:
             min_y: 63
             class: CastRule
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material huge_mushroom_1 seed_radius 2
           zombie_2_hunter:
@@ -113,6 +119,7 @@ worlds:
             min_y: 63
             class: CastRule
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material huge_mushroom_2 seed_radius 2
           zombie_3_hunter:
@@ -122,6 +129,7 @@ worlds:
             min_y: 63
             class: CastRule
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material stained_clay seed_radius 2
           zombie_4_hunter:
@@ -131,6 +139,7 @@ worlds:
             min_y: 63
             class: CastRule
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material wool seed_radius 2
           zombie_5_virus:
@@ -140,6 +149,7 @@ worlds:
             min_y: 63
             class: CastRule
             allow_indoors: false
+            cooldown: 10000
             spells:
               - virus material huge_mushroom_1 seed_radius 3
           zombie_6_defender:
@@ -149,6 +159,7 @@ worlds:
             class: CastRule
             y_offset: 12
             allow_indoors: false
+            cooldown: 10000
             spells:
               - defender material hay_block seed_radius 3
                         
@@ -159,6 +170,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material melon_block seed_radius 2
           spider_2_hunter:
@@ -168,6 +180,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material pumpkin seed_radius 2
           spider_3_hunter:
@@ -177,6 +190,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material soul_sand seed_radius 2
           spider_4_hunter:
@@ -186,6 +200,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material clay seed_radius 2
           spider_5_virus:
@@ -195,6 +210,7 @@ worlds:
             class: CastRule
             y_offset: 24
             allow_indoors: false
+            cooldown: 10000
             spells:
               - virus material melon_block seed_radius 3
           spider_6_worm:
@@ -204,6 +220,7 @@ worlds:
             class: CastRule
             y_offset: 32
             allow_indoors: false
+            cooldown: 10000
             spells:
               - worm material clay seed_radius 3
               
@@ -214,6 +231,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material prismarine seed_radius 2
           enderman_2_hunter:
@@ -223,6 +241,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material log seed_radius 2
           enderman_3_hunter:
@@ -232,6 +251,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material log_2 seed_radius 2
           enderman_4_hunter:
@@ -241,6 +261,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material wool seed_radius 2
           enderman_5_hunter:
@@ -250,6 +271,7 @@ worlds:
             class: CastRule
             y_offset: 6
             allow_indoors: false
+            cooldown: 10000
             spells:
               - hunter material obsidian seed_radius 2
           enderman_6_worm:
@@ -259,6 +281,7 @@ worlds:
             class: CastRule
             y_offset: 24
             allow_indoors: false
+            cooldown: 10000
             spells:
               - worm material log seed_radius 3
           enderman_7_worm:
@@ -268,6 +291,7 @@ worlds:
             class: CastRule
             y_offset: 32
             allow_indoors: false
+            cooldown: 10000
             spells:
               - worm material obsidian seed_radius 3
           enderman_8_giant:
@@ -352,6 +376,12 @@ worlds:
             replace_type: enderman
           spider_999_enderman:
             target_type: spider
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+          rabbit_999_enderman:
+            target_type: rabbit
             probability: 1.0
             min_y: 63
             class: ReplaceRule

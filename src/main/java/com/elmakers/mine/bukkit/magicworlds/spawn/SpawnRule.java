@@ -2,7 +2,9 @@ package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.Random;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -17,6 +19,8 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 	protected float        				percentChance;
 	protected int						minY;
 	protected int						maxY;
+    protected int                       cooldown;
+    protected long                      lastSpawn;
 	protected boolean					allowIndoors;
     protected MagicWorldsController	controller;
     
@@ -42,6 +46,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 		this.minY = parameters.getInt("min_y", 0);
 		this.maxY = parameters.getInt("max_y", 255);
 		this.percentChance = (float)parameters.getDouble("probability", 1.0);
+        this.cooldown = parameters.getInt("cooldown", 0);
 		
 		return true;
     }
@@ -81,15 +86,27 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     {
     	if (targetEntityType != entity.getType()) return null;
         if (percentChance < rand.nextFloat()) return null;
+        long now = System.currentTimeMillis();
+        if (cooldown > 0 && lastSpawn != 0 && now < lastSpawn + cooldown) return null;
+        lastSpawn = now;
         Location entityLocation = entity.getLocation();
         int y = entityLocation.getBlockY();
         if (y < minY || y > maxY) return null;
         if (!this.allowIndoors) {
         	// Bump it up two to miss things like tall grass
-        	Block entityBlock = entityLocation.getBlock().getRelative(0, 2, 0);
-        	if (entityBlock.getWorld().getHighestBlockAt(entityBlock.getLocation()).getY() > entityBlock.getY()) {
-        		return null;
-        	} 
+            y += 3;
+            int x = entityLocation.getBlockX();
+            int z = entityLocation.getBlockZ();
+            Chunk chunk = entityLocation.getChunk();
+            int maxY = entityLocation.getWorld().getMaxHeight();
+            while (y <= maxY)
+            {
+                Block block = chunk.getBlock(x, y, z);
+                if (block != null && block.getType() != Material.AIR) {
+                    return null;
+                }
+                y++;
+            }
         }
            	
     	return onProcess(plugin, entity);
