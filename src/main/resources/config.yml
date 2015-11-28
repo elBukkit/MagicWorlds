@@ -20,17 +20,16 @@ worlds:
             0: 100
             1: 80
           item_probability:
-            camera: 10
-            stun: 60
-            fling: 20
-            blink: 1
-            petrify: 200
-            boon: 150
-            curse: 80
-            poison: 10
-            torture: 5
-            arrow: 5
-            kill: 1
+            sp|100: 1
+            sp|80: 2
+            sp|70: 3
+            sp|60: 4
+            sp|50: 5
+            sp|40: 10
+            sp|30: 20
+            sp|25: 30
+            sp|20: 40
+            sp|15: 50
   world_nether:
      chunk_generate:
         items:
@@ -40,11 +39,13 @@ worlds:
             1: 80
             2: 2
           item_probability:
-            fireball: 200
-            fire: 100
-            fire|2: 10
-            flamethrower: 100
-            lava: 75
-            lightning: 50
-            boon: 15
-            grenade: 10
+            sp|200: 1
+            sp|150: 2
+            sp|100: 3
+            sp|75: 4
+            sp|50: 5
+            sp|45: 10
+            sp|40: 20
+            sp|30: 30
+            sp|25: 40
+            sp|20: 50
