@@ -29,6 +29,15 @@ worlds:
             arrow: 5
             kill: 1
   world_nether:
+    entity_spawn:
+        pigzombie_master_sword:
+          target_type: pig_zombie
+          probability: 1
+          min_y: 0
+          allow_indoors: true
+          cooldown: 0
+          class: EquipmentRule
+          item: iron_sword
     chunk_generate:
         items:
           class: MagicChestPopulator

@@ -58,8 +58,16 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 		{
 			return EntityType.HORSE;
 		}
-		
-		return EntityType.fromName(typeString);
+		EntityType returnType = null;
+        try {
+            returnType = EntityType.valueOf(typeString.toUpperCase());
+        } catch (Exception ex) {
+            returnType = null;
+        }
+        if (returnType == null) {
+            returnType = EntityType.fromName(typeString);
+        }
+		return returnType;
 	}
 
     public void setPercentChance(float percentChance)

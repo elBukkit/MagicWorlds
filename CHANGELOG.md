@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 1.3
+
+ - Add EquipmentRule for changing items held by specific mobs
+
 # 1.2
 
  - Minor update for Magic 4.5.5
