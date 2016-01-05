@@ -1,6 +1,7 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
 import com.elmakers.mine.bukkit.magicworlds.populator.MagicChunkHandler;
+import com.elmakers.mine.bukkit.utility.NMSUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -22,6 +23,7 @@ public class MagicWorld {
     private String copyFrom;
     private boolean autoLoad = false;
     private World.Environment worldEnvironment = World.Environment.NORMAL;
+    private World.Environment appearanceEnvironment = null;
     private WorldType worldType = WorldType.NORMAL;
     private String worldName;
 	private long seed;
@@ -32,11 +34,19 @@ public class MagicWorld {
         worldName = name;
         copyFrom = config.getString("copy", "");
         if (config.contains("environment")) {
-            String typeString = config.getString("type");
+            String typeString = config.getString("environment");
             try {
                 worldEnvironment = World.Environment.valueOf(typeString.toUpperCase());
             } catch (Exception ex) {
                 controller.getLogger().warning("Invalid world environment: " + typeString);
+            }
+        }
+        if (config.contains("appearance")) {
+            String typeString = config.getString("appearance");
+            try {
+                appearanceEnvironment = World.Environment.valueOf(typeString.toUpperCase());
+            } catch (Exception ex) {
+                controller.getLogger().warning("Invalid world appearance: " + typeString);
             }
         }
         if (config.contains("type")) {
@@ -74,13 +84,14 @@ public class MagicWorld {
             state = WorldState.LOADING;
             World world = Bukkit.getWorld(worldName);
             if (world == null) {
-                controller.getLogger().info("Loading " + worldName + " as " + worldEnvironment);
+                controller.getLogger().info("Loading " + worldName + " as " + worldEnvironment + " (" + worldType + ")");
                 WorldCreator worldCreator = WorldCreator.name(worldName);
                 worldCreator.seed(seed);
                 worldCreator.environment(worldEnvironment);
                 worldCreator.type(worldType);
+                worldCreator.generateStructures(true);
                 try {
-                    world = Bukkit.createWorld(worldCreator);
+                    world = worldCreator.createWorld();
                 } catch (Exception ex) {
                     world = null;
                     ex.printStackTrace();
@@ -88,6 +99,10 @@ public class MagicWorld {
                 if (world == null) {
                     controller.getLogger().warning("Failed to create world: " + worldName);
                 }
+            }
+            if (world != null && appearanceEnvironment != null) {
+                NMSUtils.setEnvironment(world, appearanceEnvironment);
+                controller.getLogger().info("Changed " + worldName + " appearance to " + appearanceEnvironment);
             }
         }
 	}
@@ -137,6 +152,9 @@ public class MagicWorld {
                    world = Bukkit.createWorld(new WorldCreator(worldName).copy(initWorld));
                    if (world == null) {
                        controller.getLogger().warning("Failed to create world: " + worldName);
+                   } else if (appearanceEnvironment != null) {
+                       NMSUtils.setEnvironment(world, appearanceEnvironment);
+                       controller.getLogger().info("Changed " + worldName + " appearance to " + appearanceEnvironment);
                    }
                }
            }
