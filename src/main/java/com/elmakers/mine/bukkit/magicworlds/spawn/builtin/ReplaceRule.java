@@ -1,5 +1,6 @@
 package com.elmakers.mine.bukkit.magicworlds.spawn.builtin;
 
+import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -13,13 +14,10 @@ import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 
-import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
-import com.elmakers.mine.bukkit.magicworlds.spawn.SpawnRule;
-
-public class ReplaceRule extends SpawnRule {
-    protected EntityType 	replaceWith;
-    protected String		entitySubType;
-    protected boolean		docile;
+public class ReplaceRule extends EquipmentRule {
+    protected EntityType 		replaceWith;
+    protected String			entitySubType;
+    protected boolean			docile;
 
     @Override
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
@@ -27,7 +25,7 @@ public class ReplaceRule extends SpawnRule {
     	if (!super.load(key, parameters, controller)) return false;
     	String entityName = parameters.getString("replace_type");
     	entitySubType = parameters.getString("replace_sub_type");
-    	
+
     	replaceWith = parseEntityType(entityName);
 		if (replaceWith == null) {
 			this.controller.getLogger().warning(" Invalid entity type: " + entityName);
@@ -80,6 +78,11 @@ public class ReplaceRule extends SpawnRule {
 			} catch (Throwable ex) {
 			}
         }
-        return result instanceof LivingEntity ? (LivingEntity)result : null;
+		if (!(result instanceof LivingEntity)) {
+			return null;
+		}
+		LivingEntity li = (LivingEntity)result;
+		setEquipment(li);
+        return li;
     }
 }
