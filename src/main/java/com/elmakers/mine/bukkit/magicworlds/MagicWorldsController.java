@@ -1,11 +1,13 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.elmakers.mine.bukkit.magicworlds.listener.EntityDeathListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntityTargetListener;
 import org.bukkit.Bukkit;
@@ -68,6 +70,22 @@ public class MagicWorldsController implements Listener
             if (config.getBoolean("entity_target_listener", true)) {
                 pm.registerEvents(new EntityTargetListener(this), plugin);
             }
+			if (config.getBoolean("entity_death_listener", true)) {
+				pm.registerEvents(new EntityDeathListener(this), plugin);
+			}
+
+			ConfigurationSection mobs = config.getConfigurationSection("mobs");
+			if (mobs != null) {
+				Set<String> mobKeys = mobs.getKeys(false);
+				for (String mobKey : mobKeys) {
+					MagicMob mob = new MagicMob(this, mobs.getConfigurationSection(mobKey));
+					magicMobs.put(mobKey, mob);
+					String name = mob.getName();
+					if (name != null && !name.isEmpty()) {
+						magicMobsByName.put(name, mob);
+					}
+				}
+			}
 
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
@@ -154,13 +172,33 @@ public class MagicWorldsController implements Listener
         return magicWorlds.get(name);
     }
 
+	public MagicMob getMob(String key) {
+		return magicMobs.get(key);
+	}
+
+	public MagicMob getMobByName(String name) {
+		return magicMobsByName.get(name);
+	}
+
+	public Collection<String> getMobKeys() {
+		return magicMobs.keySet();
+	}
+
+	public EntitySpawnListener getSpawnListener() {
+		return spawnListener;
+	}
+
 	/*
 	 * Private data
 	 */
 
     private MagicAPI magicAPI = null;
-    
+
+	private EntitySpawnListener spawnListener;
+
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
+	private final Map<String, MagicMob> magicMobs = new HashMap<String, MagicMob>();
+	private final Map<String, MagicMob> magicMobsByName = new HashMap<String, MagicMob>();
     private final MagicChunkGenerator worldGenerator;
     private final Plugin	plugin;
 	private final Logger 	logger;

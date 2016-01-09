@@ -13,15 +13,20 @@ import org.bukkit.plugin.Plugin;
 public class EntitySpawnListener implements Listener
 {
     private final MagicWorldsController controller;
+    private boolean enabled = true;
 
 	public EntitySpawnListener(final MagicWorldsController controller)
 	{
         this.controller = controller;
 	}
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntitySpawn(CreatureSpawnEvent event) {
-        if (event.getSpawnReason() == SpawnReason.CUSTOM || event.getSpawnReason() == SpawnReason.DEFAULT) return;
+        if (!enabled || event.getSpawnReason() == SpawnReason.CUSTOM || event.getSpawnReason() == SpawnReason.DEFAULT) return;
         
         MagicWorld magicWorld = controller.getWorld(event.getLocation().getWorld().getName());
         if (magicWorld == null) return;

@@ -2,6 +2,7 @@ package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.Random;
 
+import com.elmakers.mine.bukkit.magicworlds.MagicMob;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -37,7 +38,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     	this.key = key;
     	this.controller = controller;
     	String entityTypeName = parameters.getString("target_type");
-    	this.targetEntityType = parseEntityType(entityTypeName);
+    	this.targetEntityType = MagicMob.parseEntityType(entityTypeName);
 		if (targetEntityType == null) {
 			this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
 			return false;
@@ -50,25 +51,6 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 		
 		return true;
     }
-	
-	@SuppressWarnings("deprecation")
-	public static EntityType parseEntityType(String typeString) 
-	{
-		if (typeString.equalsIgnoreCase("horse")) 
-		{
-			return EntityType.HORSE;
-		}
-		EntityType returnType = null;
-        try {
-            returnType = EntityType.valueOf(typeString.toUpperCase());
-        } catch (Exception ex) {
-            returnType = null;
-        }
-        if (returnType == null) {
-            returnType = EntityType.fromName(typeString);
-        }
-		return returnType;
-	}
 
     public void setPercentChance(float percentChance)
     {

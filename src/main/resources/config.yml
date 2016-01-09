@@ -8,6 +8,7 @@ metrics_level: 5
 
 # Enable or disable event handlers
 entity_spawn_listener: true
+entity_death_listener: true
 entity_target_listener: false
 
 # Define per-world chunk and entity rules here
