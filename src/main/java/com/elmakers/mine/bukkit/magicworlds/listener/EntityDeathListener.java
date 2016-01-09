@@ -21,7 +21,6 @@ public class EntityDeathListener implements Listener
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntitySpawn(EntityDeathEvent event) {
         Entity entity = event.getEntity();
-        org.bukkit.Bukkit.getLogger().info("DIED: " + entity.getType());
         if (!(entity instanceof LivingEntity))
         {
             return;
@@ -37,7 +36,6 @@ public class EntityDeathListener implements Listener
         MagicMob mob = controller.getMobByName(name);
         if (mob == null) return;
 
-        org.bukkit.Bukkit.getLogger().info("MODIFYING DROPS!");
         mob.modifyDrops(event);
     }
 }
