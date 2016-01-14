@@ -19,7 +19,7 @@ public class EntityDeathListener implements Listener
 	}
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onEntitySpawn(EntityDeathEvent event) {
+    public void onEntityDeath(EntityDeathEvent event) {
         Entity entity = event.getEntity();
         if (!(entity instanceof LivingEntity))
         {
@@ -28,7 +28,7 @@ public class EntityDeathListener implements Listener
 
         LivingEntity died = (LivingEntity)entity;
         String name = died.getCustomName();
-        if (name == null || name.isEmpty())
+        if (name == null || name.isEmpty() || !died.isCustomNameVisible())
         {
             return;
         }
@@ -37,5 +37,9 @@ public class EntityDeathListener implements Listener
         if (mob == null) return;
 
         mob.modifyDrops(event);
+
+        // Prevent double-deaths .. gg Mojang?
+        // Kind of hacky to use this flag for it, but seemed easiest
+        died.setCustomNameVisible(false);
     }
 }
