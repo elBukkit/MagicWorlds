@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -226,6 +227,7 @@ public class MagicWorldsPlugin extends JavaPlugin
 				while (block.getType() == Material.AIR && iterator.hasNext()) {
 					block = iterator.next();
 				}
+				block = block.getRelative(BlockFace.UP);
 				EntitySpawnListener spawnListener = controller.getSpawnListener();
 				if (spawnListener != null) spawnListener.setEnabled(false);
 				try {
