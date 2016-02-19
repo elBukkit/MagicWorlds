@@ -2,7 +2,9 @@
 
 # 1.3
 
+ - Now requires the Magic plugin, MagicLib is no more
  - Add EquipmentRule for changing items held by specific mobs
+ - Add custom mob spawning via Magic
 
 # 1.2
 

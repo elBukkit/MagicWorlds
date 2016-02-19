@@ -74,9 +74,9 @@
 	        <scope>compile</scope>
 	    </dependency>
 		<dependency>
-			<groupId>com.elmakers.mine.bukkit</groupId>
-			<artifactId>MagicLib</artifactId>
-			<version>3.5-SNAPSHOT</version>
+			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
+			<artifactId>Magic</artifactId>
+			<version>5.5-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
     </dependencies>
