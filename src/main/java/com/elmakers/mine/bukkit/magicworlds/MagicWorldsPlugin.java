@@ -1,18 +1,9 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.elmakers.mine.bukkit.api.entity.EntityData;
-import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
+import com.elmakers.mine.bukkit.magicworlds.populator.MagicChestRunnable;
+import com.elmakers.mine.bukkit.utility.RunnableJob;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,9 +11,9 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.elmakers.mine.bukkit.magicworlds.populator.MagicChestRunnable;
-import com.elmakers.mine.bukkit.utility.RunnableJob;
-import org.bukkit.util.BlockIterator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*! \mainpage MagicWorlds Plugin
 *
@@ -153,18 +144,13 @@ public class MagicWorldsPlugin extends JavaPlugin
 		List<String> options = new ArrayList<String>();
 		if (cmd.getName().equalsIgnoreCase("magicw"))
 		{
-			if (args.length == 2 && args[0].equalsIgnoreCase("spawn"))
-			{
-				options.addAll(controller.getMagic().getController().getMobKeys());
-			}
-			else if (args.length == 1)
+			if (args.length == 1)
 			{
 				addIfPermissible(sender, options, "Magic.commands.magicw.", "populate");
 				addIfPermissible(sender, options, "Magic.commands.magicw.", "generate");
 				addIfPermissible(sender, options, "Magic.commands.magicw.", "search");
 				addIfPermissible(sender, options, "Magic.commands.magicw.", "cancel");
 				addIfPermissible(sender, options, "Magic.commands.magicw.", "load");
-				addIfPermissible(sender, options, "Magic.commands.magicw.", "spawn");
 			}
 			completeCommand = completeCommand.toLowerCase();
 			if (completeCommand.length() > 0)
@@ -200,50 +186,6 @@ public class MagicWorldsPlugin extends JavaPlugin
 			if (sender instanceof Player)
 			{
 				if (!hasPermission((Player)sender, "Magic.commands.magicw." + subCommand)) return false;
-			}
-
-			if (subCommand.equalsIgnoreCase("spawn"))
-			{
-				if (!(sender instanceof Player))
-				{
-					sender.sendMessage(ChatColor.RED + "Must be used in-game");
-					return true;
-				}
-				if (args.length < 2) {
-					sender.sendMessage(ChatColor.RED + "Usage: magicw spawn <magicmob>");
-					return true;
-				}
-
-				String mobKey = args[1];
-				EntityData mob = controller.getMagic().getController().getMob(mobKey);
-				if (mob == null) {
-					sender.sendMessage(ChatColor.RED + "Unknown mob key " + mobKey);
-					return true;
-				}
-
-				Player player = (Player)sender;
-				Location location = player.getEyeLocation();
-				BlockIterator iterator = new BlockIterator(location.getWorld(), location.toVector(), location.getDirection(), 0, 64);
-				Block block = location.getBlock();
-				while (block.getType() == Material.AIR && iterator.hasNext()) {
-					block = iterator.next();
-				}
-				block = block.getRelative(BlockFace.UP);
-				EntitySpawnListener spawnListener = controller.getSpawnListener();
-				if (spawnListener != null) spawnListener.setEnabled(false);
-				try {
-					mob.spawn(block.getLocation());
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-				if (spawnListener != null) spawnListener.setEnabled(true);
-				String name = mob.getName();
-				if (name == null) {
-					name = mobKey;
-				}
-				sender.sendMessage(ChatColor.AQUA + "Spawned mob: " + ChatColor.LIGHT_PURPLE + name);
-
-				return true;
 			}
 			
 			if (subCommand.equalsIgnoreCase("load"))

@@ -149,17 +149,11 @@ public class MagicWorldsController implements Listener
         return magicWorlds.get(name);
     }
 
-	public EntitySpawnListener getSpawnListener() {
-		return spawnListener;
-	}
-
 	/*
 	 * Private data
 	 */
 
     private MagicAPI magicAPI = null;
-
-	private EntitySpawnListener spawnListener;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final MagicChunkGenerator worldGenerator;

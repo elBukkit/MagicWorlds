@@ -9,7 +9,7 @@ load: startup
 commands:
   magicw:
     description: Administer Magic Worlds
-    usage: /magicw [load|cancel|populate|search|spawn]
+    usage: /magicw [load|cancel|populate|search]
     permission: Magic.commands.magicw
 permissions:
   Magic.commands.magicw.load:
@@ -26,9 +26,5 @@ permissions:
     default: op
   Magic.commands.magicw.cancel:
     description: Player may cancel any pending search or populate jobs
-    type: boolean
-    default: op
-  Magic.commands.magicw.spawn:
-    description: Player may spawn magic mobs
     type: boolean
     default: op
