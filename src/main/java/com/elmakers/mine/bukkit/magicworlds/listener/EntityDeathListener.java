@@ -1,6 +1,6 @@
 package com.elmakers.mine.bukkit.magicworlds.listener;
 
-import com.elmakers.mine.bukkit.magicworlds.MagicMob;
+import com.elmakers.mine.bukkit.entity.EntityData;
 import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -33,10 +33,10 @@ public class EntityDeathListener implements Listener
             return;
         }
 
-        MagicMob mob = controller.getMobByName(name);
+        EntityData mob = controller.getMobByName(name);
         if (mob == null) return;
 
-        mob.modifyDrops(event);
+        mob.modifyDrops(controller.getMagic().getController(), event);
 
         // Prevent double-deaths .. gg Mojang?
         // Kind of hacky to use this flag for it, but seemed easiest

@@ -2,7 +2,7 @@ package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.Random;
 
-import com.elmakers.mine.bukkit.magicworlds.MagicMob;
+import com.elmakers.mine.bukkit.entity.EntityData;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,7 +38,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     	this.key = key;
     	this.controller = controller;
     	String entityTypeName = parameters.getString("target_type");
-    	this.targetEntityType = MagicMob.parseEntityType(entityTypeName);
+    	this.targetEntityType = EntityData.parseEntityType(entityTypeName);
 		if (targetEntityType == null) {
 			this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
 			return false;

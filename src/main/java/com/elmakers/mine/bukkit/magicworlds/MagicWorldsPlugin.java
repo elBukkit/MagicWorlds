@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.elmakers.mine.bukkit.entity.EntityData;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -214,7 +215,7 @@ public class MagicWorldsPlugin extends JavaPlugin
 				}
 
 				String mobKey = args[1];
-				MagicMob mob = controller.getMob(mobKey);
+				EntityData mob = controller.getMob(mobKey);
 				if (mob == null) {
 					sender.sendMessage(ChatColor.RED + "Unknown mob key " + mobKey);
 					return true;

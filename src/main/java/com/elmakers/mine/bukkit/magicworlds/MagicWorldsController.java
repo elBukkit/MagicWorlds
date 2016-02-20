@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import com.elmakers.mine.bukkit.entity.EntityData;
+import com.elmakers.mine.bukkit.api.magic.MageController;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntityDeathListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntityTargetListener;
@@ -74,11 +76,12 @@ public class MagicWorldsController implements Listener
 				pm.registerEvents(new EntityDeathListener(this), plugin);
 			}
 
+			MageController mageController = magicAPI.getController();
 			ConfigurationSection mobs = config.getConfigurationSection("mobs");
 			if (mobs != null) {
 				Set<String> mobKeys = mobs.getKeys(false);
 				for (String mobKey : mobKeys) {
-					MagicMob mob = new MagicMob(this, mobs.getConfigurationSection(mobKey));
+					EntityData mob = new EntityData(mageController, mobs.getConfigurationSection(mobKey));
 					magicMobs.put(mobKey, mob);
 					String name = mob.getName();
 					if (name != null && !name.isEmpty()) {
@@ -172,11 +175,11 @@ public class MagicWorldsController implements Listener
         return magicWorlds.get(name);
     }
 
-	public MagicMob getMob(String key) {
+	public EntityData getMob(String key) {
 		return magicMobs.get(key);
 	}
 
-	public MagicMob getMobByName(String name) {
+	public EntityData getMobByName(String name) {
 		return magicMobsByName.get(name);
 	}
 
@@ -197,8 +200,8 @@ public class MagicWorldsController implements Listener
 	private EntitySpawnListener spawnListener;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
-	private final Map<String, MagicMob> magicMobs = new HashMap<String, MagicMob>();
-	private final Map<String, MagicMob> magicMobsByName = new HashMap<String, MagicMob>();
+	private final Map<String, EntityData> magicMobs = new HashMap<String, EntityData>();
+	private final Map<String, EntityData> magicMobsByName = new HashMap<String, EntityData>();
     private final MagicChunkGenerator worldGenerator;
     private final Plugin	plugin;
 	private final Logger 	logger;

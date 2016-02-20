@@ -1,6 +1,6 @@
 package com.elmakers.mine.bukkit.magicworlds.spawn.builtin;
 
-import com.elmakers.mine.bukkit.magicworlds.MagicMob;
+import com.elmakers.mine.bukkit.entity.EntityData;
 import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 import com.elmakers.mine.bukkit.magicworlds.spawn.SpawnRule;
 import org.bukkit.configuration.ConfigurationSection;
@@ -8,13 +8,13 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
 
 public class EquipmentRule extends SpawnRule {
-    protected MagicMob equipment;
+    protected EntityData equipment;
 
     @Override
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
     	if (!super.load(key, parameters, controller)) return false;
-        equipment = new MagicMob(controller, parameters);
+        equipment = new EntityData(controller.getMagic().getController(), parameters);
         controller.getLogger().info(" Replacing equipment of : " + targetEntityType.name() + " at y > " + minY
                 + " at a " + (percentChance * 100) + "% chance");
         return true;
