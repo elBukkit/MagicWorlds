@@ -1,17 +1,8 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Logger;
-
-import com.elmakers.mine.bukkit.entity.EntityData;
-import com.elmakers.mine.bukkit.api.magic.MageController;
-import com.elmakers.mine.bukkit.magicworlds.listener.EntityDeathListener;
+import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
-import com.elmakers.mine.bukkit.magicworlds.listener.EntityTargetListener;
+import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.Configuration;
@@ -24,8 +15,11 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.mcstats.Metrics;
 
-import com.elmakers.mine.bukkit.api.magic.MagicAPI;
-import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
 
 public class MagicWorldsController implements Listener
 {
@@ -69,26 +63,6 @@ public class MagicWorldsController implements Listener
             if (config.getBoolean("entity_spawn_listener", true)) {
                 pm.registerEvents(new EntitySpawnListener(this), plugin);
             }
-            if (config.getBoolean("entity_target_listener", true)) {
-                pm.registerEvents(new EntityTargetListener(this), plugin);
-            }
-			if (config.getBoolean("entity_death_listener", true)) {
-				pm.registerEvents(new EntityDeathListener(this), plugin);
-			}
-
-			MageController mageController = magicAPI.getController();
-			ConfigurationSection mobs = config.getConfigurationSection("mobs");
-			if (mobs != null) {
-				Set<String> mobKeys = mobs.getKeys(false);
-				for (String mobKey : mobKeys) {
-					EntityData mob = new EntityData(mageController, mobs.getConfigurationSection(mobKey));
-					magicMobs.put(mobKey, mob);
-					String name = mob.getName();
-					if (name != null && !name.isEmpty()) {
-						magicMobsByName.put(name, mob);
-					}
-				}
-			}
 
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
@@ -175,18 +149,6 @@ public class MagicWorldsController implements Listener
         return magicWorlds.get(name);
     }
 
-	public EntityData getMob(String key) {
-		return magicMobs.get(key);
-	}
-
-	public EntityData getMobByName(String name) {
-		return magicMobsByName.get(name);
-	}
-
-	public Collection<String> getMobKeys() {
-		return magicMobs.keySet();
-	}
-
 	public EntitySpawnListener getSpawnListener() {
 		return spawnListener;
 	}
@@ -200,8 +162,6 @@ public class MagicWorldsController implements Listener
 	private EntitySpawnListener spawnListener;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
-	private final Map<String, EntityData> magicMobs = new HashMap<String, EntityData>();
-	private final Map<String, EntityData> magicMobsByName = new HashMap<String, EntityData>();
     private final MagicChunkGenerator worldGenerator;
     private final Plugin	plugin;
 	private final Logger 	logger;

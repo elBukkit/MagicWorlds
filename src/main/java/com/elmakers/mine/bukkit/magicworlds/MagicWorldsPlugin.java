@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.elmakers.mine.bukkit.entity.EntityData;
+import com.elmakers.mine.bukkit.api.entity.EntityData;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -155,7 +155,7 @@ public class MagicWorldsPlugin extends JavaPlugin
 		{
 			if (args.length == 2 && args[0].equalsIgnoreCase("spawn"))
 			{
-				options.addAll(controller.getMobKeys());
+				options.addAll(controller.getMagic().getController().getMobKeys());
 			}
 			else if (args.length == 1)
 			{
@@ -215,7 +215,7 @@ public class MagicWorldsPlugin extends JavaPlugin
 				}
 
 				String mobKey = args[1];
-				EntityData mob = controller.getMob(mobKey);
+				EntityData mob = controller.getMagic().getController().getMob(mobKey);
 				if (mob == null) {
 					sender.sendMessage(ChatColor.RED + "Unknown mob key " + mobKey);
 					return true;
