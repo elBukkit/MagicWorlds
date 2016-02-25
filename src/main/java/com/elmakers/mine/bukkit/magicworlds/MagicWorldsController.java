@@ -1,5 +1,6 @@
 package com.elmakers.mine.bukkit.magicworlds;
 
+import com.elmakers.mine.bukkit.api.event.LoadEvent;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
@@ -47,7 +48,6 @@ public class MagicWorldsController implements Listener
 	public void initialize()
 	{
 		plugin.saveDefaultConfig();
-		load();
 	}
 	
 	public void load()
@@ -97,6 +97,11 @@ public class MagicWorldsController implements Listener
 
 	protected void clear()
 	{
+	}
+	
+	@EventHandler
+	public void onMagicLoad(LoadEvent loadEvent) {
+		load();
 	}
 	
 	@EventHandler
