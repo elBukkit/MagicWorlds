@@ -2,9 +2,7 @@ package com.elmakers.mine.bukkit.magicworlds.spawn.builtin;
 
 import com.elmakers.mine.bukkit.api.entity.EntityData;
 import com.elmakers.mine.bukkit.api.magic.MageController;
-import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 import com.elmakers.mine.bukkit.magicworlds.spawn.SpawnRule;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
@@ -35,7 +33,7 @@ public class ReplaceRule extends SpawnRule {
     
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
-		Entity spawned = replaceWith.spawn(entity.getLocation());
+		Entity spawned = replaceWith.spawn(controller.getMagic().getController(), entity.getLocation());
 		return spawned instanceof LivingEntity ? (LivingEntity)spawned : null;
     }
 }
