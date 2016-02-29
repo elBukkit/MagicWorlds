@@ -110,9 +110,10 @@ public class MagicWorldsController implements Listener
 	@EventHandler
 	public void onMagicLoad(LoadEvent loadEvent) {
 		if (!initialLoad) {
-			load();
+			return;
 		}
 		initialLoad = false;
+		load();
 		finalizeLoad();
 	}
 	
