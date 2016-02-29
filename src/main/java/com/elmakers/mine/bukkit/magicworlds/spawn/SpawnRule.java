@@ -23,7 +23,8 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     protected int                       cooldown;
     protected long                      lastSpawn;
 	protected boolean					allowIndoors;
-    protected MagicWorldsController	controller;
+    protected MagicWorldsController	    controller;
+    protected ConfigurationSection      parameters;
     
     protected static final Random rand = new Random();
 
@@ -33,8 +34,14 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     {
     }
     
+    public void finalizeLoad(String worldName)
+    {
+        
+    }
+    
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
+        this.parameters = parameters;
     	this.key = key;
     	this.controller = controller;
     	String entityTypeName = parameters.getString("target_type");

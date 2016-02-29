@@ -106,6 +106,12 @@ public class MagicWorld {
             }
         }
 	}
+    
+    public void finalizeLoad() {
+        if (spawnHandler != null) {
+            spawnHandler.finalizeLoad();
+        }
+    }
 	
 	public void installPopulators(World world) {
 		if (chunkHandler.isEmpty()) return;

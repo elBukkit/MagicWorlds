@@ -48,6 +48,7 @@ public class MagicWorldsController implements Listener
 	public void initialize()
 	{
 		plugin.saveDefaultConfig();
+		load();
 	}
 	
 	public void load()
@@ -90,6 +91,13 @@ public class MagicWorldsController implements Listener
 			}
 		}
 	}
+	
+	public void finalizeLoad()
+	{
+		for (MagicWorld world : magicWorlds.values()) {
+			world.finalizeLoad();
+		}
+	}
 
 	public void save()
 	{
@@ -101,7 +109,11 @@ public class MagicWorldsController implements Listener
 	
 	@EventHandler
 	public void onMagicLoad(LoadEvent loadEvent) {
-		load();
+		if (!initialLoad) {
+			load();
+		}
+		initialLoad = false;
+		finalizeLoad();
 	}
 	
 	@EventHandler
@@ -159,6 +171,7 @@ public class MagicWorldsController implements Listener
 	 */
 
     private MagicAPI magicAPI = null;
+	private boolean initialLoad = true;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final MagicChunkGenerator worldGenerator;

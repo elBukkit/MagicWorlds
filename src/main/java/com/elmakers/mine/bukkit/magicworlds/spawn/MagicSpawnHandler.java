@@ -20,6 +20,7 @@ public class MagicSpawnHandler {
 	private final Map<String, SpawnRule> spawnRules = new TreeMap<String, SpawnRule>();
 	protected MagicWorldsController controller;
 	protected String worldName;
+	protected ConfigurationSection configuration;
 	
 	public void clear() {
 		entityTypeMap.clear();
@@ -51,6 +52,7 @@ public class MagicSpawnHandler {
 	public void load(String worldName, ConfigurationSection config, MagicWorldsController controller) {
 		this.controller = controller;
 		this.worldName = worldName;
+		this.configuration = config;
 		for (String key : config.getKeys(false)) {
 			ConfigurationSection handlerConfig = config.getConfigurationSection(key);
 			String className = handlerConfig.getString("class");
@@ -69,6 +71,12 @@ public class MagicSpawnHandler {
 					addRule(handler);
 				}
 			}
+		}
+	}
+	
+	public void finalizeLoad() {
+		for (SpawnRule rule : spawnRules.values()) {
+			rule.finalizeLoad(worldName);
 		}
 	}
 

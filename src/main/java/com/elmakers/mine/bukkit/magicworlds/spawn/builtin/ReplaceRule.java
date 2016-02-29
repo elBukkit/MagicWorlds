@@ -12,11 +12,9 @@ import org.bukkit.plugin.Plugin;
 public class ReplaceRule extends SpawnRule {
     protected EntityData replaceWith;
 
-    @Override
-    public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
-    {
-    	if (!super.load(key, parameters, controller)) return false;
-
+	@Override
+	public void finalizeLoad(String worldName)
+	{
 		// Legacy support
 		if (!parameters.contains("type")) {
 			parameters.set("type", parameters.get("replace_type"));
@@ -30,11 +28,10 @@ public class ReplaceRule extends SpawnRule {
 		if (replaceWith == null) {
 			replaceWith = mageController.loadMob(parameters);
 		}
-    	
-    	controller.getLogger().info(" Replacing: " + targetEntityType.name() + " at y > " + minY
+
+		controller.getLogger().info(" Replacing: " + targetEntityType.name() + " in " + worldName + " at y > " + minY
 				+ " with " + replaceWith.describe() + " at a " + (percentChance * 100) + "% chance");
-    	return true;
-    }
+	}
     
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
