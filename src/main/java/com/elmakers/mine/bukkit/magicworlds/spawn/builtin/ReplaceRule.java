@@ -27,12 +27,17 @@ public class ReplaceRule extends SpawnRule {
 			replaceWith = mageController.loadMob(parameters);
 		}
 
+		if (replaceWith == null) {
+			controller.getLogger().warning("Error reading in configuration for custom mob in " + worldName);
+			return;
+		}
 		controller.getLogger().info(" Replacing: " + targetEntityType.name() + " in " + worldName + " at y > " + minY
 				+ " with " + replaceWith.describe() + " at a " + (percentChance * 100) + "% chance");
 	}
     
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
+		if (replaceWith == null) return null;
 		Entity spawned = replaceWith.spawn(controller.getMagic().getController(), entity.getLocation());
 		return spawned instanceof LivingEntity ? (LivingEntity)spawned : null;
     }
