@@ -70,7 +70,7 @@
 		<dependency>
 	        <groupId>org.mcstats.bukkit</groupId>
 	        <artifactId>metrics</artifactId>
-	        <version>R7</version>
+	        <version>R8-SNAPSHOT</version>
 	        <scope>compile</scope>
 	    </dependency>
 		<dependency>
@@ -88,10 +88,6 @@
 	   <repository>
             <id>elMakers</id>
             <url>http://maven.elmakers.com/repository/</url>
-       </repository>
-       <repository>
-            <id>Plugin Metrics</id>
-            <url>http://repo.mcstats.org/content/repositories/public</url>
        </repository>
     </repositories>
 	<build>
