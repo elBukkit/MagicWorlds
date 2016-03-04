@@ -1,5 +1,10 @@
 # CHANGELOG
 
+# 1.4 
+
+ - Config files can now be placed in the plugins/MagicWorlds folder, and will be merged.
+   See: https://github.com/elBukkit/MagicWorlds/tree/master/src/main/resources/examples/mixins for some fun examples!
+
 # 1.3
 
  - Now requires the Magic plugin, MagicLib is no more

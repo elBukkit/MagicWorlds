@@ -1,0 +1,238 @@
+worlds:
+  world_apocalypse:
+     copy: world
+     appearance: nether
+     entity_spawn:
+
+          no_villagers:
+            target_type: villager
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+
+          spider_000_mutant_spider:
+            target_type: spider
+            probability: 0.5
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_spider
+
+          spider_001_warlock:
+            target_type: spider
+            probability: 0.4
+            min_y: 0
+            class: ReplaceRule
+            type: warlock
+
+          spider_002_ghast:
+            target_type: spider
+            probability: 0.3
+            min_y: 30
+            allow_indoors: false
+            class: ReplaceRule
+            type: ghast
+
+          spider_003_polterghast:
+            min_y: 30
+            allow_indoors: false
+            target_type: spider
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: polterghast
+
+          spider_004_mutant:
+            target_type: spider
+            probability: 0.8
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+
+          spider_005_dragon:
+            target_type: spider
+            probability: 0.001
+            min_y: 63
+            y_offset: 30
+            allow_indoors: false
+            cooldown: 10000
+            class: ReplaceRule
+            replace_type: EnderDragon
+
+          creeper_001_mutant_captain:
+            target_type: creeper
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+
+          creeper_003_mutant:
+            target_type: creeper
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+
+          skeleton_001_mutant_captain:
+            target_type: skeleton
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+
+          skeleton_002_undead_minion:
+            target_type: skeleton
+            probability: 0.8
+            min_y: 0
+            class: ReplaceRule
+            type: undead_minion
+
+          skeleton_003_undead_overlord:
+            target_type: skeleton
+            probability: 0.3
+            min_y: 0
+            class: ReplaceRule
+            type: undead_overlord
+
+          zombie_001_mutant:
+            target_type: zombie
+            probability: 0.5
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+
+          zombie_002_mutant_captain:
+            target_type: zombie
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+
+          chicken_999_enderman:
+            target_type: chicken
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          sheep_999_enderman:
+            target_type: sheep
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          cow_998_mushroomcow:
+            target_type: cow
+            probability: 0.8
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+
+          cow_999_enderman:
+            target_type: cow
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          rabbit_999_enderman:
+            target_type: rabbit
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+
+          squid_999_guardian:
+            target_type: squid
+            probability: 1.0
+            min_y: 10
+            class: ReplaceRule
+            replace_type: guardian
+
+     chunk_generate:
+        items:
+          class: MagicChestPopulator
+          base_probability:
+            0: 100
+            1: 80
+          item_probability:
+            sp|100: 1
+            sp|80: 2
+            sp|70: 3
+            sp|60: 4
+            sp|50: 5
+            sp|40: 10
+            sp|30: 20
+            sp|25: 30
+            sp|20: 40
+            sp|15: 50
+
+  world:
+     entity_spawn:
+          spider_001_warlock:
+            target_type: spider
+            probability: 0.05
+            min_y: 0
+            class: ReplaceRule
+            type: warlock
+     chunk_generate:
+        items:
+          class: MagicChestPopulator
+          base_probability:
+            0: 100
+            1: 80
+          item_probability:
+            sp|100: 1
+            sp|80: 2
+            sp|70: 3
+            sp|60: 4
+            sp|50: 5
+            sp|40: 10
+            sp|30: 20
+            sp|25: 30
+            sp|20: 40
+            sp|15: 50
+
+  world_nether:
+     entity_spawn:
+        pigzombie_master_sword:
+          target_type: pig_zombie
+          probability: 1
+          min_y: 0
+          allow_indoors: true
+          cooldown: 0
+          class: EquipmentRule
+          item: iron_sword
+     chunk_generate:
+        items:
+          class: MagicChestPopulator
+          base_probability:
+            0: 100
+            1: 80
+            2: 2
+          item_probability:
+            sp|200: 1
+            sp|150: 2
+            sp|100: 3
+            sp|75: 4
+            sp|50: 5
+            sp|45: 10
+            sp|40: 20
+            sp|30: 30
+            sp|25: 40
+            sp|20: 50

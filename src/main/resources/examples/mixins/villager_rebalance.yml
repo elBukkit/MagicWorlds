@@ -1,0 +1,14 @@
+worlds:
+  world:
+     entity_spawn:
+          villager_001:
+            target_type: villager
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: villager
+            villager_trades:
+            - output: stick
+              ingredients:
+              - emerald
+              max_uses: 20
