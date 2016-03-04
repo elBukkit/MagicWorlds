@@ -4,6 +4,7 @@
 
  - Config files can now be placed in the plugins/MagicWorlds folder, and will be merged.
    See: https://github.com/elBukkit/MagicWorlds/tree/master/src/main/resources/examples/mixins for some fun examples!
+ - Add per-world resource pack feature
 
 # 1.3
 

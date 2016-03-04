@@ -8,6 +8,7 @@ import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
@@ -29,10 +30,12 @@ public class MagicWorld {
 	private long seed;
     private static Random random = new Random();
     private WorldState state = WorldState.UNLOADED;
+    private String resourcePack;
 
 	public void load(String name, ConfigurationSection config, MagicWorldsController controller) {
         worldName = name;
         copyFrom = config.getString("copy", "");
+        resourcePack = config.getString("resource_pack", null);
         if (config.contains("environment")) {
             String typeString = config.getString("environment");
             try {
@@ -170,4 +173,10 @@ public class MagicWorld {
 	public MagicChestPopulator getMagicChestPopulator() {
 		return chunkHandler.getMagicChestPopulator();
 	}
+    
+    public void playerEntered(Player player) {
+        if (resourcePack != null) {
+            player.setResourcePack(resourcePack);
+        }
+    }
 }
