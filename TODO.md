@@ -1,9 +1,8 @@
 # TODO
 
- - Refactor configuration for entity replacement
- - Execute arbitrary commands?
- - Only soft-depend on Magic.. ?
+ - Add spawn reason filter on replace rules
 
- - Fix /magicw load command, doesn't seem to update.
+ - Refactor configuration for entity replacement
+
  - Allow material variants in block replacer- custom bryce!
  - Spawn extra populated chests
