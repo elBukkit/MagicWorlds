@@ -5,10 +5,11 @@ import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.PlayerListener;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
+import com.elmakers.mine.bukkit.magicworlds.worldguard.WorldGuardManager;
 import com.elmakers.mine.bukkit.utility.ConfigurationUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -88,6 +89,14 @@ public class MagicWorldsController implements Listener
 				pm.registerEvents(new PlayerListener(this), plugin);
 			}
 
+			worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", worldGuardManager.isEnabled()));
+			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
+				@Override
+				public void run() {
+					worldGuardManager.initialize(plugin);
+				}
+			}, 10);
+			
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
 				Set<String> worldKeys = worlds.getKeys(false);
@@ -189,6 +198,10 @@ public class MagicWorldsController implements Listener
     public MagicWorld getWorld(String name) {
         return magicWorlds.get(name);
     }
+
+	public boolean inTaggedRegion(Location location, Set<String> tags) {
+		return worldGuardManager.inTaggedRegion(location, tags);
+	}
 	
 	/*
 	 * Private data
@@ -196,7 +209,8 @@ public class MagicWorldsController implements Listener
 
     private MagicAPI magicAPI = null;
 	private boolean initialLoad = true;
-
+	
+	private WorldGuardManager worldGuardManager = new WorldGuardManager();
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final MagicChunkGenerator worldGenerator;
     private final Plugin	plugin;

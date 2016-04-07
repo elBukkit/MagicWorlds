@@ -31,8 +31,13 @@ public class ReplaceRule extends SpawnRule {
 			controller.getLogger().warning("Error reading in configuration for custom mob in " + worldName);
 			return;
 		}
-		controller.getLogger().info(" Replacing: " + targetEntityType.name() + " in " + worldName + " at y > " + minY
-				+ " with " + replaceWith.describe() + " at a " + (percentChance * 100) + "% chance");
+		String message = " Replacing: " + targetEntityType.name() + " in " + worldName + " at y > " + minY
+				+ " with " + replaceWith.describe() + " at a " + (percentChance * 100) + "% chance";
+		
+		if (tags != null) {
+			message = message + " in regions tagged with any of " + tags.toString();
+		}
+		controller.getLogger().info(message);
 	}
     
     @Override

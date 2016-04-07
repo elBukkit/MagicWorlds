@@ -1,8 +1,12 @@
 package com.elmakers.mine.bukkit.magicworlds.spawn;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import com.elmakers.mine.bukkit.entity.EntityData;
+import com.elmakers.mine.bukkit.utility.ConfigurationUtils;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -25,6 +29,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 	protected boolean					allowIndoors;
     protected MagicWorldsController	    controller;
     protected ConfigurationSection      parameters;
+    protected Set<String>               tags;
     
     protected static final Random rand = new Random();
 
@@ -55,8 +60,12 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 		this.maxY = parameters.getInt("max_y", 255);
 		this.percentChance = (float)parameters.getDouble("probability", 1.0);
         this.cooldown = parameters.getInt("cooldown", 0);
-		
-		return true;
+        Collection<String> tagList = ConfigurationUtils.getStringList(parameters, "tags");
+        if (tagList != null && !tagList.isEmpty()) {
+            tags = new HashSet<String>(tagList);
+        }
+
+        return true;
     }
 
     public void setPercentChance(float percentChance)
@@ -89,6 +98,11 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         Location entityLocation = entity.getLocation();
         int y = entityLocation.getBlockY();
         if (y < minY || y > maxY) return null;
+        
+        if (tags != null && !controller.inTaggedRegion(entity.getLocation(), tags)) {
+            return null;
+        }
+        
         if (!this.allowIndoors) {
         	// Bump it up two to miss things like tall grass
             y += 3;

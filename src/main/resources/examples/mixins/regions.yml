@@ -1,0 +1,12 @@
+worlds:
+  world:
+     entity_spawn:
+        warlock_arena:
+          target_type: spider
+          probability: 1
+          min_y: 0
+          allow_indoors: true
+          cooldown: 0
+          class: ReplaceRule
+          type: warlock
+          tags: arena

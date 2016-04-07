@@ -5,6 +5,8 @@
  - Config files can now be placed in the plugins/MagicWorlds folder, and will be merged.
    See: https://github.com/elBukkit/MagicWorlds/tree/master/src/main/resources/examples/mixins for some fun examples!
  - Add per-world resource pack feature
+ - Add WGCustomFlags integration, "spawn-tags" custom flag and tags on spawn rules
+ - The default config is now empty! See the "mixins" folder for the chest populators
 
 # 1.3
 
