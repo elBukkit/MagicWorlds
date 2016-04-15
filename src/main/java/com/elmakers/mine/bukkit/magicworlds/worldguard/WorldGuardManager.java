@@ -37,7 +37,7 @@ public class WorldGuardManager {
             }
 
             if (worldGuard != null) {
-                plugin.getLogger().info("WorldGuard found, region-based spawning eneabled");
+                plugin.getLogger().info("WorldGuard found, region-based spawning enabled");
             }
         } else {
             plugin.getLogger().info("WorldGuard integration disabled");
