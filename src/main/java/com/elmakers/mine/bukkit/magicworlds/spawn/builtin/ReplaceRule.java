@@ -43,6 +43,14 @@ public class ReplaceRule extends SpawnRule {
     @Override
     public LivingEntity onProcess(Plugin plugin, LivingEntity entity) {
 		if (replaceWith == null) return null;
+		
+		// This makes replacing the same type of mob have better balance,
+		// particularly with mob spawners
+		if (entity.getType() == replaceWith.getType()) {
+			replaceWith.modify(entity);
+			return entity;
+		}
+		
 		Entity spawned = replaceWith.spawn(controller.getMagic().getController(), entity.getLocation());
 		return spawned instanceof LivingEntity ? (LivingEntity)spawned : null;
     }
