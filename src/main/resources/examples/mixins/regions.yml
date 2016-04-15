@@ -2,7 +2,7 @@ worlds:
   world:
      entity_spawn:
         warlock_arena:
-          target_type: spider
+          target_type: zombie
           probability: 1
           min_y: 0
           allow_indoors: true

@@ -47,7 +47,7 @@ public class ReplaceRule extends SpawnRule {
 		// This makes replacing the same type of mob have better balance,
 		// particularly with mob spawners
 		if (entity.getType() == replaceWith.getType()) {
-			replaceWith.modify(entity);
+			replaceWith.modify(controller.getMagic().getController(), entity);
 			return entity;
 		}
 		
