@@ -27,6 +27,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     protected int                       cooldown;
     protected long                      lastSpawn;
 	protected boolean					allowIndoors;
+    protected boolean					targetCustom;
     protected MagicWorldsController	    controller;
     protected ConfigurationSection      parameters;
     protected Set<String>               tags;
@@ -55,6 +56,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
 			this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
 			return false;
 		}
+        this.targetCustom = parameters.getBoolean("target_custom", false);
 		this.allowIndoors = parameters.getBoolean("allow_indoors", true);
 		this.minY = parameters.getInt("min_y", 0);
 		this.maxY = parameters.getInt("max_y", 255);
@@ -91,6 +93,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     public LivingEntity process(Plugin plugin, LivingEntity entity) 
     {
     	if (targetEntityType != entity.getType()) return null;
+        if (!targetCustom && entity.getCustomName() != null) return null;
         if (percentChance < rand.nextFloat()) return null;
         long now = System.currentTimeMillis();
         if (cooldown > 0 && lastSpawn != 0 && now < lastSpawn + cooldown) return null;
