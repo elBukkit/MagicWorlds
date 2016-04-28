@@ -18,6 +18,7 @@ public class MagicChunkHandler extends BlockPopulator {
 	private final Map<String, MagicChunkPopulator> chunkPopulators = new HashMap<String, MagicChunkPopulator>();
 	
 	public void load(String worldName, ConfigurationSection config, MagicWorldsController controller) {
+		this.controller = controller;
 		for (String key : config.getKeys(false)) {
 			ConfigurationSection handlerConfig = config.getConfigurationSection(key);
 			if (handlerConfig == null) continue;
