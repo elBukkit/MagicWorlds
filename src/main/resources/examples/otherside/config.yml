@@ -409,7 +409,7 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: lavaslime
+            replace_type: magma_cube
             
           bat_1_blaze:
             target_type: bat
@@ -584,7 +584,7 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: lavaslime
+            replace_type: magma_cube
             
           bat_1_blaze:
             target_type: bat
