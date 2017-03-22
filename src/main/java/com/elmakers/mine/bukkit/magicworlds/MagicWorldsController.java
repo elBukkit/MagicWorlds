@@ -126,6 +126,11 @@ public class MagicWorldsController implements Listener
 			    plugin.getLogger().warning("Failed to load MCStats: " + e.getMessage());
 			}
 		}
+
+		loaded = true;
+		if (magicLoaded) {
+			finalizeLoad();
+		}
 	}
 	
 	public void finalizeLoad()
@@ -145,12 +150,13 @@ public class MagicWorldsController implements Listener
 	
 	@EventHandler
 	public void onMagicLoad(LoadEvent loadEvent) {
-		if (!initialLoad) {
+		if (magicLoaded) {
 			return;
 		}
-		initialLoad = false;
-		load();
-		finalizeLoad();
+		magicLoaded = true;
+		if (loaded) {
+			finalizeLoad();
+		}
 	}
 	
 	@EventHandler
@@ -212,7 +218,8 @@ public class MagicWorldsController implements Listener
 	 */
 
     private MagicAPI magicAPI = null;
-	private boolean initialLoad = true;
+	private boolean magicLoaded = false;
+	private boolean loaded = false;
 	
 	private WorldGuardManager worldGuardManager = new WorldGuardManager();
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
