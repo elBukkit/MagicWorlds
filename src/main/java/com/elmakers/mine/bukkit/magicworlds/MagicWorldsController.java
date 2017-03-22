@@ -57,6 +57,10 @@ public class MagicWorldsController implements Listener
 		plugin.saveDefaultConfig();
 		load();
 	}
+
+	public void initializeWorldGuardFlags() {
+		worldGuardManager.initializeFlags(plugin);
+	}
 	
 	public void load()
 	{
@@ -89,14 +93,14 @@ public class MagicWorldsController implements Listener
 				pm.registerEvents(new PlayerListener(this), plugin);
 			}
 
-			worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", worldGuardManager.isEnabled()));
+			worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", true));
 			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
 				@Override
 				public void run() {
 					worldGuardManager.initialize(plugin);
 				}
 			}, 10);
-			
+
 			ConfigurationSection worlds = config.getConfigurationSection("worlds");
 			if (worlds != null) {
 				Set<String> worldKeys = worlds.getKeys(false);

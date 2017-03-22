@@ -2,10 +2,10 @@ package com.elmakers.mine.bukkit.magicworlds.worldguard;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Set;
+import java.util.logging.Level;
 
 public class WorldGuardManager {
     private boolean enabled = false;
@@ -20,27 +20,33 @@ public class WorldGuardManager {
     }
 
     public void initialize(Plugin plugin) {
-        worldGuard = null;
         if (enabled) {
-            try {
-                Plugin wgPlugin = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
-                if (wgPlugin != null) {
-                    String[] versionPieces = StringUtils.split(wgPlugin.getDescription().getVersion(), '.');
-                    int version = Integer.parseInt(versionPieces[0]);
-                    if (version >= 6) {
-                        worldGuard = new WorldGuardAPI(wgPlugin, plugin);
-                    } else {
-                        plugin.getLogger().warning("Only WorldGuard 6 and above are supported- please update! (WG version: " + wgPlugin.getDescription().getVersion() + ")");
-                    }
-                }
-            } catch (Throwable ex) {
-            }
-
-            if (worldGuard != null) {
-                plugin.getLogger().info("WorldGuard found, region-based spawning enabled");
+            if (worldGuard == null) {
+                plugin.getLogger().info("WorldGuard not found, add WorldGuard 6 or higher for region-based spawning");
+            } else {
+                plugin.getLogger().info("WorldGuard found, spawn-tags can be used for region-based spawning");
+                worldGuard.checkFlagSupport();
             }
         } else {
-            plugin.getLogger().info("WorldGuard integration disabled");
+            worldGuard = null;
+            plugin.getLogger().info("WorldGuard integration disabled.");
+        }
+    }
+
+    public void initializeFlags(Plugin plugin) {
+        try {
+            Plugin wgPlugin = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
+            if (wgPlugin != null) {
+                String[] versionPieces = StringUtils.split(wgPlugin.getDescription().getVersion(), '.');
+                int version = Integer.parseInt(versionPieces[0]);
+                if (version >= 6) {
+                    worldGuard = new WorldGuardAPI(wgPlugin, plugin);
+                } else {
+                    plugin.getLogger().warning("Only WorldGuard 6 and above are supported- please update! (WG version: " + wgPlugin.getDescription().getVersion() + ")");
+                }
+            }
+        } catch (Throwable ex) {
+            plugin.getLogger().log(Level.WARNING, "Error setting up custom WorldGuard flags", ex);
         }
     }
 

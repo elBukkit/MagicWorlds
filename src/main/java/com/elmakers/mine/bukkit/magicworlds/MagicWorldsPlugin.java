@@ -119,6 +119,15 @@ public class MagicWorldsPlugin extends JavaPlugin
 		controller.clear();
 	}
 
+	@Override
+	public void onLoad()
+	{
+		if (controller == null) {
+			controller = new MagicWorldsController(this);
+		}
+		controller.initializeWorldGuardFlags();
+	}
+
 	public boolean hasPermission(CommandSender sender, String pNode)
 	{
 		if (sender instanceof Player) {
