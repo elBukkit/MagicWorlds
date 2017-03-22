@@ -6,10 +6,31 @@
 worlds:
   world:
     entity_spawn:
-        enderman_1_villager:
+        enderman_1_warlock:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: warlock
+          probability: 0.1
+        enderman_2_warlock:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: dark_wizard
+          probability: 0.05
+        enderman_3_witch:
           class: ReplaceRule
           target_type: enderman
           replace_type: witch
+
+        spider_1_dark_spider:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: dark_spider
+          probability: 0.1
+        spider_2_mega_spider:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: mega_spider
+          probability: 0.05
     chunk_generate:
         items:
           class: MagicChestPopulator
@@ -30,14 +51,13 @@ worlds:
             kill: 1
   world_nether:
     entity_spawn:
-        pigzombie_master_sword:
-          target_type: pig_zombie
-          probability: 1
-          min_y: 0
-          allow_indoors: true
-          cooldown: 0
-          class: EquipmentRule
-          item: iron_sword
+
+        ghast_1_polterghast:
+          class: ReplaceRule
+          target_type: ghast
+          replace_type: polterghast
+          probability: 0.3
+
     chunk_generate:
         items:
           class: MagicChestPopulator
@@ -58,7 +78,25 @@ worlds:
       copy: world
       entity_spawn:
 
-          rabbit:
+          polar_bear_1_warlock:
+            class: ReplaceRule
+            target_type: polar_bear
+            replace_type: warlock
+            probability: 1
+
+          rabbit_1_warlock:
+            class: ReplaceRule
+            target_type: rabbit
+            replace_type: warlock
+            probability: 0.5
+
+          rabbit_2_dark_wizard:
+            class: ReplaceRule
+            target_type: rabbit
+            replace_type: dark_wizard
+            probability: 0.2
+
+          rabbit_3_defender:
             target_type: rabbit
             probability: 0.05
             min_y: 63
@@ -68,8 +106,20 @@ worlds:
             class: CastRule
             spells:
               - defender material quartz_block seed_radius 2
-     
-          skeleton_1_defender:
+
+          skeleton_1_overlord:
+            class: ReplaceRule
+            target_type: skeleton
+            replace_type: undead_overlord
+            probability: 0.5
+
+          skeleton_2_minion:
+            class: ReplaceRule
+            target_type: skeleton
+            replace_type: undead_minion
+            probability: 0.5
+
+          skeleton_3_defender:
             target_type: skeleton
             probability: 0.05
             min_y: 63
@@ -79,8 +129,13 @@ worlds:
             class: CastRule
             spells:
               - defender material mossy_cobblestone seed_radius 2
-            
-          creeper_1_hunter:
+
+          creeper_1_dark_wizard:
+            class: ReplaceRule
+            target_type: skeleton
+            replace_type: dark_wizard
+            probability: 0.1
+          creeper_2_hunter:
             target_type: creeper
             probability: 0.3
             min_y: 63
@@ -90,7 +145,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material stained_clay seed_radius 2
-          creeper_2_hunter:
+          creeper_3_hunter:
             target_type: creeper
             probability: 0.5
             min_y: 63
@@ -100,7 +155,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material packed_ice seed_radius 2
-          creeper_3_virus:
+          creeper_4_virus:
             target_type: creeper
             probability: 0.05
             y_offset: 24
@@ -110,8 +165,18 @@ worlds:
             class: CastRule
             spells:
               - virus material obsidian seed_radius 3
-            
-          zombie_1_hunter:
+
+          zombie_1_mutant:
+            class: ReplaceRule
+            target_type: zombie
+            replace_type: mutant
+            probability: 0.3
+          zombie_2_mutant_captain:
+            class: ReplaceRule
+            target_type: zombie
+            replace_type: mutant_captain
+            probability: 0.3
+          zombie_3_hunter:
             target_type: zombie
             probability: 0.3
             y_offset: 6
@@ -121,7 +186,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material huge_mushroom_1 seed_radius 2
-          zombie_2_hunter:
+          zombie_4_hunter:
             target_type: zombie
             probability: 0.5
             y_offset: 6
@@ -131,7 +196,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material huge_mushroom_2 seed_radius 2
-          zombie_3_hunter:
+          zombie_5_hunter:
             target_type: zombie
             probability: 0.7
             y_offset: 6
@@ -141,7 +206,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material stained_clay seed_radius 2
-          zombie_4_hunter:
+          zombie_6_hunter:
             target_type: zombie
             probability: 0.8
             y_offset: 6
@@ -151,7 +216,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material wool seed_radius 2
-          zombie_5_virus:
+          zombie_7_virus:
             target_type: zombie
             probability: 0.05
             y_offset: 24
@@ -161,7 +226,7 @@ worlds:
             cooldown: 10000
             spells:
               - virus material huge_mushroom_1 seed_radius 3
-          zombie_6_defender:
+          zombie_8_defender:
             target_type: zombie
             probability: 0.1
             min_y: 63
@@ -171,8 +236,23 @@ worlds:
             cooldown: 10000
             spells:
               - defender material hay_block seed_radius 3
-                        
-          spider_1_hunter:
+
+          spider_1_dark:
+            class: ReplaceRule
+            target_type: zombie
+            replace_type: dark_spider
+            probability: 0.2
+          spider_2_mega:
+            class: ReplaceRule
+            target_type: zombie
+            replace_type: mega_spider
+            probability: 0.3
+          spider_3_mutant:
+            class: ReplaceRule
+            target_type: zombie
+            replace_type: mutant_spider
+            probability: 0.3
+          spider_4_hunter:
             target_type: spider
             probability: 0.3
             min_y: 63
@@ -182,7 +262,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material melon_block seed_radius 2
-          spider_2_hunter:
+          spider_5_hunter:
             target_type: spider
             probability: 0.4
             min_y: 63
@@ -192,7 +272,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material pumpkin seed_radius 2
-          spider_3_hunter:
+          spider_6_hunter:
             target_type: spider
             probability: 0.5
             min_y: 63
@@ -202,7 +282,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material soul_sand seed_radius 2
-          spider_4_hunter:
+          spider_7_hunter:
             target_type: spider
             probability: 0.5
             min_y: 63
@@ -212,7 +292,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material clay seed_radius 2
-          spider_5_virus:
+          spider_8_virus:
             target_type: spider
             probability: 0.05
             min_y: 63
@@ -222,7 +302,7 @@ worlds:
             cooldown: 10000
             spells:
               - virus material melon_block seed_radius 3
-          spider_6_worm:
+          spider_9_worm:
             target_type: spider
             probability: 0.05
             min_y: 63
@@ -232,8 +312,18 @@ worlds:
             cooldown: 10000
             spells:
               - worm material clay seed_radius 3
-              
-          enderman_1_hunter:
+
+          enderman_1_warlock:
+            class: ReplaceRule
+            probability: 0.5
+            target_type: enderman
+            replace_type: warlock
+          enderman_2_dark_wizard:
+            class: ReplaceRule
+            probability: 0.1
+            target_type: enderman
+            replace_type: dark_wizard
+          enderman_3_hunter:
             target_type: enderman
             probability: 0.2
             min_y: 63
@@ -243,7 +333,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material prismarine seed_radius 2
-          enderman_2_hunter:
+          enderman_4_hunter:
             target_type: enderman
             probability: 0.3
             min_y: 63
@@ -253,7 +343,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material log seed_radius 2
-          enderman_3_hunter:
+          enderman_5_hunter:
             target_type: enderman
             probability: 0.4
             min_y: 63
@@ -263,7 +353,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material log_2 seed_radius 2
-          enderman_4_hunter:
+          enderman_6_hunter:
             target_type: enderman
             probability: 0.5
             min_y: 63
@@ -273,7 +363,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material wool seed_radius 2
-          enderman_5_hunter:
+          enderman_7_hunter:
             target_type: enderman
             probability: 0.6
             min_y: 63
@@ -283,7 +373,7 @@ worlds:
             cooldown: 10000
             spells:
               - hunter material obsidian seed_radius 2
-          enderman_6_worm:
+          enderman_8_worm:
             target_type: enderman
             probability: 0.05
             min_y: 63
@@ -293,7 +383,7 @@ worlds:
             cooldown: 10000
             spells:
               - worm material log seed_radius 3
-          enderman_7_worm:
+          enderman_9_worm:
             target_type: enderman
             probability: 0.01
             min_y: 63
@@ -303,7 +393,7 @@ worlds:
             cooldown: 10000
             spells:
               - worm material obsidian seed_radius 3
-          enderman_8_giant:
+          enderman_10_giant:
             target_type: enderman
             probability: 0.3
             min_y: 63
@@ -355,7 +445,7 @@ worlds:
             probability: 0.8
             min_y: 63
             class: ReplaceRule
-            replace_type: mushroomcow
+            replace_type: mushroom_cow
           cow_999_enderman:
             target_type: cow
             probability: 1.0
@@ -397,12 +487,21 @@ worlds:
             replace_type: enderman
 
        # Other Mob Replacement
-         
-          villager_1_pigman:
+          villager_1_mutant:
+            class: ReplaceRule
+            probability: 0.5
+            target_type: villager
+            replace_type: mutant
+          villager_2_mutant_captain:
+            class: ReplaceRule
+            probability: 0.4
+            target_type: villager
+            replace_type: mutant_captain
+          villager_3_pigman:
             class: ReplaceRule
             probability: 1.0
             target_type: villager
-            replace_type: pigzombie
+            replace_type: pig_zombie
             
           slime_1_lavaslime:
             target_type: slime
@@ -536,7 +635,7 @@ worlds:
             probability: 0.8
             min_y: 63
             class: ReplaceRule
-            replace_type: mushroomcow
+            replace_type: mushroom_cow
           cow_999_enderman:
             target_type: cow
             probability: 1.0
@@ -577,7 +676,7 @@ worlds:
             class: ReplaceRule
             probability: 1.0
             target_type: villager
-            replace_type: pigzombie
+            replace_type: pig_zombie
             
           slime_1_lavaslime:
             target_type: slime
