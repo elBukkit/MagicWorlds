@@ -19,7 +19,6 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.mcstats.Metrics;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +80,6 @@ public class MagicWorldsController implements Listener
 			}
 		}
 		try {
-			metricsLevel = config.getInt("metrics_level", metricsLevel);
             if (config.contains("terrain")) {
                 worldGenerator.load(config.getConfigurationSection("terrain"), this);
             }
@@ -114,17 +112,6 @@ public class MagicWorldsController implements Listener
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
-
-		metrics = null;
-		if (metricsLevel > 0) {
-			try {
-			    metrics = new Metrics(plugin);
-			    metrics.start();
-			    plugin.getLogger().info("Activated MCStats");
-			} catch (IOException e) {
-			    plugin.getLogger().warning("Failed to load MCStats: " + e.getMessage());
-			}
 		}
 
 		loaded = true;
@@ -228,7 +215,4 @@ public class MagicWorldsController implements Listener
 	private final Logger 	logger;
 
     private String                           googleAPIKey;
-
-	private int								 metricsLevel					= 5;
-	private Metrics							 metrics						= null;
 }

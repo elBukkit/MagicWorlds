@@ -68,12 +68,6 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-	        <groupId>org.mcstats.bukkit</groupId>
-	        <artifactId>metrics</artifactId>
-	        <version>R8-SNAPSHOT</version>
-	        <scope>compile</scope>
-	    </dependency>
-		<dependency>
 			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 			<artifactId>Magic</artifactId>
 			<version>5.5.5</version>
@@ -124,28 +118,6 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<minimizeJar>false</minimizeJar>
-							<relocations>
-								<relocation>
-                                    <pattern>org.mcstats</pattern>
-                                    <shadedPattern>com.elmakers.mine.bukkit.plugins.magicworlds.mcstats</shadedPattern>
-                                </relocation>
-							</relocations>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -8,6 +8,7 @@
  - Add WGCustomFlags integration, "spawn-tags" custom flag and tags on spawn rules
  - WorldGuard custom flag support added, requires latest builds of WorldGuard, replaces WGCustomFlags
  - The default config is now empty! See the "mixins" folder for the chest populators
+ - Removed mcstats
 
 # 1.3
 
