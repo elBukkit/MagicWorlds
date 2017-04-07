@@ -1,0 +1,101 @@
+worlds:
+  world:
+     entity_spawn:
+
+          villagers_000_soldier:
+            target_type: villager
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            type: soldier
+
+          spider_000_soldier:
+            target_type: spider
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: soldier
+            
+          creeper_000_soldier:
+            target_type: creeper
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: soldier
+
+          skeleton_000_soldier:
+            target_type: skeleton
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: soldier
+
+          zombie_000_soldier:
+            target_type: zombie
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: soldier
+
+          chicken_000_soldier:
+            target_type: chicken
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          pig_000_soldier:
+            target_type: pig
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          sheep_000_soldier:
+            target_type: sheep
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          cow_000_soldier:
+            target_type: cow
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          rabbit_000_soldier:
+            target_type: rabbit
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          ocelot_000_soldier:
+            target_type: ocelot
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          wolf_000_soldier:
+            target_type: wolf
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          slime_000_soldier:
+            target_type: slime
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
+
+          horse_000_soldier:
+            target_type: horse
+            probability: 1.0
+            min_y: 0
+            class: ReplaceRule
+            replace_type: soldier
