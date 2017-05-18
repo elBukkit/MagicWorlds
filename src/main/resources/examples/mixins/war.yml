@@ -9,7 +9,16 @@ worlds:
             class: ReplaceRule
             type: police
 
-          spider_000_model3:
+          spider_000_ferrari:
+            target_type: spider
+            probability: 0.1
+            min_y: 1
+            max_y: 10
+            allow_indoors: false
+            class: ReplaceRule
+            type: ferrari
+
+          spider_001_model3:
             target_type: spider
             probability: 0.1
             min_y: 1
@@ -18,25 +27,61 @@ worlds:
             class: ReplaceRule
             type: model3
 
-          spider_001_soldier:
+          spider_002_model3_black:
+            target_type: spider
+            probability: 0.1
+            min_y: 1
+            max_y: 10
+            allow_indoors: false
+            class: ReplaceRule
+            type: model3_black
+
+          spider_003_model3_white:
+            target_type: spider
+            probability: 0.1
+            min_y: 1
+            max_y: 10
+            allow_indoors: false
+            class: ReplaceRule
+            type: model3_white
+
+          spider_004_model3_silver:
+            target_type: spider
+            probability: 0.1
+            min_y: 1
+            max_y: 10
+            allow_indoors: false
+            class: ReplaceRule
+            type: model3_silver
+
+          spider_005_model3_red:
+            target_type: spider
+            probability: 0.1
+            min_y: 1
+            max_y: 10
+            allow_indoors: false
+            class: ReplaceRule
+            type: model3_red
+
+          spider_101_soldier:
             target_type: spider
             probability: 0.1
             class: ReplaceRule
             type: soldier
 
-          spider_002_fbi:
+          spider_102_fbi:
             target_type: spider
             probability: 0.1
             class: ReplaceRule
             type: fbi
 
-          spider_003_riotpolice:
+          spider_103_riotpolice:
             target_type: spider
             probability: 0.2
             class: ReplaceRule
             type: riotpolice
 
-          spider_004_police:
+          spider_104_police:
             target_type: spider
             probability: 1
             min_y: 0
