@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.World.Environment;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
@@ -91,7 +92,7 @@ public class CastRule extends SpawnRule {
 	    	MagicAPI magic = controller.getMagic();
 	    	if (magic != null) {
 	    		magic.cast(spell.name, fullParameters);    	
-	        	controller.getLogger().info(" Spawn rule casting: " + spell.name + " at " + entity.getLocation().toVector());
+	        	controller.getLogger().info(" Spawn rule casting: " + spell.name + " " + StringUtils.join(fullParameters, ' ') + " at " + entity.getLocation().toVector());
 	    	}
     	}
     	
