@@ -2,6 +2,8 @@ package com.elmakers.mine.bukkit.magicworlds.populator;
 
 import java.util.Random;
 
+import com.elmakers.mine.bukkit.block.MaterialAndData;
+import com.elmakers.mine.bukkit.utility.CompatibilityUtils;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -22,6 +24,7 @@ public abstract class MagicBlockPopulator extends MagicChunkPopulator {
         return super.load(config, controller);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void populate(World world, Random random, Chunk chunk) {
         for (int x = 0; x <= 15; x++) {
@@ -32,11 +35,20 @@ public abstract class MagicBlockPopulator extends MagicChunkPopulator {
                         break;
                     }
 
-                    populate(block, random);
+                    MaterialAndData newMaterial = populate(block, random);
+                    if (newMaterial != null) {
+                        Short data = newMaterial.getData();
+                        Material material = newMaterial.getMaterial();
+                        material = (material == null) ? block.getType() : material;
+                        data = (data == null) ? block.getData() : data;
+                        if (material != block.getType() || data != block.getData()) {
+                            CompatibilityUtils.setBlockFast(chunk, block.getX(), block.getY(), block.getZ(), material, data);
+                        }
+                    }
                 }
             }
         }
     }
 
-    public abstract void populate(Block block, Random random);
+    public abstract MaterialAndData populate(Block block, Random random);
 }

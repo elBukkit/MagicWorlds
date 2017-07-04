@@ -50,20 +50,9 @@ public class ReplacePopulator extends MagicBlockPopulator {
 		return replaceMap.size() > 0;
 	}
 	
-	protected void replaceBlock(Block block) {
-		MaterialAndData replaceType = replaceMap.get(block.getType());
-		if (replaceType != null) {
-			try {
-				replaceType.modify(block);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
-	
 	@Override
-	public void populate(Block block, Random random) {
-		if (block.getY() < minY || block.getY() > maxY) return;
-		replaceBlock(block);
+	public MaterialAndData populate(Block block, Random random) {
+		if (block.getY() < minY || block.getY() > maxY) return null;
+		return replaceMap.get(block.getType());
 	}
 }
