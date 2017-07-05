@@ -2,8 +2,8 @@ package com.elmakers.mine.bukkit.magicworlds.populator;
 
 import java.util.Random;
 
+import com.elmakers.mine.bukkit.api.block.ModifyType;
 import com.elmakers.mine.bukkit.block.MaterialAndData;
-import com.elmakers.mine.bukkit.utility.CompatibilityUtils;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -16,11 +16,16 @@ public abstract class MagicBlockPopulator extends MagicChunkPopulator {
     private int maxY = 255;
     private int minY = 0;
     private int maxAirY = 255;
+    private ModifyType modifyType = ModifyType.NO_PHYSICS;
 
     public boolean load(ConfigurationSection config, MagicWorldsController controller) {
         maxY = config.getInt("max_y", maxY);
         minY = config.getInt("min_y", minY);
         maxAirY = config.getInt("max_air_y", maxAirY);
+        String modifyType = config.getString("modifyType", null);
+        if (modifyType != null && !modifyType.isEmpty()) {
+            this.modifyType = ModifyType.valueOf(modifyType.toUpperCase());
+        }
         return super.load(config, controller);
     }
 
@@ -37,13 +42,7 @@ public abstract class MagicBlockPopulator extends MagicChunkPopulator {
 
                     MaterialAndData newMaterial = populate(block, random);
                     if (newMaterial != null) {
-                        Short data = newMaterial.getData();
-                        Material material = newMaterial.getMaterial();
-                        material = (material == null) ? block.getType() : material;
-                        data = (data == null) ? block.getData() : data;
-                        if (material != block.getType() || data != block.getData()) {
-                            CompatibilityUtils.setBlockFast(chunk, block.getX(), block.getY(), block.getZ(), material, data);
-                        }
+                        newMaterial.modify(block, modifyType);
                     }
                 }
             }
