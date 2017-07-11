@@ -304,7 +304,7 @@ worlds:
               - virus material melon_block seed_radius 3
           spider_9_worm:
             target_type: spider
-            probability: 0.05
+            probability: 0.5
             min_y: 63
             class: CastRule
             y_offset: 32
@@ -375,7 +375,7 @@ worlds:
               - hunter material obsidian seed_radius 2
           enderman_8_worm:
             target_type: enderman
-            probability: 0.05
+            probability: 0.2
             min_y: 63
             class: CastRule
             y_offset: 24
@@ -385,7 +385,7 @@ worlds:
               - worm material log seed_radius 3
           enderman_9_worm:
             target_type: enderman
-            probability: 0.01
+            probability: 0.5
             min_y: 63
             class: CastRule
             y_offset: 32
