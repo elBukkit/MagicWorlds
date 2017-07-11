@@ -98,14 +98,14 @@ worlds:
 
           rabbit_3_defender:
             target_type: rabbit
-            probability: 0.05
+            probability: 0.2
             min_y: 63
             y_offset: 6
             allow_indoors: false
             cooldown: 10000
             class: CastRule
             spells:
-              - defender material quartz_block seed_radius 2
+              - defender seed_radius 2
 
           skeleton_1_overlord:
             class: ReplaceRule
@@ -128,7 +128,7 @@ worlds:
             cooldown: 10000
             class: CastRule
             spells:
-              - defender material mossy_cobblestone seed_radius 2
+              - defender seed_radius 2
 
           creeper_1_dark_wizard:
             class: ReplaceRule
@@ -144,7 +144,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material stained_clay seed_radius 2
+              - hunter seed_radius 2
           creeper_3_hunter:
             target_type: creeper
             probability: 0.5
@@ -154,7 +154,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material packed_ice seed_radius 2
+              - hunter seed_radius 2
           creeper_4_virus:
             target_type: creeper
             probability: 0.05
@@ -164,7 +164,7 @@ worlds:
             cooldown: 10000
             class: CastRule
             spells:
-              - virus material obsidian seed_radius 3
+              - virus seed_radius 3
 
           zombie_1_mutant:
             class: ReplaceRule
@@ -185,7 +185,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material huge_mushroom_1 seed_radius 2
+              - hunter seed_radius 2
           zombie_4_hunter:
             target_type: zombie
             probability: 0.5
@@ -195,7 +195,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material huge_mushroom_2 seed_radius 2
+              - hunter seed_radius 2
           zombie_5_hunter:
             target_type: zombie
             probability: 0.7
@@ -205,7 +205,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material stained_clay seed_radius 2
+              - hunter seed_radius 2
           zombie_6_hunter:
             target_type: zombie
             probability: 0.8
@@ -215,7 +215,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material wool seed_radius 2
+              - hunter seed_radius 2
           zombie_7_virus:
             target_type: zombie
             probability: 0.05
@@ -225,7 +225,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - virus material huge_mushroom_1 seed_radius 3
+              - virus seed_radius 3
           zombie_8_defender:
             target_type: zombie
             probability: 0.1
@@ -235,7 +235,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - defender material hay_block seed_radius 3
+              - defender seed_radius 3
 
           spider_1_dark:
             class: ReplaceRule
@@ -261,7 +261,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material melon_block seed_radius 2
+              - hunter seed_radius 2
           spider_5_hunter:
             target_type: spider
             probability: 0.4
@@ -271,7 +271,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material pumpkin seed_radius 2
+              - hunter seed_radius 2
           spider_6_hunter:
             target_type: spider
             probability: 0.5
@@ -281,7 +281,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material soul_sand seed_radius 2
+              - hunter seed_radius 2
           spider_7_hunter:
             target_type: spider
             probability: 0.5
@@ -291,7 +291,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material clay seed_radius 2
+              - hunter seed_radius 2
           spider_8_virus:
             target_type: spider
             probability: 0.05
@@ -301,7 +301,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - virus material melon_block seed_radius 3
+              - virus seed_radius 3
           spider_9_worm:
             target_type: spider
             probability: 0.5
@@ -311,7 +311,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - worm material clay seed_radius 3
+              - worm seed_radius 3
 
           enderman_1_warlock:
             class: ReplaceRule
@@ -332,7 +332,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material prismarine seed_radius 2
+              - hunter seed_radius 2
           enderman_4_hunter:
             target_type: enderman
             probability: 0.3
@@ -342,7 +342,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material log seed_radius 2
+              - hunter seed_radius 2
           enderman_5_hunter:
             target_type: enderman
             probability: 0.4
@@ -352,7 +352,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material log_2 seed_radius 2
+              - hunter seed_radius 2
           enderman_6_hunter:
             target_type: enderman
             probability: 0.5
@@ -362,7 +362,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material wool seed_radius 2
+              - hunter seed_radius 2
           enderman_7_hunter:
             target_type: enderman
             probability: 0.6
@@ -372,7 +372,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter material obsidian seed_radius 2
+              - hunter seed_radius 2
           enderman_8_worm:
             target_type: enderman
             probability: 0.2
@@ -382,7 +382,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - worm material log seed_radius 3
+              - worm seed_radius 3
           enderman_9_worm:
             target_type: enderman
             probability: 0.5
@@ -392,7 +392,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - worm material obsidian seed_radius 3
+              - worm seed_radius 3
           enderman_10_giant:
             target_type: enderman
             probability: 0.3
