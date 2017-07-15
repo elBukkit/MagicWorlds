@@ -1,0 +1,10 @@
+# Randomly spawns some Polterghast in the nether
+worlds:
+  world_nether:
+    entity_spawn:
+
+        ghast_1_polterghast:
+          class: ReplaceRule
+          target_type: ghast
+          replace_type: polterghast
+          probability: 0.3

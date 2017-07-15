@@ -1,0 +1,31 @@
+# Randomly spawns a few Magic mobs in place of endermen and spiders.
+# Replaces nearly all endermen with witches, since endermen live in the other side
+worlds:
+  world:
+    entity_spawn:
+        enderman_1_warlock:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: warlock
+          probability: 0.1
+        enderman_2_warlock:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: dark_wizard
+          probability: 0.05
+        enderman_3_witch:
+          class: ReplaceRule
+          target_type: enderman
+          probability: 0.90
+          replace_type: witch
+
+        spider_1_dark_spider:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: dark_spider
+          probability: 0.1
+        spider_2_mega_spider:
+          class: ReplaceRule
+          target_type: enderman
+          replace_type: mega_spider
+          probability: 0.05

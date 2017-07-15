@@ -1,0 +1,102 @@
+worlds:
+  world_other:
+      copy: world
+      chunk_generate:
+        replace:
+          class: ReplacePopulator
+          replace:
+            grass: mycel
+            dirt: netherrack
+            stone: ender_stone
+            leaves: glowstone
+            leaves_2: stained_glass|*
+            log: stained_glass_pane|*
+            log_2: glowstone
+            hard_clay: stained_glass|12
+            water: stained_glass|9
+            stationary_water: stained_glass|3
+            lava: stained_glass|13
+            stationary_lava: stained_glass|1
+            sandstone: stained_clay:10
+            stained_clay: stained_glass:*
+            gravel: soul_sand
+            sand: sand:1
+            cactus: nether_fence
+            long_grass: brown_mushroom
+            yellow_flower: red_mushroom
+            red_rose: torch
+            wood: brick
+            double_plant: cobble_wall
+            fence: iron_fence
+            iron_fence: cobble_wall
+            cobblestone: nether_brick
+            mossy_cobblestone: iron_block
+            mob_spawner: diamond_block
+            glass: stained_glass|10
+            thin_glass: stained_glass_pane|9
+            ice: stained_glass|11
+            packed_ice: stained_glass|11
+            clay: stained_clay|10
+            snow_block: quartz_block
+            coal_ore: quartz_ore
+            diamond_ore: quartz_ore
+            emerald_ore: quartz_ore
+            iron_ore: quartz_ore
+            gold_ore: quartz_ore
+            wool: log|2
+            pumpkin: jack_o_lantern
+            melon_block: torch
+            huge_mushroom_1: stained_glass:*
+            huge_mushroom_2: stained_glass_pane:*
+
+  world_other_backup:
+      chunk_generate:
+        replace:
+          class: ReplacePopulator
+          replace:
+            grass: mycel
+            dirt: netherrack
+            stone: ender_stone
+            leaves: glowstone
+            leaves_2: stained_glass|*
+            log: stained_glass_pane|*
+            log_2: glowstone
+            hard_clay: stained_glass|12
+            water: stained_glass|9
+            stationary_water: stained_glass|3
+            lava: stained_glass|13
+            stationary_lava: stained_glass|1
+            sandstone: stained_clay:10
+            stained_clay: stained_glass:*
+            gravel: soul_sand
+            sand: sand:1
+            cactus: nether_fence
+            long_grass: brown_mushroom
+            yellow_flower: red_mushroom
+            red_rose: torch
+            wood: brick
+            double_plant: cobble_wall
+            fence: iron_fence
+            iron_fence: cobble_wall
+            cobblestone: nether_brick
+            mossy_cobblestone: iron_block
+            mob_spawner: diamond_block
+            glass: stained_glass|10
+            thin_glass: stained_glass_pane|9
+            ice: stained_glass|11
+            packed_ice: stained_glass|11
+            clay: stained_clay|10
+            snow_block: quartz_block
+            coal_ore: quartz_ore
+            diamond_ore: quartz_ore
+            emerald_ore: quartz_ore
+            iron_ore: quartz_ore
+            gold_ore: quartz_ore
+            wool: log|2
+            pumpkin: jack_o_lantern
+            melon_block: torch
+            huge_mushroom_1: stained_glass:*
+            huge_mushroom_2: stained_glass_pane:*
+            prismarine: stained_clay:*
+            sea_lantern: redstone_lamp_on
+            gold_block: diamond_block
