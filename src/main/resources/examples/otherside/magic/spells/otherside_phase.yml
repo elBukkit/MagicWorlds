@@ -5,6 +5,9 @@
 # For best effect, use the same seed and assign the example block populators in config.yml
 #
 
+#
+# This customizes the Phase spell so it takes you to The Other Side instead of the nether.
+#
 phase:
    parameters:
       worlds:
