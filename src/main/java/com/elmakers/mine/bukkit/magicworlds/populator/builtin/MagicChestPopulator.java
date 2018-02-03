@@ -104,7 +104,6 @@ public class MagicChestPopulator extends MagicChunkPopulator {
                     Location location = block.getLocation();
                     controller.getLogger().info("Added items to chest: " + StringUtils.join(wandNames, ", ") + " at "
                             + location.getWorld().getName() + "," + location.toVector());
-                    chest.update();
                 }
             }
         }

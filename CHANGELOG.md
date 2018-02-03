@@ -1,5 +1,10 @@
 # CHANGELOG
 
+# 1.5
+
+ - Fixes to chest populator to work with recent spigot versions (1.11+)
+   Will not work with previous spigot versions.
+
 # 1.4 
 
  - Config files can now be placed in the plugins/MagicWorlds folder, and will be merged.
