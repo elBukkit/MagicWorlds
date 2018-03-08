@@ -1,5 +1,7 @@
 # CHANGELOG
 
+# 1.6
+
 # 1.5
 
  - Fixes to chest populator to work with recent spigot versions (1.11+)
