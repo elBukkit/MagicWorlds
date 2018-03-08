@@ -4,6 +4,7 @@
 
  - Fixes to chest populator to work with recent spigot versions (1.11+)
    Will not work with previous spigot versions.
+ - Fix replaced mobs dropping default loot.
 
 # 1.4 
 

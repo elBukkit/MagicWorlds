@@ -35,7 +35,7 @@ public class EntitySpawnListener implements Listener
         Plugin plugin = controller.getPlugin();
         LivingEntity replace =  magicWorld.processEntitySpawn(plugin, entity);
         if (replace != null && replace != entity) {
-        	entity.setHealth(0);
+        	entity.remove();
             event.setCancelled(true);
     	}
     }
