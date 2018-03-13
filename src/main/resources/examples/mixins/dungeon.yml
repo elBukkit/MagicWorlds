@@ -1,0 +1,177 @@
+worlds:
+  world:
+     entity_spawn:
+
+          spider_000_mutant_spider:
+            target_type: spider
+            probability: 0.5
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_spider
+            tags: dungeon
+
+          spider_001_warlock:
+            target_type: spider
+            probability: 0.4
+            min_y: 0
+            class: ReplaceRule
+            type: warlock
+            tags: dungeon
+
+          spider_002_ghast:
+            target_type: spider
+            probability: 0.3
+            min_y: 30
+            allow_indoors: false
+            class: ReplaceRule
+            type: ghast
+            tags: dungeon
+
+          spider_003_killer_bunny:
+            min_y: 30
+            allow_indoors: false
+            target_type: spider
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: killer_bunny
+            tags: dungeon
+
+          spider_004_mutant:
+            target_type: spider
+            probability: 0.8
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+            tags: dungeon
+
+          spider_005_dark_wizard:
+            target_type: spider
+            probability: 0.001
+            min_y: 63
+            y_offset: 30
+            allow_indoors: false
+            cooldown: 10000
+            class: ReplaceRule
+            replace_type: dark_wizard
+            tags: dungeon
+
+          creeper_001_mutant_captain:
+            target_type: creeper
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+            tags: dungeon
+
+          creeper_003_mutant:
+            target_type: creeper
+            probability: 1
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+            tags: dungeon
+
+          skeleton_001_mutant_captain:
+            target_type: skeleton
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+            tags: dungeon
+
+          skeleton_002_undead_minion:
+            target_type: skeleton
+            probability: 0.8
+            min_y: 0
+            class: ReplaceRule
+            type: undead_minion
+            tags: dungeon
+
+          skeleton_003_undead_overlord:
+            target_type: skeleton
+            probability: 0.3
+            min_y: 0
+            class: ReplaceRule
+            type: undead_overlord
+            tags: dungeon
+
+          zombie_001_mutant:
+            target_type: zombie
+            probability: 0.5
+            min_y: 0
+            class: ReplaceRule
+            type: mutant
+            tags: dungeon
+
+          zombie_002_mutant_captain:
+            target_type: zombie
+            probability: 0.2
+            min_y: 0
+            class: ReplaceRule
+            type: mutant_captain
+            tags: dungeon
+
+          chicken_999_enderman:
+            target_type: chicken
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          sheep_999_enderman:
+            target_type: sheep
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          pig_999_enderman:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          cow_998_mushroomcow:
+            target_type: cow
+            probability: 0.8
+            min_y: 63
+            class: ReplaceRule
+            replace_type: mushroomcow
+            tags: dungeon
+
+          cow_999_enderman:
+            target_type: cow
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          rabbit_999_enderman:
+            target_type: rabbit
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: enderman
+            tags: dungeon
+
+          squid_999_guardian:
+            target_type: squid
+            probability: 1.0
+            min_y: 10
+            class: ReplaceRule
+            replace_type: guardian
+            tags: dungeon
