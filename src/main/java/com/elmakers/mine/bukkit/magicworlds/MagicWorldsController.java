@@ -85,7 +85,7 @@ public class MagicWorldsController implements Listener
             }
             PluginManager pm = Bukkit.getPluginManager();
             if (config.getBoolean("entity_spawn_listener", true)) {
-                pm.registerEvents(new EntitySpawnListener(this), plugin);
+                pm.registerEvents(new EntitySpawnListener(this, config), plugin);
             }
 			if (config.getBoolean("player_listener", true)) {
 				pm.registerEvents(new PlayerListener(this), plugin);

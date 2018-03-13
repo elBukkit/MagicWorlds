@@ -97,7 +97,6 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         if (percentChance < rand.nextFloat()) return null;
         long now = System.currentTimeMillis();
         if (cooldown > 0 && lastSpawn != 0 && now < lastSpawn + cooldown) return null;
-        lastSpawn = now;
         Location entityLocation = entity.getLocation();
         int y = entityLocation.getBlockY();
         if (y < minY || y > maxY) return null;
@@ -122,7 +121,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
                 y++;
             }
         }
-           	
+        lastSpawn = now;
     	return onProcess(plugin, entity);
     }
     

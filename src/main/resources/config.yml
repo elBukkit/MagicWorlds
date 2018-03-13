@@ -9,3 +9,8 @@ player_listener: true
 
 # Enable or disable WorldGuard and custom flags integration
 region_manager_enabled: true
+
+# Configure spawn reasons to ignore
+# ignore_reasons:
+# - CUSTOM
+# - DEFAULT

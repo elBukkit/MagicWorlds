@@ -2,6 +2,8 @@
 
 # 1.6
 
+ - Now reacts to all spawn reasons by default. You can change this behavior in configs.
+
 # 1.5
 
  - Fixes to chest populator to work with recent spigot versions (1.11+)
