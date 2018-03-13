@@ -136,14 +136,6 @@ worlds:
             replace_type: enderman
             tags: dungeon
 
-          pig_999_enderman:
-            target_type: pig
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
-            tags: dungeon
-
           cow_998_mushroomcow:
             target_type: cow
             probability: 0.8
