@@ -18,21 +18,21 @@ import java.util.Random;
 
 public class MagicWorld {
     private enum WorldState { UNLOADED, LOADING, LOADED };
-	private MagicWorldsController controller;
-	private MagicChunkHandler chunkHandler;
-	private MagicSpawnHandler spawnHandler;
+    private MagicWorldsController controller;
+    private MagicChunkHandler chunkHandler;
+    private MagicSpawnHandler spawnHandler;
     private String copyFrom;
     private boolean autoLoad = false;
     private World.Environment worldEnvironment = World.Environment.NORMAL;
     private World.Environment appearanceEnvironment = null;
     private WorldType worldType = WorldType.NORMAL;
     private String worldName;
-	private long seed;
+    private long seed;
     private static Random random = new Random();
     private WorldState state = WorldState.UNLOADED;
     private String resourcePack;
 
-	public void load(String name, ConfigurationSection config, MagicWorldsController controller) {
+    public void load(String name, ConfigurationSection config, MagicWorldsController controller) {
         worldName = name;
         copyFrom = config.getString("copy", "");
         resourcePack = config.getString("resource_pack", null);
@@ -63,24 +63,24 @@ public class MagicWorld {
         seed = config.getLong("seed", random.nextLong());
         this.controller = controller;
         autoLoad = config.getBoolean("autoload", false);
-		
-		if (chunkHandler == null) {
+
+        if (chunkHandler == null) {
             chunkHandler = new MagicChunkHandler();
-		}
-		if (spawnHandler == null) {
-			spawnHandler = new MagicSpawnHandler();
-		}
+        }
+        if (spawnHandler == null) {
+            spawnHandler = new MagicSpawnHandler();
+        }
         chunkHandler.clear();
-		ConfigurationSection chunkConfig = config.getConfigurationSection("chunk_generate");
-		if (chunkConfig != null) {
+        ConfigurationSection chunkConfig = config.getConfigurationSection("chunk_generate");
+        if (chunkConfig != null) {
             chunkHandler.load(worldName, chunkConfig, controller);
-		}
-		
-		spawnHandler.clear();
-		ConfigurationSection entityConfig = config.getConfigurationSection("entity_spawn");
-		if (entityConfig != null) {
-			spawnHandler.load(worldName, entityConfig, controller);
-		}
+        }
+
+        spawnHandler.clear();
+        ConfigurationSection entityConfig = config.getConfigurationSection("entity_spawn");
+        if (entityConfig != null) {
+            spawnHandler.load(worldName, entityConfig, controller);
+        }
 
         // Autoload worlds
         if (autoLoad && copyFrom.isEmpty()) {
@@ -108,29 +108,29 @@ public class MagicWorld {
                 controller.getLogger().info("Changed " + worldName + " appearance to " + appearanceEnvironment);
             }
         }
-	}
+    }
     
     public void finalizeLoad() {
         if (spawnHandler != null) {
             spawnHandler.finalizeLoad();
         }
     }
-	
-	public void installPopulators(World world) {
-		if (chunkHandler.isEmpty()) return;
-		controller.getLogger().info("Installing Populators in " + world.getName());
-		world.getPopulators().add(chunkHandler);
-	}
-	
-	public LivingEntity processEntitySpawn(Plugin plugin, LivingEntity entity) {
-		return spawnHandler.process(plugin, entity);
+
+    public void installPopulators(World world) {
+        if (chunkHandler.isEmpty()) return;
+        controller.getLogger().info("Installing Populators in " + world.getName());
+        world.getPopulators().add(chunkHandler);
     }
-	
-	protected static String getSpawnHandlerBuiltinClasspath()
-	{
-		String baseClass = MagicSpawnHandler.class.getName();
-		return baseClass.substring(0, baseClass.lastIndexOf('.'));
-	}
+
+    public LivingEntity processEntitySpawn(Plugin plugin, LivingEntity entity) {
+        return spawnHandler.process(plugin, entity);
+    }
+
+    protected static String getSpawnHandlerBuiltinClasspath()
+    {
+        String baseClass = MagicSpawnHandler.class.getName();
+        return baseClass.substring(0, baseClass.lastIndexOf('.'));
+    }
 
     public void onWorldInit(final Plugin plugin, final World initWorld)
     {
@@ -170,9 +170,9 @@ public class MagicWorld {
         }, 1);
     }
 
-	public MagicChestPopulator getMagicChestPopulator() {
-		return chunkHandler.getMagicChestPopulator();
-	}
+    public MagicChestPopulator getMagicChestPopulator() {
+        return chunkHandler.getMagicChestPopulator();
+    }
     
     public void playerEntered(Player player) {
         if (resourcePack != null) {

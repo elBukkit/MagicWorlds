@@ -19,16 +19,16 @@ import org.bukkit.plugin.Plugin;
 import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 
 public abstract class SpawnRule implements Comparable<SpawnRule> {
-	protected String					key;
-	protected EntityType 				targetEntityType;
-	protected float        				percentChance;
-	protected int						minY;
-	protected int						maxY;
+    protected String                    key;
+    protected EntityType                 targetEntityType;
+    protected float                        percentChance;
+    protected int                        minY;
+    protected int                        maxY;
     protected int                       cooldown;
     protected long                      lastSpawn;
-	protected boolean					allowIndoors;
-    protected boolean					targetCustom;
-    protected MagicWorldsController	    controller;
+    protected boolean                    allowIndoors;
+    protected boolean                    targetCustom;
+    protected MagicWorldsController        controller;
     protected ConfigurationSection      parameters;
     protected Set<String>               tags;
     
@@ -48,19 +48,19 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
     {
         this.parameters = parameters;
-    	this.key = key;
-    	this.controller = controller;
-    	String entityTypeName = parameters.getString("target_type");
-    	this.targetEntityType = EntityData.parseEntityType(entityTypeName);
-		if (targetEntityType == null) {
-			this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
-			return false;
-		}
+        this.key = key;
+        this.controller = controller;
+        String entityTypeName = parameters.getString("target_type");
+        this.targetEntityType = EntityData.parseEntityType(entityTypeName);
+        if (targetEntityType == null) {
+            this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
+            return false;
+        }
         this.targetCustom = parameters.getBoolean("target_custom", false);
-		this.allowIndoors = parameters.getBoolean("allow_indoors", true);
-		this.minY = parameters.getInt("min_y", 0);
-		this.maxY = parameters.getInt("max_y", 255);
-		this.percentChance = (float)parameters.getDouble("probability", 1.0);
+        this.allowIndoors = parameters.getBoolean("allow_indoors", true);
+        this.minY = parameters.getInt("min_y", 0);
+        this.maxY = parameters.getInt("max_y", 255);
+        this.percentChance = (float)parameters.getDouble("probability", 1.0);
         this.cooldown = parameters.getInt("cooldown", 0);
         Collection<String> tagList = ConfigurationUtils.getStringList(parameters, "tags");
         if (tagList != null && !tagList.isEmpty()) {
@@ -77,22 +77,22 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     
     public float getPercentChance()
     {
-    	return percentChance;
+        return percentChance;
     }
     
     public EntityType getTargetType() 
     {
-    	return targetEntityType;
+        return targetEntityType;
     }
     
     public String getKey()
     {
-    	return key;
+        return key;
     }
     
     public LivingEntity process(Plugin plugin, LivingEntity entity) 
     {
-    	if (targetEntityType != entity.getType()) return null;
+        if (targetEntityType != entity.getType()) return null;
         if (!targetCustom && entity.getCustomName() != null) return null;
         if (percentChance < rand.nextFloat()) return null;
         long now = System.currentTimeMillis();
@@ -106,7 +106,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         }
         
         if (!this.allowIndoors) {
-        	// Bump it up two to miss things like tall grass
+            // Bump it up two to miss things like tall grass
             y += 3;
             int x = entityLocation.getBlockX();
             int z = entityLocation.getBlockZ();
@@ -122,12 +122,12 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
             }
         }
         lastSpawn = now;
-    	return onProcess(plugin, entity);
+        return onProcess(plugin, entity);
     }
     
-	@Override
-	public int compareTo(SpawnRule other) 
-	{
-		return this.key.compareTo(other.key);
-	}
+    @Override
+    public int compareTo(SpawnRule other)
+    {
+        return this.key.compareTo(other.key);
+    }
 }

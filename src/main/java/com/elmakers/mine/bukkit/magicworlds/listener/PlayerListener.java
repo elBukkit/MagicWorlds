@@ -14,10 +14,10 @@ public class PlayerListener implements Listener
     private final MagicWorldsController controller;
     private boolean enabled = true;
 
-	public PlayerListener(final MagicWorldsController controller)
-	{
+    public PlayerListener(final MagicWorldsController controller)
+    {
         this.controller = controller;
-	}
+    }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;

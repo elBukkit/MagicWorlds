@@ -30,56 +30,56 @@ import java.util.logging.Logger;
 
 public class MagicWorldsController implements Listener
 {
-	public MagicWorldsController(final Plugin plugin)
-	{
-		this.logger = plugin.getLogger();
-		this.plugin = plugin;
+    public MagicWorldsController(final Plugin plugin)
+    {
+        this.logger = plugin.getLogger();
+        this.plugin = plugin;
         worldGenerator = new MagicChunkGenerator();
-		
-		Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
-		if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
-			logger.warning("Magic plugin not found, spell casting and wand creation disabled");
-			logger.warning("Make sure you have the MagicLib plugin instead, or MagicWorlds will probably break");
-			this.magicAPI = null;
-		} else {
-			logger.info("Integrating with Magic");
-			this.magicAPI = (MagicAPI)magicPlugin;
-		}		
-	}
-	
-	/*
-	 * Saving and loading
-	 */
 
-	public void initialize()
-	{
-		plugin.saveDefaultConfig();
-		load();
-	}
+        Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
+        if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
+            logger.warning("Magic plugin not found, spell casting and wand creation disabled");
+            logger.warning("Make sure you have the MagicLib plugin instead, or MagicWorlds will probably break");
+            this.magicAPI = null;
+        } else {
+            logger.info("Integrating with Magic");
+            this.magicAPI = (MagicAPI)magicPlugin;
+        }
+    }
 
-	public void initializeWorldGuardFlags() {
-		worldGuardManager.initializeFlags(plugin);
-	}
-	
-	public void load()
-	{
-		File configFolder = plugin.getDataFolder();
-		ConfigurationSection config = new MemoryConfiguration();
-		if (configFolder.exists()) {
-			File[] files = configFolder.listFiles();
-			for (File file : files) {
-				if (file.getName().startsWith(".")) continue;
-				getLogger().info("  Loading " + file.getName());
-				try {
-					YamlConfiguration newConfig = new YamlConfiguration();
-					newConfig.load(file);
-					config = ConfigurationUtils.addConfigurations(config, newConfig, true);
-				} catch (Exception ex) {
-					getLogger().log(Level.WARNING, "Error loading file " + file.getName(), ex);
-				}
-			}
-		}
-		try {
+    /*
+     * Saving and loading
+     */
+
+    public void initialize()
+    {
+        plugin.saveDefaultConfig();
+        load();
+    }
+
+    public void initializeWorldGuardFlags() {
+        worldGuardManager.initializeFlags(plugin);
+    }
+
+    public void load()
+    {
+        File configFolder = plugin.getDataFolder();
+        ConfigurationSection config = new MemoryConfiguration();
+        if (configFolder.exists()) {
+            File[] files = configFolder.listFiles();
+            for (File file : files) {
+                if (file.getName().startsWith(".")) continue;
+                getLogger().info("  Loading " + file.getName());
+                try {
+                    YamlConfiguration newConfig = new YamlConfiguration();
+                    newConfig.load(file);
+                    config = ConfigurationUtils.addConfigurations(config, newConfig, true);
+                } catch (Exception ex) {
+                    getLogger().log(Level.WARNING, "Error loading file " + file.getName(), ex);
+                }
+            }
+        }
+        try {
             if (config.contains("terrain")) {
                 worldGenerator.load(config.getConfigurationSection("terrain"), this);
             }
@@ -87,97 +87,97 @@ public class MagicWorldsController implements Listener
             if (config.getBoolean("entity_spawn_listener", true)) {
                 pm.registerEvents(new EntitySpawnListener(this, config), plugin);
             }
-			if (config.getBoolean("player_listener", true)) {
-				pm.registerEvents(new PlayerListener(this), plugin);
-			}
+            if (config.getBoolean("player_listener", true)) {
+                pm.registerEvents(new PlayerListener(this), plugin);
+            }
 
-			worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", true));
-			plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-				@Override
-				public void run() {
-					worldGuardManager.initialize(plugin);
-				}
-			}, 10);
+            worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", true));
+            plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    worldGuardManager.initialize(plugin);
+                }
+            }, 10);
 
-			ConfigurationSection worlds = config.getConfigurationSection("worlds");
-			if (worlds != null) {
-				Set<String> worldKeys = worlds.getKeys(false);
-				for (String worldName : worldKeys) {
-					logger.info("Customizing world " + worldName);
-					MagicWorld world = magicWorlds.get(worldName);
-					if (world == null) world = new MagicWorld();
-					world.load(worldName, worlds.getConfigurationSection(worldName), this);
-					magicWorlds.put(worldName, world);
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+            ConfigurationSection worlds = config.getConfigurationSection("worlds");
+            if (worlds != null) {
+                Set<String> worldKeys = worlds.getKeys(false);
+                for (String worldName : worldKeys) {
+                    logger.info("Customizing world " + worldName);
+                    MagicWorld world = magicWorlds.get(worldName);
+                    if (world == null) world = new MagicWorld();
+                    world.load(worldName, worlds.getConfigurationSection(worldName), this);
+                    magicWorlds.put(worldName, world);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-		loaded = true;
-		if (magicLoaded) {
-			finalizeLoad();
-		}
-	}
-	
-	public void finalizeLoad()
-	{
-		for (MagicWorld world : magicWorlds.values()) {
-			world.finalizeLoad();
-		}
-	}
+        loaded = true;
+        if (magicLoaded) {
+            finalizeLoad();
+        }
+    }
 
-	public void save()
-	{
-	}
+    public void finalizeLoad()
+    {
+        for (MagicWorld world : magicWorlds.values()) {
+            world.finalizeLoad();
+        }
+    }
 
-	protected void clear()
-	{
-	}
-	
-	@EventHandler
-	public void onMagicLoad(LoadEvent loadEvent) {
-		if (magicLoaded) {
-			return;
-		}
-		magicLoaded = true;
-		if (loaded) {
-			finalizeLoad();
-		}
-	}
-	
-	@EventHandler
-	public void onWorldInit(WorldInitEvent event) {
+    public void save()
+    {
+    }
+
+    protected void clear()
+    {
+    }
+
+    @EventHandler
+    public void onMagicLoad(LoadEvent loadEvent) {
+        if (magicLoaded) {
+            return;
+        }
+        magicLoaded = true;
+        if (loaded) {
+            finalizeLoad();
+        }
+    }
+
+    @EventHandler
+    public void onWorldInit(WorldInitEvent event) {
         World world = event.getWorld();
         for (MagicWorld notifyWorld : magicWorlds.values()) {
             notifyWorld.onWorldInit(plugin, world);
         }
-		MagicWorld magicWorld = magicWorlds.get(world.getName());
-		if (magicWorld == null) return;
-		
-		logger.info("Initializing world " + world.getName());
-		magicWorld.installPopulators(world);
-	}
+        MagicWorld magicWorld = magicWorlds.get(world.getName());
+        if (magicWorld == null) return;
+
+        logger.info("Initializing world " + world.getName());
+        magicWorld.installPopulators(world);
+    }
 
     public Logger getLogger() {
-    	return logger;
+        return logger;
     }
     
     public MagicAPI getMagic() {
-    	if (magicAPI == null) return null;
-    	return magicAPI;
+        if (magicAPI == null) return null;
+        return magicAPI;
     }
     
     public MagicChestPopulator getMagicChestPopulator(String worldName) {
-    	MagicWorld magicWorld = magicWorlds.get(worldName);
-    	if (magicWorld == null) return null;
-    	
-    	return magicWorld.getMagicChestPopulator();
+        MagicWorld magicWorld = magicWorlds.get(worldName);
+        if (magicWorld == null) return null;
+
+        return magicWorld.getMagicChestPopulator();
     }
     
     public boolean isMagicEnabled()
     {
-    	return magicAPI != null;
+        return magicAPI != null;
     }
 
     public String getGoogleAPIKey() {
@@ -196,23 +196,23 @@ public class MagicWorldsController implements Listener
         return magicWorlds.get(name);
     }
 
-	public boolean inTaggedRegion(Location location, Set<String> tags) {
-		return worldGuardManager.inTaggedRegion(location, tags);
-	}
-	
-	/*
-	 * Private data
-	 */
+    public boolean inTaggedRegion(Location location, Set<String> tags) {
+        return worldGuardManager.inTaggedRegion(location, tags);
+    }
+
+    /*
+     * Private data
+     */
 
     private MagicAPI magicAPI = null;
-	private boolean magicLoaded = false;
-	private boolean loaded = false;
-	
-	private WorldGuardManager worldGuardManager = new WorldGuardManager();
+    private boolean magicLoaded = false;
+    private boolean loaded = false;
+
+    private WorldGuardManager worldGuardManager = new WorldGuardManager();
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final MagicChunkGenerator worldGenerator;
-    private final Plugin	plugin;
-	private final Logger 	logger;
+    private final Plugin    plugin;
+    private final Logger     logger;
 
     private String                           googleAPIKey;
 }

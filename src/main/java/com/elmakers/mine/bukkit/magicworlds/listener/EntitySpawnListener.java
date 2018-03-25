@@ -24,8 +24,8 @@ public class EntitySpawnListener implements Listener
     private boolean spawning = false;
     private Set<SpawnReason> ignoreReasons = new HashSet<SpawnReason>();
 
-	public EntitySpawnListener(final MagicWorldsController controller, ConfigurationSection config)
-	{
+    public EntitySpawnListener(final MagicWorldsController controller, ConfigurationSection config)
+    {
         this.controller = controller;
         List<String> reasonList = ConfigurationUtils.getStringList(config, "ignore_reasons");
         ignoreReasons.clear();
@@ -39,7 +39,7 @@ public class EntitySpawnListener implements Listener
                 }
             }
         }
-	}
+    }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;

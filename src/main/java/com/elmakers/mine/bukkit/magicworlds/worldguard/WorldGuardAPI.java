@@ -13,12 +13,12 @@ import java.util.logging.Level;
 
 public class WorldGuardAPI {
     private final Plugin owningPlugin;
-	private WorldGuardPlugin worldGuard = null;
+    private WorldGuardPlugin worldGuard = null;
     private WorldGuardFlags customFlags = null;
 
-	public boolean isEnabled() {
-		return worldGuard != null;
-	}
+    public boolean isEnabled() {
+        return worldGuard != null;
+    }
 
     public WorldGuardAPI(Plugin plugin, Plugin owningPlugin) {
         this.owningPlugin = owningPlugin;
