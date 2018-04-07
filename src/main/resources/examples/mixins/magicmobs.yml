@@ -7,7 +7,7 @@ worlds:
           target_type: enderman
           replace_type: warlock
           probability: 0.1
-        enderman_2_dark_wizard
+        enderman_2_dark_wizard:
           class: ReplaceRule
           target_type: enderman
           replace_type: dark_wizard
