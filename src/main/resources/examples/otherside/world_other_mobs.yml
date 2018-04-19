@@ -128,7 +128,7 @@ worlds:
             min_y: 63
             class: ReplaceRule
             replace_type: enderman
-          cow_998_mushroomcow:
+          cow_998_mushroom_cow:
             target_type: cow
             probability: 0.8
             min_y: 63

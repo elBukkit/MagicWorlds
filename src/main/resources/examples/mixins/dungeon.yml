@@ -136,12 +136,12 @@ worlds:
             replace_type: enderman
             tags: dungeon
 
-          cow_998_mushroomcow:
+          cow_998_mushroom_cow:
             target_type: cow
             probability: 0.8
             min_y: 63
             class: ReplaceRule
-            replace_type: mushroomcow
+            replace_type: mushroom_cow
             tags: dungeon
 
           cow_999_enderman:
