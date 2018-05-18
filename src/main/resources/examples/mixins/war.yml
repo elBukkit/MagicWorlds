@@ -2,14 +2,6 @@ worlds:
   world:
      entity_spawn:
 
-          villagers_000_police:
-            target_type: villager
-            probability: 1.0
-            min_y: 0
-            class: ReplaceRule
-            type: police
-            tags: city
-
           spider_000_ferrari:
             target_type: spider
             probability: 0.1
