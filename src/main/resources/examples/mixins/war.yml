@@ -8,6 +8,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             type: police
+            tags: city
 
           spider_000_ferrari:
             target_type: spider
@@ -17,6 +18,7 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: ferrari
+            tags: city
 
           spider_001_model3:
             target_type: spider
@@ -26,6 +28,7 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: model3
+            tags: city
 
           spider_002_model3_black:
             target_type: spider
@@ -35,6 +38,7 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: model3_black
+            tags: city
 
           spider_003_model3_white:
             target_type: spider
@@ -44,6 +48,7 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: model3_white
+            tags: city
 
           spider_004_model3_silver:
             target_type: spider
@@ -53,6 +58,7 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: model3_silver
+            tags: city
 
           spider_005_model3_red:
             target_type: spider
@@ -62,24 +68,28 @@ worlds:
             allow_indoors: false
             class: ReplaceRule
             type: model3_red
+            tags: city
 
           spider_101_soldier:
             target_type: spider
             probability: 0.1
             class: ReplaceRule
             type: soldier
+            tags: city
 
           spider_102_fbi:
             target_type: spider
             probability: 0.1
             class: ReplaceRule
             type: fbi
+            tags: city
 
           spider_103_riotpolice:
             target_type: spider
             probability: 0.2
             class: ReplaceRule
             type: riotpolice
+            tags: city
 
           spider_104_police:
             target_type: spider
@@ -87,6 +97,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             type: police
+            tags: city
             
           creeper_000_police:
             target_type: creeper
@@ -94,6 +105,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             type: police
+            tags: city
 
           skeleton_000_police:
             target_type: skeleton
@@ -101,6 +113,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             type: police
+            tags: city
 
           zombie_000_police:
             target_type: zombie
@@ -108,6 +121,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             type: police
+            tags: city
 
           chicken_000_police:
             target_type: chicken
@@ -115,6 +129,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           pig_000_police:
             target_type: pig
@@ -122,6 +137,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           sheep_000_police:
             target_type: sheep
@@ -129,6 +145,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           cow_000_police:
             target_type: cow
@@ -136,6 +153,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           rabbit_000_police:
             target_type: rabbit
@@ -143,6 +161,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           ocelot_000_police:
             target_type: ocelot
@@ -150,6 +169,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           wolf_000_police:
             target_type: wolf
@@ -157,6 +177,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           slime_000_police:
             target_type: slime
@@ -164,6 +185,7 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
 
           horse_000_police:
             target_type: horse
@@ -171,3 +193,4 @@ worlds:
             min_y: 0
             class: ReplaceRule
             replace_type: police
+            tags: city
