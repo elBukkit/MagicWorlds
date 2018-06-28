@@ -11,6 +11,6 @@ player_listener: true
 region_manager_enabled: true
 
 # Configure spawn reasons to ignore
-# ignore_reasons:
-# - CUSTOM
-# - DEFAULT
+ignore_reasons:
+ - CUSTOM
+ - EGG
