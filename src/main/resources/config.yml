@@ -14,3 +14,5 @@ region_manager_enabled: true
 ignore_reasons:
  - CUSTOM
  - EGG
+ - SPAWNER
+ - SPAWNER_EGG
