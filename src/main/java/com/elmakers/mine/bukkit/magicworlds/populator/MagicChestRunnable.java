@@ -58,7 +58,7 @@ public class MagicChestRunnable extends RunnableJob {
                 logger.info("Loading/Generating chunk at " + chunk.getX() + ", " + chunk.getZ());
             }
         } else {
-            if (!NMSUtils.isDone(chunk)) {
+            if (!NMSUtils.isReady(chunk)) {
                 if (generate) {
                     if (!chunk.load(true)) {
                         logger.info("Failed to generate chunk at " + chunk.getX() + ", " + chunk.getZ());

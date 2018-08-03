@@ -5,7 +5,6 @@ import com.elmakers.mine.bukkit.api.magic.MagicAPI;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.PlayerListener;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
-import com.elmakers.mine.bukkit.magicworlds.worldguard.WorldGuardManager;
 import com.elmakers.mine.bukkit.utility.ConfigurationUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -21,7 +20,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -57,10 +55,6 @@ public class MagicWorldsController implements Listener
         load();
     }
 
-    public void initializeWorldGuardFlags() {
-        worldGuardManager.initializeFlags(plugin);
-    }
-
     public void load()
     {
         File configFolder = plugin.getDataFolder();
@@ -90,14 +84,6 @@ public class MagicWorldsController implements Listener
             if (config.getBoolean("player_listener", true)) {
                 pm.registerEvents(new PlayerListener(this), plugin);
             }
-
-            worldGuardManager.setEnabled(config.getBoolean("region_manager_enabled", true));
-            plugin.getServer().getScheduler().runTaskLater(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    worldGuardManager.initialize(plugin);
-                }
-            }, 10);
 
             ConfigurationSection worlds = config.getConfigurationSection("worlds");
             if (worlds != null) {
@@ -197,7 +183,7 @@ public class MagicWorldsController implements Listener
     }
 
     public boolean inTaggedRegion(Location location, Set<String> tags) {
-        return worldGuardManager.inTaggedRegion(location, tags);
+        return magicAPI.getController().inTaggedRegion(location, tags);
     }
 
     /*
@@ -208,7 +194,6 @@ public class MagicWorldsController implements Listener
     private boolean magicLoaded = false;
     private boolean loaded = false;
 
-    private WorldGuardManager worldGuardManager = new WorldGuardManager();
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final MagicChunkGenerator worldGenerator;
     private final Plugin    plugin;

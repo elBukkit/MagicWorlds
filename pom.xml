@@ -70,33 +70,11 @@
 		<dependency>
 			<groupId>com.elmakers.mine.bukkit.plugins</groupId>
 			<artifactId>Magic</artifactId>
-			<version>7.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sk89q</groupId>
-			<artifactId>worldedit</artifactId>
-			<version>5.5.6</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sk89q</groupId>
-			<artifactId>worldguard</artifactId>
-			<version>6.2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.mewin</groupId>
-			<artifactId>WGCustomFlags</artifactId>
-			<version>1.6.1</version>
+			<version>7.6.6-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
     </dependencies>
 	<repositories>
-       <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
-      </repository>
 	   <repository>
             <id>elMakers</id>
             <url>http://maven.elmakers.com/repository/</url>

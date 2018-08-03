@@ -4,6 +4,7 @@
 
  - Now reacts to all spawn reasons by default. You can change this behavior in configs.
  - Adds quiet=true parameter to all spell casts.
+ - Requires Magic 7.6.6 or higher (to support WG7 and MC 1.13)
 
 # 1.5
 

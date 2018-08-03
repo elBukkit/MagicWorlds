@@ -125,7 +125,6 @@ public class MagicWorldsPlugin extends JavaPlugin
         if (controller == null) {
             controller = new MagicWorldsController(this);
         }
-        controller.initializeWorldGuardFlags();
     }
 
     public boolean hasPermission(CommandSender sender, String pNode)
