@@ -1,5 +1,7 @@
 # CHANGELOG
 
+# 1.7
+
 # 1.6
 
  - Now reacts to all spawn reasons by default. You can change this behavior in configs.
