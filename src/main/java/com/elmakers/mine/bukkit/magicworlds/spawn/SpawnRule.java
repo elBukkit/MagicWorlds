@@ -28,6 +28,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     protected long                      lastSpawn;
     protected boolean                    allowIndoors;
     protected boolean                    targetCustom;
+    protected boolean                    targetNPC;
     protected MagicWorldsController        controller;
     protected ConfigurationSection      parameters;
     protected Set<String>               tags;
@@ -57,6 +58,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
             return false;
         }
         this.targetCustom = parameters.getBoolean("target_custom", false);
+        this.targetNPC = parameters.getBoolean("target_npc", false);
         this.allowIndoors = parameters.getBoolean("allow_indoors", true);
         this.minY = parameters.getInt("min_y", 0);
         this.maxY = parameters.getInt("max_y", 255);
@@ -94,6 +96,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     {
         if (targetEntityType != entity.getType()) return null;
         if (!targetCustom && entity.getCustomName() != null) return null;
+        if (!targetNPC && controller.getMagic().getController().isNPC(entity)) return null;
         if (percentChance < rand.nextFloat()) return null;
         long now = System.currentTimeMillis();
         if (cooldown > 0 && lastSpawn != 0 && now < lastSpawn + cooldown) return null;
