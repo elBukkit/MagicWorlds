@@ -2,6 +2,8 @@
 
 # 1.7
 
+ - Citizens NPCs are ignored by spawn rules (by default, use target_npc: true to change)
+
 # 1.6
 
  - Now reacts to all spawn reasons by default. You can change this behavior in configs.
