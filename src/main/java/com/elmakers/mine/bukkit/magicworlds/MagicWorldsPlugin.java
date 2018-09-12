@@ -199,7 +199,6 @@ public class MagicWorldsPlugin extends JavaPlugin
             if (subCommand.equalsIgnoreCase("load"))
             {
                 controller.load();
-                controller.finalizeLoad();
                 sender.sendMessage("Configuration reloaded.");
                 return true;
             }
