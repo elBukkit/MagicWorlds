@@ -1,5 +1,7 @@
 # TODO
 
+ - Add biome filters
+
  - Add spawn reason filter on replace rules
 
  - Refactor configuration for entity replacement
