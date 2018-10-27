@@ -6,6 +6,7 @@ author: NathanWolf
 description : A plugin for Magic to customize worlds
 depend: [Magic]
 softdepend: [WorldGuard,WGCustomFlags]
+api-version: 1.13
 load: startup
 commands:
   magicw:

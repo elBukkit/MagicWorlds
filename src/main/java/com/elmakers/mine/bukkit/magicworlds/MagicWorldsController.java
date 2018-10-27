@@ -32,7 +32,6 @@ public class MagicWorldsController implements Listener
     {
         this.logger = plugin.getLogger();
         this.plugin = plugin;
-        worldGenerator = new MagicChunkGenerator();
 
         Plugin magicPlugin = Bukkit.getPluginManager().getPlugin("Magic");
         if (magicPlugin == null || !(magicPlugin instanceof MagicAPI)) {
@@ -74,9 +73,6 @@ public class MagicWorldsController implements Listener
             }
         }
         try {
-            if (config.contains("terrain")) {
-                worldGenerator.load(config.getConfigurationSection("terrain"), this);
-            }
             PluginManager pm = Bukkit.getPluginManager();
             if (config.getBoolean("entity_spawn_listener", true)) {
                 pm.registerEvents(new EntitySpawnListener(this, config), plugin);
@@ -174,10 +170,6 @@ public class MagicWorldsController implements Listener
         return plugin;
     }
 
-    public ChunkGenerator getWorldGenerator(String worldName, String id) {
-        return worldGenerator;
-    }
-
     public MagicWorld getWorld(String name) {
         return magicWorlds.get(name);
     }
@@ -195,7 +187,6 @@ public class MagicWorldsController implements Listener
     private boolean loaded = false;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
-    private final MagicChunkGenerator worldGenerator;
     private final Plugin    plugin;
     private final Logger     logger;
 

@@ -261,10 +261,6 @@ public class MagicWorldsPlugin extends JavaPlugin
         return false;
     }
 
-    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-        return getController().getWorldGenerator(worldName, id);
-    }
-
     /*
      * Private data
      */
