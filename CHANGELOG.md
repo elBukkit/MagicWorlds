@@ -1,5 +1,7 @@
 # CHANGELOG
 
+# 1.8
+
 # 1.7
 
  - Citizens NPCs are ignored by spawn rules (by default, use target_npc: true to change)
