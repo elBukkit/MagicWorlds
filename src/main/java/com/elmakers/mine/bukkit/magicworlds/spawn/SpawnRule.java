@@ -110,18 +110,9 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         
         if (!this.allowIndoors) {
             // Bump it up two to miss things like tall grass
-            y += 3;
-            int x = entityLocation.getBlockX();
-            int z = entityLocation.getBlockZ();
-            World world = entityLocation.getWorld();
-            int maxY = entityLocation.getWorld().getMaxHeight();
-            while (y <= maxY)
-            {
-                Block block = world.getBlockAt(x, y, z);
-                if (block != null && block.getType() != Material.AIR) {
-                    return null;
-                }
-                y++;
+            Block highest = entityLocation.getWorld().getHighestBlockAt(entityLocation);
+            if (highest.getY() - entityLocation.getY() > 3) {
+                return null;
             }
         }
         lastSpawn = now;
