@@ -5,6 +5,7 @@
  - Citizens NPCs are ignored by spawn rules (by default, use target_npc: true to change)
  - Update for 1.13+
  - Chunk generator removed (wasn't really ever used)
+ - Fix error when using allow_indoors
 
 # 1.6
 

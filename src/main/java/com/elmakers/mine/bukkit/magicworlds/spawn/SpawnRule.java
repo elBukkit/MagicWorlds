@@ -7,9 +7,9 @@ import java.util.Set;
 
 import com.elmakers.mine.bukkit.entity.EntityData;
 import com.elmakers.mine.bukkit.utility.ConfigurationUtils;
-import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -113,11 +113,11 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
             y += 3;
             int x = entityLocation.getBlockX();
             int z = entityLocation.getBlockZ();
-            Chunk chunk = entityLocation.getChunk();
+            World world = entityLocation.getWorld();
             int maxY = entityLocation.getWorld().getMaxHeight();
             while (y <= maxY)
             {
-                Block block = chunk.getBlock(x, y, z);
+                Block block = world.getBlockAt(x, y, z);
                 if (block != null && block.getType() != Material.AIR) {
                     return null;
                 }
