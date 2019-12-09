@@ -7,6 +7,9 @@
 entity_spawn_listener: true
 player_listener: true
 
+# Enable Wild Stacker integration, to prevent it from merging magic mobs
+wild_stacker_listener: true
+
 # Configure spawn reasons to ignore
 ignore_reasons:
  - CUSTOM

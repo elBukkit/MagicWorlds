@@ -73,12 +73,22 @@
 			<version>7.6.6</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+            <groupId>com.github.OmerBenGera</groupId>
+            <artifactId>WildStackerAPI</artifactId>
+            <version>b17</version>
+			<scope>provided</scope>
+        </dependency>
     </dependencies>
 	<repositories>
 	   <repository>
             <id>elMakers</id>
             <url>http://maven.elmakers.com/repository/</url>
        </repository>
+		<repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 	<build>
 		<resources>

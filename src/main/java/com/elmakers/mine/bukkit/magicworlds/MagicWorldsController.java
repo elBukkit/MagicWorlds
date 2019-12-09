@@ -2,6 +2,7 @@ package com.elmakers.mine.bukkit.magicworlds;
 
 import com.elmakers.mine.bukkit.api.event.LoadEvent;
 import com.elmakers.mine.bukkit.api.magic.MagicAPI;
+import com.elmakers.mine.bukkit.magicworlds.integration.WildStackerListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.EntitySpawnListener;
 import com.elmakers.mine.bukkit.magicworlds.listener.PlayerListener;
 import com.elmakers.mine.bukkit.magicworlds.populator.builtin.MagicChestPopulator;
@@ -79,6 +80,15 @@ public class MagicWorldsController implements Listener
             }
             if (config.getBoolean("player_listener", true)) {
                 pm.registerEvents(new PlayerListener(this), plugin);
+            }
+
+            if (pm.isPluginEnabled("WildStacker")) {
+                if (config.getBoolean("wild_stacker_listener", true)) {
+                    getLogger().info("Wild Stacker integration enabled");
+                    pm.registerEvents(new WildStackerListener(), plugin);
+                } else {
+                    getLogger().info("Wild Stacker found, but integration enabled. Add 'wild_stacker_listener: true' to MagicWorlds config to prevent spawned mobs from stacking.");
+                }
             }
 
             ConfigurationSection worlds = config.getConfigurationSection("worlds");
