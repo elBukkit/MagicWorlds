@@ -2,14 +2,14 @@ package com.elmakers.mine.bukkit.magicworlds.spawn;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 import com.elmakers.mine.bukkit.entity.EntityData;
 import com.elmakers.mine.bukkit.utility.ConfigurationUtils;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
@@ -32,6 +32,8 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     protected MagicWorldsController        controller;
     protected ConfigurationSection      parameters;
     protected Set<String>               tags;
+    protected Set<Biome>                biomes;
+    protected Set<Biome>                notBiomes;
     
     protected static final Random rand = new Random();
 
@@ -44,6 +46,20 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     public void finalizeLoad(String worldName)
     {
         
+    }
+
+    protected Set<Biome> loadBiomes(List<String> biomeNames) {
+        if (biomeNames == null || biomeNames.isEmpty()) return null;
+        Set<Biome> set = new HashSet<Biome>();
+        for (String biomeName : biomeNames) {
+            try {
+                Biome biome = Biome.valueOf(biomeName.toUpperCase());
+                set.add(biome);
+            } catch (Exception ex) {
+                this.controller.getLogger().warning(" Invalid biome: " + biomeName);
+            }
+        }
+        return set;
     }
     
     public boolean load(String key, ConfigurationSection parameters, MagicWorldsController controller)
@@ -68,7 +84,8 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         if (tagList != null && !tagList.isEmpty()) {
             tags = new HashSet<String>(tagList);
         }
-
+        biomes = loadBiomes(ConfigurationUtils.getStringList(parameters, "biomes"));
+        notBiomes = loadBiomes(ConfigurationUtils.getStringList(parameters, "not_biomes"));
         return true;
     }
 
@@ -107,6 +124,8 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         if (tags != null && !controller.inTaggedRegion(entity.getLocation(), tags)) {
             return null;
         }
+        if (biomes != null && !biomes.contains(entity.getLocation().getBlock().getBiome())) return null;
+        if (notBiomes != null && notBiomes.contains(entity.getLocation().getBlock().getBiome())) return null;
         
         if (!this.allowIndoors) {
             // Bump it up two to miss things like tall grass

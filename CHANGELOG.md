@@ -3,6 +3,7 @@
 # 1.8
 
  - Add WildStacker integration
+ - Add "biomes" and "not_biomes" options to spawn rules
 
 # 1.7
 
