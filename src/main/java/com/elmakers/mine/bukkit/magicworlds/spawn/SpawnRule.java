@@ -22,6 +22,7 @@ import com.elmakers.mine.bukkit.magicworlds.MagicWorldsController;
 public abstract class SpawnRule implements Comparable<SpawnRule> {
     protected String                    key;
     protected EntityType                 targetEntityType;
+    protected Class<? extends Entity>    targetEntityClass;
     protected float                        percentChance;
     protected int                        minY;
     protected int                        maxY;
@@ -54,7 +55,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         Set<Biome> set = new HashSet<Biome>();
         for (String biomeName : biomeNames) {
             try {
-                Biome biome = Biome.valueOf(biomeName.toUpperCase());
+                Biome biome = Biome.valueOf(biomeName.trim().toUpperCase());
                 set.add(biome);
             } catch (Exception ex) {
                 this.controller.getLogger().warning(" Invalid biome: " + biomeName);
@@ -77,6 +78,16 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
             }
         } else {
             this.targetEntityType = null;
+        }
+
+        String entityClassName = parameters.getString("target_class");
+        if (entityClassName != null && !entityClassName.isEmpty()) {
+            try {
+                targetEntityClass = (Class<? extends Entity>)Class.forName("org.bukkit.entity." + entityClassName);
+            } catch (Throwable ex) {
+                controller.getLogger().warning("Unknown entity class in target_class of " + getKey() + ": " + entityClassName);
+                targetEntityClass = null;
+            }
         }
 
         this.targetCustom = parameters.getBoolean("target_custom", false);
@@ -118,6 +129,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     public LivingEntity process(Plugin plugin, LivingEntity entity) 
     {
         if (targetEntityType != null && targetEntityType != entity.getType()) return null;
+        if (targetEntityClass != null && !targetEntityClass.isAssignableFrom(entity.getClass())) return null;
         if (!targetCustom && entity.getCustomName() != null) return null;
         if (!targetNPC && controller.getMagic().getController().isNPC(entity)) return null;
         if (percentChance < rand.nextFloat()) return null;
@@ -151,6 +163,9 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     }
 
     protected String getTargetEntityTypeName() {
-        return targetEntityType == null ? "all" : targetEntityType.name();
+        if (targetEntityClass != null) {
+            return "entities of class " + targetEntityClass.getSimpleName();
+        }
+        return targetEntityType == null ? "all entities" : targetEntityType.name();
     }
 }

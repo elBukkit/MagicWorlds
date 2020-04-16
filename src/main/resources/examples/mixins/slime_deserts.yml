@@ -1,0 +1,10 @@
+# This will replace all mobs in deserts with slimes
+worlds:
+  world:
+    entity_spawn:
+        slime_deserts:
+          class: ReplaceRule
+          target_class: LivingEntity
+          replace_type: slime
+          probability: 1
+          biomes: desert, desert_hills, desert_lakes

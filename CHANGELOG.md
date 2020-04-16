@@ -5,6 +5,7 @@
  - Add WildStacker integration
  - Add "biomes" and "not_biomes" options to spawn rules
  - Add support for "" or "*" target entity types (wildcard, will match all entity types)
+ - Add "target_class" option, e.g. "LivingEntity", to match a variety of mobs
 
 # 1.7
 

@@ -1,0 +1,10 @@
+# This will replace all zombies with witches, except in deserts
+worlds:
+  world:
+    entity_spawn:
+        witch_zombies:
+          class: ReplaceRule
+          target_type: zombie
+          replace_type: witch
+          probability: 1
+          not_biomes: mountains
