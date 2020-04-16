@@ -12,7 +12,7 @@ public class EquipmentRule extends SpawnRule {
     public void finalizeLoad(String worldName)
     {
         equipment = new EntityData(controller.getMagic().getController(), parameters);
-        controller.getLogger().info(" Replacing equipment of : " + targetEntityType.name() + " at y > " + minY
+        controller.getLogger().info(" Replacing equipment of : " + getTargetEntityTypeName() + " at y > " + minY
                 + " at a " + (percentChance * 100) + "% chance");
     }
 

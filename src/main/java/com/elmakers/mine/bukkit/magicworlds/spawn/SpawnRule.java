@@ -12,6 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
@@ -68,11 +69,16 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
         this.key = key;
         this.controller = controller;
         String entityTypeName = parameters.getString("target_type");
-        this.targetEntityType = EntityData.parseEntityType(entityTypeName);
-        if (targetEntityType == null) {
-            this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
-            return false;
+        if (entityTypeName != null && !entityTypeName.isEmpty() && !entityTypeName.equals("*")) {
+            this.targetEntityType = EntityData.parseEntityType(entityTypeName);
+            if (targetEntityType == null) {
+                this.controller.getLogger().warning(" Invalid entity type: " + entityTypeName);
+                return false;
+            }
+        } else {
+            this.targetEntityType = null;
         }
+
         this.targetCustom = parameters.getBoolean("target_custom", false);
         this.targetNPC = parameters.getBoolean("target_npc", false);
         this.allowIndoors = parameters.getBoolean("allow_indoors", true);
@@ -111,7 +117,7 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     
     public LivingEntity process(Plugin plugin, LivingEntity entity) 
     {
-        if (targetEntityType != entity.getType()) return null;
+        if (targetEntityType != null && targetEntityType != entity.getType()) return null;
         if (!targetCustom && entity.getCustomName() != null) return null;
         if (!targetNPC && controller.getMagic().getController().isNPC(entity)) return null;
         if (percentChance < rand.nextFloat()) return null;
@@ -142,5 +148,9 @@ public abstract class SpawnRule implements Comparable<SpawnRule> {
     public int compareTo(SpawnRule other)
     {
         return this.key.compareTo(other.key);
+    }
+
+    protected String getTargetEntityTypeName() {
+        return targetEntityType == null ? "all" : targetEntityType.name();
     }
 }

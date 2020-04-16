@@ -31,11 +31,17 @@ public class ReplaceRule extends SpawnRule {
             controller.getLogger().warning("Error reading in configuration for custom mob in " + worldName);
             return;
         }
-        String message = " Replacing: " + targetEntityType.name() + " in " + worldName + " at y > " + minY
+        String message = " Replacing: " + getTargetEntityTypeName() + " in " + worldName + " at y > " + minY
                 + " with " + replaceWith.describe() + " at a " + (percentChance * 100) + "% chance";
 
         if (tags != null) {
             message = message + " in regions tagged with any of " + tags.toString();
+        }
+        if (biomes != null) {
+            message = message + " in biomes " + biomes.toString();
+        }
+        if (notBiomes != null) {
+            message = message + " not in biomes " + notBiomes.toString();
         }
         controller.getLogger().info(message);
     }

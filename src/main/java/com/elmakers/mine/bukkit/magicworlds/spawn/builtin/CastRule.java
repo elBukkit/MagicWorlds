@@ -52,7 +52,7 @@ public class CastRule extends SpawnRule {
 
             this.spells.add(new CastSpell(spellName, spellParameters));
 
-            controller.getLogger().info(" Casting: " + spellName + " on " + targetEntityType.name() + " at y > " + minY
+            controller.getLogger().info(" Casting: " + spellName + " on " + getTargetEntityTypeName() + " at y > " + minY
                     + " with a " + (percentChance * 100) + "% chance");
         }
 
