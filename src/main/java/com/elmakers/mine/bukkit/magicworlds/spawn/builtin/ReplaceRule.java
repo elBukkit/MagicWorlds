@@ -27,8 +27,8 @@ public class ReplaceRule extends SpawnRule {
             replaceWith = mageController.loadMob(parameters);
         }
 
-        if (replaceWith == null) {
-            controller.getLogger().warning("Error reading in configuration for custom mob in " + worldName);
+        if (replaceWith == null || replaceWith.getType() == null) {
+            controller.getLogger().warning("Error reading in configuration for custom mob in " + worldName + " for rule " + key);
             return;
         }
         String message = " Replacing: " + getTargetEntityTypeName() + " in " + worldName + " at y > " + minY
