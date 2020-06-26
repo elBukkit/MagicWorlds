@@ -75,6 +75,7 @@ public class MagicWorldsController implements Listener
         }
         try {
             PluginManager pm = Bukkit.getPluginManager();
+            verbose = config.getBoolean("verbose", false);
             if (config.getBoolean("entity_spawn_listener", true)) {
                 pm.registerEvents(new EntitySpawnListener(this, config), plugin);
             }
@@ -188,6 +189,10 @@ public class MagicWorldsController implements Listener
         return magicAPI.getController().inTaggedRegion(location, tags);
     }
 
+    public boolean isVerbose() {
+        return verbose;
+    }
+
     /*
      * Private data
      */
@@ -195,6 +200,7 @@ public class MagicWorldsController implements Listener
     private MagicAPI magicAPI = null;
     private boolean magicLoaded = false;
     private boolean loaded = false;
+    private boolean verbose = false;
 
     private final Map<String, MagicWorld> magicWorlds = new HashMap<String, MagicWorld>();
     private final Plugin    plugin;

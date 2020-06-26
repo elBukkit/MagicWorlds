@@ -93,7 +93,9 @@ public class CastRule extends SpawnRule {
             MagicAPI magic = controller.getMagic();
             if (magic != null) {
                 magic.cast(spell.name, fullParameters);
-                controller.getLogger().info(" Spawn rule casting: " + spell.name + " " + StringUtils.join(fullParameters, ' ') + " at " + entity.getLocation().toVector());
+                if (controller.isVerbose()) {
+                    controller.getLogger().info(" Spawn rule casting: " + spell.name + " " + StringUtils.join(fullParameters, ' ') + " at " + entity.getLocation().toVector());
+                }
             }
         }
 

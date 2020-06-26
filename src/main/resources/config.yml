@@ -16,3 +16,6 @@ ignore_reasons:
  - EGG
  - SPAWNER
  - SPAWNER_EGG
+
+# Turn on verbose logs
+verbose: false
