@@ -2,6 +2,7 @@
 
 # 1.8
 
+ - Fix autoloading new worlds
  - Add WildStacker integration
  - Add "biomes" and "not_biomes" options to spawn rules
  - Add support for "" or "*" target entity types (wildcard, will match all entity types)

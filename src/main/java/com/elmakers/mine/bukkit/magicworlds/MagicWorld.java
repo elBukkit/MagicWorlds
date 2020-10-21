@@ -84,29 +84,39 @@ public class MagicWorld {
 
         // Autoload worlds
         if (autoLoad && copyFrom.isEmpty()) {
-            state = WorldState.LOADING;
-            World world = Bukkit.getWorld(worldName);
+            // Wait a few ticks to do this, to avoid errors during initialization
+            Bukkit.getScheduler().runTaskLater(controller.getPlugin(), new Runnable() {
+               @Override
+               public void run()
+               {
+                  createWorld();
+               }}, 1L);
+        }
+    }
+
+    public void createWorld() {
+        state = WorldState.LOADING;
+        World world = Bukkit.getWorld(worldName);
+        if (world == null) {
+            controller.getLogger().info("Loading " + worldName + " as " + worldEnvironment + " (" + worldType + ")");
+            WorldCreator worldCreator = WorldCreator.name(worldName);
+            worldCreator.seed(seed);
+            worldCreator.environment(worldEnvironment);
+            worldCreator.type(worldType);
+            worldCreator.generateStructures(true);
+            try {
+                world = worldCreator.createWorld();
+            } catch (Exception ex) {
+                world = null;
+                ex.printStackTrace();
+            }
             if (world == null) {
-                controller.getLogger().info("Loading " + worldName + " as " + worldEnvironment + " (" + worldType + ")");
-                WorldCreator worldCreator = WorldCreator.name(worldName);
-                worldCreator.seed(seed);
-                worldCreator.environment(worldEnvironment);
-                worldCreator.type(worldType);
-                worldCreator.generateStructures(true);
-                try {
-                    world = worldCreator.createWorld();
-                } catch (Exception ex) {
-                    world = null;
-                    ex.printStackTrace();
-                }
-                if (world == null) {
-                    controller.getLogger().warning("Failed to create world: " + worldName);
-                }
+                controller.getLogger().warning("Failed to create world: " + worldName);
             }
-            if (world != null && appearanceEnvironment != null) {
-                NMSUtils.setEnvironment(world, appearanceEnvironment);
-                controller.getLogger().info("Changed " + worldName + " appearance to " + appearanceEnvironment);
-            }
+        }
+        if (world != null && appearanceEnvironment != null) {
+            NMSUtils.setEnvironment(world, appearanceEnvironment);
+            controller.getLogger().info("Changed " + worldName + " appearance to " + appearanceEnvironment);
         }
     }
     
@@ -149,7 +159,7 @@ public class MagicWorld {
 
         state = WorldState.LOADING;
 
-        // Wait a few ticks to do this, to avoid errros during initializatoin
+        // Wait a few ticks to do this, to avoid errors during initialization
         Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
            @Override
            public void run()
