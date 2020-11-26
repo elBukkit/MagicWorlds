@@ -1,0 +1,38 @@
+#
+# A spell spell configuration for Magic to enable "The Other Side"
+#
+# This requires that you set up an alternate world named "world_other".
+# For best effect, use the same seed and assign the example block populators in config.yml
+#
+
+#
+# This customizes the Phase spell so it takes you to The Other Side instead of the nether.
+#
+phase:
+   parameters:
+      worlds:
+          world:
+             target: world_netherside
+             scale: 1
+          world_netherside:
+             target: world
+             scale: 1
+          world_nether:
+             target: world
+             scale: 8
+          world_the_end:
+             target: world
+             scale: 1
+          world_backup:
+             target: world
+             scale: 1
+          world_netherside_backup:
+             target: world_netherside
+             scale: 1
+          world_nether_backup:
+             target: world_nether
+             scale: 1
+          world_the_end_backup:
+             target: world_the_end
+             scale: 1
+             
