@@ -5,7 +5,7 @@ worlds:
 
           creeper_2_hunter:
             target_type: creeper
-            probability: 0.05
+            probability: 0.005
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -15,7 +15,7 @@ worlds:
               - hunter seed_radius 2
           creeper_3_snake:
             target_type: creeper
-            probability: 0.05
+            probability: 0.005
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -25,7 +25,7 @@ worlds:
               - snake seed_radius 2
           creeper_4_worm:
             target_type: creeper
-            probability: 0.05
+            probability: 0.005
             y_offset: 24
             min_y: 63
             allow_indoors: false
@@ -35,7 +35,7 @@ worlds:
               - worm seed_radius 3
           creeper_5_defender:
             target_type: creeper
-            probability: 0.05
+            probability: 0.005
             y_offset: 24
             min_y: 63
             allow_indoors: false
@@ -45,7 +45,7 @@ worlds:
               - defender seed_radius 3
           creeper_6_virus:
             target_type: creeper
-            probability: 0.01
+            probability: 0.001
             y_offset: 24
             min_y: 63
             allow_indoors: false
@@ -55,7 +55,7 @@ worlds:
               - virus seed_radius 3
           creeper_7_hunter:
             target_type: creeper
-            probability: 0.1
+            probability: 0.01
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -66,7 +66,7 @@ worlds:
 
           zombie_3_hunter:
             target_type: zombie
-            probability: 0.05
+            probability: 0.005
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -76,7 +76,7 @@ worlds:
               - hunter seed_radius 2
           zombie_4_snake:
             target_type: zombie
-            probability: 0.01
+            probability: 0.001
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -86,7 +86,7 @@ worlds:
               - snake seed_radius 2
           zombie_5_worm:
             target_type: zombie
-            probability: 0.01
+            probability: 0.001
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -96,7 +96,7 @@ worlds:
               - worm seed_radius 2
           zombie_6_defender:
             target_type: zombie
-            probability: 1
+            probability: 0.1
             y_offset: 6
             min_y: 63
             class: CastRule
@@ -106,7 +106,7 @@ worlds:
               - defender seed_radius 2
           zombie_7_virus:
             target_type: zombie
-            probability: 0.005
+            probability: 0.0005
             y_offset: 24
             min_y: 63
             class: CastRule
@@ -116,7 +116,7 @@ worlds:
               - virus seed_radius 3
           zombie_8_defender:
             target_type: zombie
-            probability: 1
+            probability: 0.1
             min_y: 63
             class: CastRule
             y_offset: 12
@@ -127,7 +127,7 @@ worlds:
 
           spider_4_hunter:
             target_type: spider
-            probability: 0.05
+            probability: 0.005
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -137,7 +137,7 @@ worlds:
               - hunter seed_radius 2
           spider_5_snake:
             target_type: spider
-            probability: 0.02
+            probability: 0.002
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -147,7 +147,7 @@ worlds:
               - snake seed_radius 2
           spider_6_defender:
             target_type: spider
-            probability: 0.5
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -157,7 +157,7 @@ worlds:
               - defender seed_radius 2
           spider_7_worm:
             target_type: spider
-            probability: 0.1
+            probability: 0.01
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -167,7 +167,7 @@ worlds:
               - worm seed_radius 2
           spider_8_virus:
             target_type: spider
-            probability: 0.02
+            probability: 0.002
             min_y: 63
             class: CastRule
             y_offset: 24
@@ -177,7 +177,7 @@ worlds:
               - virus seed_radius 3
           spider_9_hunter:
             target_type: spider
-            probability: 0.2
+            probability: 0.02
             min_y: 63
             class: CastRule
             y_offset: 32
@@ -188,7 +188,7 @@ worlds:
 
           enderman_3_hunter:
             target_type: enderman
-            probability: 0.05
+            probability: 0.005
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -198,7 +198,7 @@ worlds:
               - hunter seed_radius 2
           enderman_4_snake:
             target_type: enderman
-            probability: 0.02
+            probability: 0.002
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -208,7 +208,7 @@ worlds:
               - snake seed_radius 2
           enderman_5_worm:
             target_type: enderman
-            probability: 0.02
+            probability: 0.002
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -218,7 +218,7 @@ worlds:
               - worm seed_radius 2
           enderman_6_defender:
             target_type: enderman
-            probability: 0.5
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -228,7 +228,7 @@ worlds:
               - defender seed_radius 2
           enderman_7_virus:
             target_type: enderman
-            probability: 0.01
+            probability: 0.001
             min_y: 63
             class: CastRule
             y_offset: 6
@@ -238,7 +238,7 @@ worlds:
               - virus seed_radius 2
           enderman_8_hunter:
             target_type: enderman
-            probability: 0.5
+            probability: 0.05
             min_y: 63
             class: CastRule
             y_offset: 24
