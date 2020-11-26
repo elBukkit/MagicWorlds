@@ -1,5 +1,5 @@
 worlds:
-  world_other:
+  world_netherside:
       copy: world
       entity_spawn:
 
