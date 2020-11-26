@@ -8,6 +8,7 @@
  - Add support for "" or "*" target entity types (wildcard, will match all entity types)
  - Add "target_class" option, e.g. "LivingEntity", to match a variety of mobs
  - Hide cast log messages by default, re-enable with "verbose: true"
+ - Add replace_biomes option
 
 # 1.7
 
