@@ -104,12 +104,6 @@ worlds:
             min_y: 63
             class: ReplaceRule
             replace_type: enderman
-          pig_999_enderman:
-            target_type: pig
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
           sheep_999_enderman:
             target_type: sheep
             probability: 1.0
@@ -189,7 +183,7 @@ worlds:
             class: ReplaceRule
             probability: 1.0
             target_type: villager
-            replace_type: pig_zombie
+            replace_type: piglin
 
           slime_1_lavaslime:
             target_type: slime
