@@ -200,3 +200,6 @@ worlds:
             sea_lantern: glowstone
             red_mushroom_block: glowstone
             brown_mushroom_block: glowstone
+
+            rails: cyan_carpet
+            powered_rails: red_carpet
