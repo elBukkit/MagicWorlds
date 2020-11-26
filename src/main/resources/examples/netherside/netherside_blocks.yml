@@ -101,6 +101,7 @@ worlds:
             water: lava
             lava: water
             seagrass: lava
+            tall_seagrass: lava
             kelp: lava
             kelp_plant: lava
             sandstone: soul_soil
@@ -194,8 +195,8 @@ worlds:
             pumpkin: jack_o_lantern
             melon: glowstone
             torch: glowstone
-            vine: weeping_vines
-            cocoa_beans: shroomlight
+            vine: weeping_vines:*
+            cocoa: shroomlight
             sea_lantern: glowstone
             red_mushroom_block: glowstone
             brown_mushroom_block: glowstone

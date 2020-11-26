@@ -7,19 +7,19 @@ worlds:
             class: ReplaceRule
             target_type: polar_bear
             replace_type: warlock
-            probability: 1
+            probability: 0.05
 
           rabbit_1_warlock:
             class: ReplaceRule
             target_type: rabbit
             replace_type: warlock
-            probability: 0.5
+            probability: 0.05
 
           rabbit_2_dark_wizard:
             class: ReplaceRule
             target_type: rabbit
             replace_type: dark_wizard
-            probability: 0.2
+            probability: 0.01
 
           rabbit_3_killer:
             target_type: rabbit
@@ -42,38 +42,38 @@ worlds:
             class: ReplaceRule
             target_type: skeleton
             replace_type: dark_wizard
-            probability: 0.1
+            probability: 0.01
 
           zombie_1_mutant:
             class: ReplaceRule
             target_type: zombie
             replace_type: mutant
-            probability: 0.3
+            probability: 0.1
           zombie_2_mutant_captain:
             class: ReplaceRule
             target_type: zombie
             replace_type: mutant_captain
-            probability: 0.3
+            probability: 0.1
 
           spider_1_dark:
             class: ReplaceRule
             target_type: zombie
             replace_type: dark_spider
-            probability: 0.2
+            probability: 0.1
           spider_2_mega:
             class: ReplaceRule
             target_type: zombie
             replace_type: mega_spider
-            probability: 0.3
+            probability: 0.1
           spider_3_mutant:
             class: ReplaceRule
             target_type: zombie
             replace_type: mutant_spider
-            probability: 0.3
+            probability: 0.1
 
           enderman_1_warlock:
             class: ReplaceRule
-            probability: 0.5
+            probability: 0.1
             target_type: enderman
             replace_type: warlock
           enderman_2_dark_wizard:
@@ -83,7 +83,7 @@ worlds:
             replace_type: dark_wizard
           enderman_10_giant:
             target_type: enderman
-            probability: 0.3
+            probability: 0.1
             min_y: 63
             class: ReplaceRule
             replace_type: giant
@@ -103,25 +103,19 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: enderman
-          pig_999_enderman:
-            target_type: pig
-            probability: 1.0
-            min_y: 63
-            class: ReplaceRule
-            replace_type: enderman
+            replace_type: strider
           sheep_999_enderman:
             target_type: sheep
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: enderman
+            replace_type: strider
           horse_999_enderman:
             target_type: horse
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: enderman
+            replace_type: zombie_horse
           cow_998_mushroom_cow:
             target_type: cow
             probability: 0.8
@@ -133,7 +127,7 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: enderman
+            replace_type: skeleton_horse
 
        # Default fallbacks
 
@@ -148,7 +142,7 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: zombified_piglin
+            replace_type: zombie_villager
           spider_999_enderman:
             target_type: spider
             probability: 1.0
@@ -160,7 +154,13 @@ worlds:
             probability: 1.0
             min_y: 63
             class: ReplaceRule
-            replace_type: enderman
+            replace_type: zombie_horse
+          pig_999_hoglin:
+            target_type: pig
+            probability: 1.0
+            min_y: 63
+            class: ReplaceRule
+            replace_type: hoglin
 
        # Other Mob Replacement
           villager_1_mutant:
