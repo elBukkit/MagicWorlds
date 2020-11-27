@@ -15,10 +15,12 @@ import com.elmakers.mine.bukkit.block.MaterialAndData;
 import com.elmakers.mine.bukkit.magicworlds.populator.MagicBlockPopulator;
 
 public class ReplacePopulator extends MagicBlockPopulator {
+    private static final int WARNING_INTERVAL = 10000;
     private Map<Material, MaterialAndData> replaceMap = null;
     private Map<Biome, Biome> replaceBiomes = null;
     private int maxY = 128;
     private int minY = 3;
+    private long lastBiomeWarning;
 
     @Override
     public boolean onLoad(ConfigurationSection config) {
@@ -90,7 +92,15 @@ public class ReplacePopulator extends MagicBlockPopulator {
         if (replaceBiomes != null) {
             Biome newBiome = replaceBiomes.get(block.getBiome());
             if (newBiome != null) {
-                block.setBiome(newBiome);
+                try {
+                    block.setBiome(newBiome);
+                } catch (Exception ex) {
+                    long now = System.currentTimeMillis() ;
+                    if (now - lastBiomeWarning > WARNING_INTERVAL) {
+                        lastBiomeWarning = now;
+                        controller.getLogger().warning("Could not set biome to " + newBiome);
+                    }
+                }
             }
         }
         return replaceMap == null ? null : replaceMap.get(block.getType());
