@@ -12,7 +12,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter seed_radius 2
+              - birth_hunter
           creeper_3_snake:
             target_type: creeper
             probability: 0.005
@@ -22,7 +22,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - snake seed_radius 2
+              - birth_snake
           creeper_4_worm:
             target_type: creeper
             probability: 0.005
@@ -32,17 +32,17 @@ worlds:
             cooldown: 10000
             class: CastRule
             spells:
-              - worm seed_radius 3
+              - birth_worm
           creeper_5_defender:
             target_type: creeper
-            probability: 0.005
+            probability: 0.01
             y_offset: 24
             min_y: 63
             allow_indoors: false
             cooldown: 10000
             class: CastRule
             spells:
-              - defender seed_radius 3
+              - birth_defenter
           creeper_6_virus:
             target_type: creeper
             probability: 0.001
@@ -52,17 +52,7 @@ worlds:
             cooldown: 10000
             class: CastRule
             spells:
-              - virus seed_radius 3
-          creeper_7_hunter:
-            target_type: creeper
-            probability: 0.01
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - hunter seed_radius 2
+              - virth_virus
 
           zombie_3_hunter:
             target_type: zombie
@@ -73,7 +63,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter seed_radius 2
+              - birth_hunter
           zombie_4_snake:
             target_type: zombie
             probability: 0.001
@@ -83,7 +73,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - snake seed_radius 2
+              - birth_snake
           zombie_5_worm:
             target_type: zombie
             probability: 0.001
@@ -93,17 +83,17 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - worm seed_radius 2
+              - birth_worm
           zombie_6_defender:
             target_type: zombie
-            probability: 0.1
+            probability: 0.01
             y_offset: 6
             min_y: 63
             class: CastRule
             allow_indoors: false
             cooldown: 10000
             spells:
-              - defender seed_radius 2
+              - birth_defender
           zombie_7_virus:
             target_type: zombie
             probability: 0.0005
@@ -113,17 +103,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - virus seed_radius 3
-          zombie_8_defender:
-            target_type: zombie
-            probability: 0.1
-            min_y: 63
-            class: CastRule
-            y_offset: 12
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - defender seed_radius 3
+              - birth_virus
 
           spider_4_hunter:
             target_type: spider
@@ -134,7 +114,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - hunter seed_radius 2
+              - birth_hunter
           spider_5_snake:
             target_type: spider
             probability: 0.002
@@ -144,7 +124,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - snake seed_radius 2
+              - birth_snake
           spider_6_defender:
             target_type: spider
             probability: 0.05
@@ -154,7 +134,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - defender seed_radius 2
+              - birth_defender
           spider_7_worm:
             target_type: spider
             probability: 0.01
@@ -164,7 +144,7 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - worm seed_radius 2
+              - birth_worm
           spider_8_virus:
             target_type: spider
             probability: 0.002
@@ -174,75 +154,4 @@ worlds:
             allow_indoors: false
             cooldown: 10000
             spells:
-              - virus seed_radius 3
-          spider_9_hunter:
-            target_type: spider
-            probability: 0.02
-            min_y: 63
-            class: CastRule
-            y_offset: 32
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - hunter seed_radius 3
-
-          enderman_3_hunter:
-            target_type: enderman
-            probability: 0.005
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - hunter seed_radius 2
-          enderman_4_snake:
-            target_type: enderman
-            probability: 0.002
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - snake seed_radius 2
-          enderman_5_worm:
-            target_type: enderman
-            probability: 0.002
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - worm seed_radius 2
-          enderman_6_defender:
-            target_type: enderman
-            probability: 0.05
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - defender seed_radius 2
-          enderman_7_virus:
-            target_type: enderman
-            probability: 0.001
-            min_y: 63
-            class: CastRule
-            y_offset: 6
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - virus seed_radius 2
-          enderman_8_hunter:
-            target_type: enderman
-            probability: 0.05
-            min_y: 63
-            class: CastRule
-            y_offset: 24
-            allow_indoors: false
-            cooldown: 10000
-            spells:
-              - hunter seed_radius 3
+              - birth_virus
