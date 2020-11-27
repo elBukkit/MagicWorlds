@@ -178,6 +178,7 @@ worlds:
             grass_path: cracked_polished_blackstone_bricks
             sugar_cane: twisting_vines
             sunflower: twisting_vines
+            bamboo: twisting_vines
 
             iron_bars: mossy_cobblestone_wall
             cobblestone: nether_bricks

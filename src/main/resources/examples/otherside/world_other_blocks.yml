@@ -203,6 +203,7 @@ worlds:
             sugar_cane: twisting_vines
             sunflower: twisting_vines
             cocoa: shroomlight
+            bamboo: chorus_plant
 
   world_other_backup:
       copy: world
@@ -408,3 +409,4 @@ worlds:
             sugar_cane: twisting_vines
             sunflower: twisting_vines
             cocoa: shroomlight
+            bamboo: chorus_plant
