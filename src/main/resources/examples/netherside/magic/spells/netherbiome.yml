@@ -51,7 +51,7 @@ netherbiome:
         target: block
         allow_max_range: false
         range: 32
-        radius: 32
+        radius: 128
         type: sphere
         check_destructible: false
         indestructible: restricted
@@ -103,6 +103,7 @@ netherbiome:
             giant_tree_taiga: warped_forest
             giant_tree_taiga_hills: warped_forest
 
+            modified_gravelly_mountains: basalt_deltas
             gravelly_mountains: basalt_deltas
             ice_spikes: basalt_deltas
 
