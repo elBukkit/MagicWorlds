@@ -7,3 +7,16 @@ worlds:
         name: The Other Side
     world:
         name: The Overworld
+
+spells:
+    netherize:
+        name: Netherize
+        description: Copy structures from the overworld into the other nether
+
+    supernetherize:
+        name: SuperNetherize
+        description: Copy structures from the overworld into the other nether
+
+    netherbiome:
+        name: Nether Biome
+        description: Fix any biomes that weren't properly converted

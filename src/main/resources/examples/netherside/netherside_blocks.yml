@@ -202,5 +202,5 @@ worlds:
             red_mushroom_block: glowstone
             brown_mushroom_block: glowstone
 
-            rails: cyan_carpet
-            powered_rails: red_carpet
+            rail: cyan_carpet
+            powered_rail: red_carpet
