@@ -50,7 +50,6 @@ netherize:
         radius: 4
         type: sphere
         check_destructible: false
-        indestructible: restricted
         transparent: transparent_to_construction
         brush: clone
         brushmod: erase
@@ -109,6 +108,7 @@ netherize:
           jungle_fence: crimson_fence:*
           acacia_fence: nether_brick_fence:*
           dark_oak_fence: warped_fence_gate:*
+          cobblestone_wall: nether_brick_wall:*
 
           oak_fence_gate: warped_fence_gate:*
           spruce_fence_gate: crimson_fence_gate:*
@@ -138,6 +138,7 @@ netherize:
           jungle_slab: warped_slab:*
           acacia_slab: crimson_slab:*
           dark_oak_slab: crimson_slab:*
+          cobblestone_slab: nether_brick_slab:*
 
           oak_trapdoor: crimson_trapdoor:*
           spruce_trapdoor: warped_trapdoor:*

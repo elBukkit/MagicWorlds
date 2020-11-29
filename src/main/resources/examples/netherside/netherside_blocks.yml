@@ -136,6 +136,7 @@ worlds:
             jungle_fence_gate: crimson_fence_gate:*
             acacia_fence_gate: crimson_fence_gate:*
             dark_oak_fence_gate: warped_fence_gate:*
+            cobblestone_wall: nether_brick_wall:*
 
             oak_planks: warped_planks
             spruce_planks: crimson_planks
@@ -158,6 +159,7 @@ worlds:
             jungle_slab: warped_slab:*
             acacia_slab: crimson_slab:*
             dark_oak_slab: crimson_slab:*
+            cobblestone_slab: nether_brick_slab:*
 
             oak_trapdoor: crimson_trapdoor:*
             spruce_trapdoor: warped_trapdoor:*
