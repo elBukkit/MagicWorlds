@@ -1,6 +1,7 @@
 worlds:
   world_netherside:
       copy: world
+      autoload: true
       chunk_generate:
         replace:
           class: ReplacePopulator
